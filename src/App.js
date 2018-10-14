@@ -24,27 +24,28 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      data: []
+      data: [],
+      user: null
     };
   }
 
-  fetchPaintings = () => {
-    fetch(`http://localhost:3000/paintings`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ data});
-      });
-  };
+// change this to fetch user events
+  // fetchPaintings = () => {
+  //   fetch(`http://localhost:3000/paintings`)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       this.setState({ data });
+  //     });
+  // };
 
   fetchUser = () => {
-    requestHelper("http://localhost:3001/me").then(this.updateUser);
+    requestHelper("http://localhost:3001/api/v1/users").then(console.log(this.updateUser));
   };
 
   componentDidMount() {
-    // if (localStorage.getItem("token")) {
-    //   this.fetchUser();
-    // }
-    // this.fetchPaintings();
+    if (localStorage.getItem("token")) {
+      this.fetchUser();
+    }
   }
 
   updateUser = user => {
