@@ -1,17 +1,12 @@
 import React from 'react';
-import { Grid, Image, Card, Header } from 'semantic-ui-react'
+import { Grid, Card } from 'semantic-ui-react'
 
 class UserCard extends React.Component {
-
-
-
-
 
 render(){
   return(
     <Grid.Column>
-    <Card >
-        // <Image src={this.props.user.pic_url} size='medium' rounded={true} centered verticalAlign='middle' />
+    <Card>
       <Card.Content>
         <Card.Header as='h3'>{this.props.user.name}</Card.Header>
         Email: {this.props.user.email}<br/>

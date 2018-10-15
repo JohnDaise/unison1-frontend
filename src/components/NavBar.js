@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Menu, Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 class NavBar extends React.Component {
     state = {}
@@ -16,22 +16,18 @@ class NavBar extends React.Component {
 
 
   render(){
-    console.log(this.props.user)
-    const { activeItem } = this.state
 
     return (
-      <div class="ui inverted menu">
+      <div className="ui inverted menu">
               <NavLink exact to="/" className="ui item" activeClassName="ui active item">
               Home
               </NavLink>
               <NavLink activeClassName="ui active item" className="ui item" to="/myevents">
               My Events
               </NavLink>
-
               <NavLink activeClassName="ui active item" className="ui item" to="/about">
               About
               </NavLink>
-
             {this.props.user ? (
               <React.Fragment>
                 <span className="ui item">Logged in as: {this.props.user.name}</span>
@@ -46,9 +42,7 @@ class NavBar extends React.Component {
                   >
                   Login
               </NavLink>
-
             )}
-
       </div>
       );
   }

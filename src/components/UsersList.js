@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+
 import UserCard from './UserCard'
 
 import { Grid } from 'semantic-ui-react'

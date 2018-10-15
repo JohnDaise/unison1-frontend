@@ -1,15 +1,20 @@
 import React from "react";
 
-
-import { Grid } from 'semantic-ui-react'
+import NewEventForm from './NewEventForm'
 
 
 class EventsPage extends React.Component {
 
+
+  handleClick= (e) => {
+     e.preventDefault();
+     console.log("Create NEW Event Form")
+   }
+
   render(){
     return (
       <React.Fragment>
-          "Here are your events"
+        <NewEventForm />
       </React.Fragment>
     );
     }
