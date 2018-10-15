@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import About from "./components/About";
 import Login from "./components/Login";
 import UsersList from "./components/UsersList";
+import EventsPage from "./components/EventsPage";
 
 const requestHelper = url =>
   fetch(url, {
@@ -91,9 +92,10 @@ class App extends Component {
             render={() => <Login updateUser={this.updateUser} />}
           />
         <Route path="/about" component={About} />
+        <Route path="/myevents" component={EventsPage} />
 
         <Route
-            path="/"
+            exact path="/"
             render={() => {
               return (
                 <React.Fragment>

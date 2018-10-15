@@ -24,6 +24,9 @@ class NavBar extends React.Component {
               <NavLink exact to="/" className="ui item" activeClassName="ui active item">
               Home
               </NavLink>
+              <NavLink activeClassName="ui active item" className="ui item" to="/myevents">
+              My Events
+              </NavLink>
 
               <NavLink activeClassName="ui active item" className="ui item" to="/about">
               About
