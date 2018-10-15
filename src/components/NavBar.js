@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Menu } from 'semantic-ui-react'
+import { Menu, Button } from 'semantic-ui-react'
 
 class NavBar extends React.Component {
     state = {}
@@ -8,50 +8,72 @@ class NavBar extends React.Component {
    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
 
+   clickHandler = () => {
+    localStorage.clear()
+    this.props.clearUser()
+    // this.props.history.push('/')
+  }
+
+
   render(){
+    console.log(this.props.user)
     const { activeItem } = this.state
 
     return (
       <div class="ui inverted menu">
-          <Menu.Item
-              name='home'
-              active={activeItem === 'home'}
-              onClick={this.handleItemClick}
-              >
               <NavLink exact to="/" className="ui item" activeClassName="ui active item">
               Home
               </NavLink>
-          </Menu.Item>
-          <Menu.Item
-              name='about'
-              active={activeItem === 'about'}
-              onClick={this.handleItemClick}
-            >
+
               <NavLink activeClassName="ui active item" className="ui item" to="/about">
               About
               </NavLink>
-            </Menu.Item>
-          <Menu.Item
-              name='login'
-              active={activeItem === 'login'}
-              onClick={this.handleItemClick}
-            >
+
             {this.props.user ? (
-              <span className="ui item">Logged in as: {this.props.user.name}</span>
+              <React.Fragment>
+                <span className="ui item">Logged in as: {this.props.user.name}</span>
+                <Button onClick={this.clickHandler}>Logout</Button>
+                </React.Fragment>
             ) : (
               <NavLink
-                exact
-                to="/login"
-                className="ui item"
-                activeClassName="ui active item"
-              >
-                Login
+                  exact
+                  to="/login"
+                  className="ui item"
+                  activeClassName="ui active item"
+                  >
+                  Login
               </NavLink>
+
             )}
-            </Menu.Item>
+
       </div>
       );
   }
 };
 
 export default NavBar;
+
+
+
+// <NavLink activeClassName="ui active item" className="ui item" exact to="/">
+// <Menu.Item
+//     name='home'
+//     active={activeItem === 'home'}
+//     onClick={this.handleItemClick}
+//     >
+// </Menu.Item>
+
+// <Menu.Item
+//     name='login'
+//     active={activeItem === 'login'}
+//     onClick={this.handleItemClick}
+//   >
+// </Menu.Item>
+
+
+// <Menu.Item
+//     name='about'
+//     active={activeItem === 'about'}
+//     onClick={this.handleItemClick}
+//   >
+//   </Menu.Item>

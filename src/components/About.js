@@ -5,7 +5,7 @@ const About = props => {
     <div>
       <h1>About</h1>
       <p>
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+        Users Network Invite Schedule Organize Notes
       </p>
     </div>
   );

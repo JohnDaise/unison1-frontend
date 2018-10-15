@@ -5,6 +5,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import About from "./components/About";
 import Login from "./components/Login";
+import UsersList from "./components/UsersList";
 
 const requestHelper = url =>
   fetch(url, {
@@ -24,33 +25,50 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      data: [],
-      user: null
+      user: null,
+      allUsers: [],
+      events: []
     };
   }
 
-// change this to fetch user events
-  // fetchPaintings = () => {
-  //   fetch(`http://localhost:3000/paintings`)
+
+  clearUser =()=>{
+    this.setState({user: null})
+  }
+
+
+  fetchUsers = () => {
+    fetch(`http://localhost:3001/users`)
+      .then(response => response.json())
+      .then(allUsers => {
+        this.setState({ allUsers });
+      });
+  };
+
+// Event Fetch // make sure to include state for events data
+  // fetchEvents = () => {
+  //   fetch(`http://localhost:3001/events`)
   //     .then(response => response.json())
-  //     .then(data => {
-  //       this.setState({ data });
+  //     .then(events => {
+  //       this.setState({ events });
   //     });
   // };
 
   fetchUser = () => {
-    requestHelper("http://localhost:3001/api/v1/users").then(console.log(this.updateUser));
-  };
+   requestHelper("http://localhost:3001/profile").then(this.updateUser);
+ };
 
-  componentDidMount() {
-    if (localStorage.getItem("token")) {
-      this.fetchUser();
-    }
-  }
+ componentDidMount() {
+   if (localStorage.getItem("token")) {
+     this.fetchUser();
+   }
+   this.fetchUsers();
+ }
 
-  updateUser = user => {
-    this.setState({ user });
-  };
+ updateUser = user => {
+   this.setState({ user });
+ };
+
 
   onSearchHandler = event => {
     this.setState({ searchTerm: event.target.value });
@@ -63,21 +81,38 @@ class App extends Component {
       <div className="App">
         <NavBar
           title="Unison"
-          icon="paint brush"
           color="#282c34"
           subtitle="Users Network Invite Schedule Organize Notes"
-          user={this.state.user}
-        />
+          clearUser= {this.clearUser}
+          user={this.state.user} />
         <Switch>
           <Route
             path="/login"
             render={() => <Login updateUser={this.updateUser} />}
           />
-          <Route path="/about" component={About} />
-        </Switch>
+        <Route path="/about" component={About} />
+
+        <Route
+            path="/"
+            render={() => {
+              return (
+                <React.Fragment>
+                <UsersList
+                  allUsers={this.state.allUsers}
+                  />
+                 </React.Fragment>
+               );
+             }}
+             />
+           </Switch>
       </div>
     );
   }
 }
 
 export default App;
+
+// <Route
+//   path="/"
+//   render={() =>  render the events page}
+// />
