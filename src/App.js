@@ -111,8 +111,8 @@ class App extends Component {
             render={(props) => {
               return (
                 <React.Fragment>
-                  <SearchBar/>
-                <UsersContainer
+                  <SearchBar />
+                  <UsersContainer
                   allUsers={this.state.allUsers}
                   />
                  </React.Fragment>

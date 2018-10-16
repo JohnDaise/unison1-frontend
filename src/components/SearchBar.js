@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 import { changeSearchText } from "../redux/actions";
 import { Input, Segment } from 'semantic-ui-react';
 

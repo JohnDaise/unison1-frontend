@@ -8,14 +8,16 @@ const initialState = {
   searchTerm: ""
 };
 
-const eventsReducer = (state = [], action) => {
-  switch(action.type){
-    case "ADD_EVENT":
-      return state.concat([action.payload]);
+
+const searchTextReducer = (state = "", action) => {
+  console.log("searchTextReducer", state, action);
+  switch (action.type) {
+    case "CHANGE_SEARCH_TEXT":
+      return action.value;
     default:
       return state;
   }
-}
+};
 
 const userReducer = (state = userData.users, action) => {
   switch(action.type){
@@ -26,12 +28,20 @@ const userReducer = (state = userData.users, action) => {
   }
 }
 
-
+const eventsReducer = (state = [], action) => {
+  switch(action.type){
+    case "ADD_EVENT":
+      return state.concat([action.payload]);
+    default:
+      return state;
+  }
+}
 
 
 
 
 const rootReducer = combineReducers({
+  searchTerm: searchTextReducer,
   events: eventsReducer
 });
 
