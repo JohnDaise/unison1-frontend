@@ -1,28 +1,31 @@
 import React from "react";
 
-import UserCard from './UserCard'
+import UsersList from './UsersList'
+import { connect } from "react-redux";
 
 import { Grid } from 'semantic-ui-react'
+import { fetchUsers } from "../redux/actions/index";
 
 
 //rename UsersContainer
 class UsersContainer extends React.Component {
+  componentDidMount() {
+      this.props.fetchUsers();
+    }
 
 
   render(){
     return (
       <React.Fragment>
-      <Grid centered columns={3} >
-      {this.props.allUsers.map(user =>
-        <UserCard
-            key={user.id}
-            user={user}
-            /> )
-      }
-      </Grid>
+        <UsersList />
       </React.Fragment>
     );
     }
 };
 
-export default UsersContainer;
+
+
+export default connect(
+  null,
+  { fetchUsers }
+)(UsersContainer);
