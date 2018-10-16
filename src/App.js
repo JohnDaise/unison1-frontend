@@ -80,23 +80,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar
+        <Route path='/' render={(props)=><NavBar
           title="Unison"
           color="#282c34"
           subtitle="Users Network Invite Schedule Organize Notes"
           clearUser= {this.clearUser}
-          user={this.state.user} />
+          user={this.state.user} /> } />
         <Switch>
           <Route
             path="/login"
-            render={() => <Login updateUser={this.updateUser} />}
+            render={(props) => <Login updateUser={this.updateUser} />}
           />
         <Route path="/about" component={About} />
-        <Route path="/myevents" component={EventsPage} />
+        <Route path="/myevents"
+          render={(props) => <EventsPage user={this.state.user}/>}
+          />
 
         <Route
             exact path="/"
-            render={() => {
+            render={(props) => {
               return (
                 <React.Fragment>
                 <UsersList

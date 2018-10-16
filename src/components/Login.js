@@ -26,6 +26,7 @@ class Login extends React.Component {
         }
       }) ///for some reason this form isn't working
       .then(json => {
+        console.log(json.user)
         this.props.updateUser(json.user);
         localStorage.setItem("token", json.token);
       });

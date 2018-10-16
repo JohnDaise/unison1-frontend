@@ -1,24 +1,17 @@
 import { combineReducers } from "redux";
-import rootReducer from "./reducer";
 
-const eventsReducer = (state, action) => {
+
+const eventsReducer = (state = [], action) => {
   switch(action.type){
-    case "CREATE_EVENT":
-      return
-
-
-
+    case "ADD_EVENT":
+      return state.concat([action.payload]);
     default:
       return state;
-
   }
-
-
-
 }
 
 const rootReducer = combineReducers({
-  searchText: eventsReducer
+  events: eventsReducer
 });
 
 

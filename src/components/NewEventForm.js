@@ -10,29 +10,34 @@ class NewEventForm extends React.Component{
     this.state={
      name: "",
      location: "",
-     date: "",
-     time: "",
+     time: null,
      notes: ""
     }
   }
 
    handleSubmit = (e) => {
       e.preventDefault();
-      fetch(`http://localhost:3001/events/`,{
-        method: 'POST',
-        headers:{
-          "Content-Type": "application/json",
-          "Accept": "application/json"},
-          body: JSON.stringify({
-            name: "",
-            location: "",
-            date: "",
-            time: "",
-            notes: ""
+      fetch(`http://localhost:3001/events/`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        'Content-Type': 'application/json',
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+            name: this.state.name,
+            location: this.state.location,
+            time: this.state.time,
+            notes: this.state.notes,
+            user_id: this.props.user.id
           })
       })
         .then(r => r.json())
-          //.then(json => dispatch(json))
+          .then(json => console.log(json))
+
+      //     this.props.dispatch({
+      // type:'ADD_EVENT',
+      // data});
     }
 
     handleChange = (e) => {
@@ -44,6 +49,7 @@ class NewEventForm extends React.Component{
 
 
 render(){
+  console.log(this.props.user)
   return(
     <Modal trigger={<Button> Create New Event </Button>}>
       <Modal.Content>
@@ -56,10 +62,6 @@ render(){
           <Form.Field>
             <label>Location</label>
             <input name='location' placeholder='Location' onChange={(e)=> this.handleChange(e)} />
-          </Form.Field>
-          <Form.Field>
-            <label>Date</label>
-            <input name='date' placeholder='Date' onChange={(e)=> this.handleChange(e)} />
           </Form.Field>
           <Form.Field>
             <label>Time</label>

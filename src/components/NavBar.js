@@ -11,7 +11,6 @@ class NavBar extends React.Component {
    clickHandler = () => {
     localStorage.clear()
     this.props.clearUser()
-    // this.props.history.push('/')
   }
 
 

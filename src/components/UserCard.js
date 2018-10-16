@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from "react-redux";
 import { Grid, Card } from 'semantic-ui-react'
+
 
 class UserCard extends React.Component {
 
@@ -19,8 +21,17 @@ render(){
   )
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  console.log(state, ownProps)
+  // let user = state.users.find(user => user.id === ownProps.userId);
+  // return {
+  //     user: user
+  //   }
+  };
 
-export default UserCard;
+
+export default connect(mapStateToProps)(UserCard);
+
 
 //showDetail for a single instrument
 // <Card >

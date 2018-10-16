@@ -14,7 +14,7 @@ class EventsPage extends React.Component {
   render(){
     return (
       <React.Fragment>
-        <NewEventForm />
+        <NewEventForm user={this.props.user} />
       </React.Fragment>
     );
     }
