@@ -10,7 +10,6 @@ const initialState = {
 
 
 const searchTextReducer = (state = "", action) => {
-  console.log("searchTextReducer", state, action);
   switch (action.type) {
     case "CHANGE_SEARCH_TEXT":
       return action.value;
@@ -20,7 +19,6 @@ const searchTextReducer = (state = "", action) => {
 };
 
 const usersReducer = (state = [], action) => {
-  console.log("fetchUsers", state, action);
   switch(action.type){
     case "FETCHED_USERS":
         return action.users;
@@ -36,19 +34,22 @@ const loadingReducer = (state = false, action) => {
       return true;
     case "FETCHED_USERS":
       return false;
+    case "FETCHING_EVENTS":
+      return true;
+    case "FETCHED_EVENTS":
+      return false;
     default:
       return state;
   }
 };
 
 
-
-
-
 const eventsReducer = (state = [], action) => {
   switch(action.type){
     case "ADD_EVENT":
       return state.concat([action.payload]);
+    case "FETCHED_EVENTS":
+        return action.events;
     default:
       return state;
   }

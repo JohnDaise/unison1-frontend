@@ -1,10 +1,14 @@
 import React from "react";
 import NewEventForm from './NewEventForm'
 import EventsList from './EventsList'
+import { connect } from "react-redux";
+import { fetchEvents } from "../redux/actions/index";
 
 
 class EventsPage extends React.Component {
-
+  componentDidMount() {
+      this.props.fetchEvents();
+    }
 
   handleClick= (e) => {
      e.preventDefault();
@@ -14,13 +18,13 @@ class EventsPage extends React.Component {
   render(){
     return (
       <div>
-        <NewEventForm
-          user={this.props.user}
-          fetchEvents={this.props.fetchEvents}
-          />
-        <EventsList events={this.props.events}/>
+        <NewEventForm />
+        <EventsList />
       </div>
     )}
 };
 
-export default EventsPage;
+export default connect(
+  null,
+  { fetchEvents }
+)(EventsPage);

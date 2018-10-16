@@ -7,7 +7,6 @@ import { Grid } from 'semantic-ui-react'
 import { fetchUsers } from "../redux/actions/index";
 
 
-//rename UsersContainer
 class UsersContainer extends React.Component {
   componentDidMount() {
       this.props.fetchUsers();
