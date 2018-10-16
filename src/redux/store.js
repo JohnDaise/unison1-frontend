@@ -7,3 +7,10 @@ const store = createStore(
 );
 
 export default store;
+
+//
+// shape of state in redux store
+//
+// users: []
+// events: []
+// searchTerm: ""

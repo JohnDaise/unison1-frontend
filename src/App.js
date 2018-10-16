@@ -7,6 +7,8 @@ import About from "./components/About";
 import Login from "./components/Login";
 import UsersList from "./components/UsersList";
 import EventsPage from "./components/EventsPage";
+import SearchBar from "./components/SearchBar";
+
 
 const requestHelper = url =>
   fetch(url, {
@@ -109,6 +111,7 @@ class App extends Component {
             render={(props) => {
               return (
                 <React.Fragment>
+                  <SearchBar/>
                 <UsersList
                   allUsers={this.state.allUsers}
                   />
