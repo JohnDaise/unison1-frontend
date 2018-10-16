@@ -34,10 +34,10 @@ class NewEventForm extends React.Component{
       })
         .then(r => r.json())
           .then(json => console.log(json))
-
       //     this.props.dispatch({
       // type:'ADD_EVENT',
       // data});
+      this.props.fetchEvents();
     }
 
     handleChange = (e) => {
@@ -49,7 +49,6 @@ class NewEventForm extends React.Component{
 
 
 render(){
-  console.log(this.props.user)
   return(
     <Modal trigger={<Button> Create New Event </Button>}>
       <Modal.Content>

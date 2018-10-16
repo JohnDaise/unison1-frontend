@@ -1,6 +1,6 @@
 import React from "react";
-
 import NewEventForm from './NewEventForm'
+import EventsList from './EventsList'
 
 
 class EventsPage extends React.Component {
@@ -13,11 +13,14 @@ class EventsPage extends React.Component {
 
   render(){
     return (
-      <React.Fragment>
-        <NewEventForm user={this.props.user} />
-      </React.Fragment>
-    );
-    }
+      <div>
+        <NewEventForm
+          user={this.props.user}
+          fetchEvents={this.props.fetchEvents}
+          />
+        <EventsList events={this.props.events}/>
+      </div>
+    )}
 };
 
 export default EventsPage;

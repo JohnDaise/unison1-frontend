@@ -47,13 +47,13 @@ class App extends Component {
   };
 
 // Event Fetch // make sure to include state for events data
-  // fetchEvents = () => {
-  //   fetch(`http://localhost:3001/events`)
-  //     .then(response => response.json())
-  //     .then(events => {
-  //       this.setState({ events });
-  //     });
-  // };
+  fetchEvents = () => {
+    fetch(`http://localhost:3001/events`)
+      .then(response => response.json())
+      .then(events => {
+        this.setState({ events });
+      });
+  };
 
   fetchUser = () => {
    requestHelper("http://localhost:3001/profile").then(this.updateUser);
@@ -64,6 +64,7 @@ class App extends Component {
      this.fetchUser();
    }
    this.fetchUsers();
+   this.fetchEvents();
  }
 
  updateUser = user => {
@@ -77,7 +78,10 @@ class App extends Component {
 
 
 
+
+
   render() {
+    console.log(this.state.user)
     return (
       <div className="App">
         <Route path='/' render={(props)=><NavBar
@@ -93,7 +97,11 @@ class App extends Component {
           />
         <Route path="/about" component={About} />
         <Route path="/myevents"
-          render={(props) => <EventsPage user={this.state.user}/>}
+          render={(props) => <EventsPage
+            events={this.state.events}
+            user={this.state.user}
+            fetchEvents={this.fetchEvents}
+            />}
           />
 
         <Route
