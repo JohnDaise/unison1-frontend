@@ -5,7 +5,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import About from "./components/About";
 import Login from "./components/Login";
-import UsersList from "./components/UsersList";
+import UsersContainer from "./components/UsersContainer";
 import EventsPage from "./components/EventsPage";
 import SearchBar from "./components/SearchBar";
 
@@ -112,7 +112,7 @@ class App extends Component {
               return (
                 <React.Fragment>
                   <SearchBar/>
-                <UsersList
+                <UsersContainer
                   allUsers={this.state.allUsers}
                   />
                  </React.Fragment>

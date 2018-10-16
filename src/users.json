@@ -1,0 +1,85 @@
+{
+  "users":[
+          {
+          "id": 1,
+          "name": "Prince Rogers Nelson",
+          "email": "prince@gmail.com",
+          "bio": "Kid From Minneapolis",
+          "phone_number": "6127779311",
+          "events": [],
+          "user_events": [],
+          "comments": []
+          },
+          {
+          "id": 2,
+          "name": "Joni Mitchell",
+          "email": "joni@gmail.com",
+          "bio": "Song bird",
+          "phone_number": "5555555555",
+          "events": [],
+          "user_events": [],
+          "comments": []
+          },
+          {
+          "id": 3,
+          "name": "Stevie Wonder",
+          "email": "stevie@gmail.com",
+          "bio": "Man with an innervision",
+          "phone_number": "4444444444",
+          "events": [],
+          "user_events": [],
+          "comments": []
+          },
+          {
+          "id": 4,
+          "name": "Nina Simone",
+          "email": "nina@gmail.com",
+          "bio": "High Priestess of Soul",
+          "phone_number": "3333333333",
+          "events": [],
+          "user_events": [],
+          "comments": []
+          },
+          {
+          "id": 5,
+          "name": "Bernard Purdie",
+          "email": "bernard@gmail.com",
+          "bio": "The World's Most Recorded Drummer",
+          "phone_number": "2222222222",
+          "events": [],
+          "user_events": [],
+          "comments": []
+          },
+          {
+          "id": 6,
+          "name": "Sheila E",
+          "email": "sheila@gmail.com",
+          "bio": "Leading a Glamorous Life",
+          "phone_number": "8888888888",
+          "events": [],
+          "user_events": [],
+          "comments": []
+          },
+          {
+          "id": 7,
+          "name": "James Jamerson",
+          "email": "james@gmail.com",
+          "bio": "Low End of the Funk Brothers",
+          "phone_number": "9999999999",
+          "events": [],
+          "user_events": [],
+          "comments": []
+          },
+          {
+          "id": 8,
+          "name": "Jaco Pastorius",
+          "email": "jaco@gmail.com",
+          "bio": "Punk Jazz Enthusiast",
+          "phone_number": "7777777777",
+          "events": [],
+          "user_events": [],
+          "comments": []
+          }
+        ]
+
+}
