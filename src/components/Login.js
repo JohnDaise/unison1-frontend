@@ -1,6 +1,9 @@
 import React from 'react';
 import { Button, Form } from 'semantic-ui-react'
 
+import { connect } from "react-redux";
+import { setCurrentUser } from "../redux/actions/index";
+
 const baseUrl = "http://localhost:3001"
 
 class Login extends React.Component {
@@ -24,12 +27,12 @@ class Login extends React.Component {
         } else {
           return res.json();
         }
-      }) ///for some reason this form isn't working
+      })
       .then(json => {
         console.log(json.user)
-        this.props.updateUser(json.user);
+        this.props.setCurrentUser(json.user);
         localStorage.setItem("token", json.token);
-      });
+      }); ///this works got a user and a token but did not reroute
 
     };
 
@@ -53,7 +56,10 @@ render(){
   }
 }
 
-export default Login;
+export default connect(
+  null,
+  { setCurrentUser }
+)(Login);
 
 
 

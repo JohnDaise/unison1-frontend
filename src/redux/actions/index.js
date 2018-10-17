@@ -1,5 +1,6 @@
 const usersURL = "http://localhost:3001/users";
 const eventsURL = "http://localhost:3001/events";
+const loginURL = "http://localhost:3001/profile"
 
 
 function changeSearchText(value) {
@@ -54,10 +55,78 @@ function fetchEvents(value) {
 
 
 
+// function increaseVotes(paintingId) {
+//   return function(dispatch, getState) {
+//     const votes = getState().paintings.find(
+//       painting => painting.id === paintingId
+//     ).votes;
+//     fetch(`${URL}/${paintingId}`, {
+//       method: "PATCH",
+//       body: JSON.stringify({
+//         votes: votes + 1
+//       }),
+//       headers: {
+//         "Content-type": "application/json",
+//         Accept: "application/json"
+//       }
+//     })
+//       .then(res => res.json())
+//       .then(painting => dispatch(paintingUpdated(painting)));
+//   };
+//   // return { type: "INCREASE_VOTES", paintingId };
+// }
+
+
+
+
+///Login Actions
+function setCurrentUser(currentUser){
+  return { type: "SET_USER", currentUser };
+}
+
+function logOutCurrentUser(currentUser){
+  return { type: "FORGET_USER" };
+}
+
+
+function getCurrentUser(){
+    return function(dispatch, getState){
+        fetch(loginURL, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }).then(res => {
+          if (res.status === 401) {
+            dispatch(alert("login failed"));// dispatch
+          } else {
+            return res.json(); //getState
+          }
+        }).then(currentUser => dispatch(setCurrentUser(currentUser)));
+    }
+  }
 
 
 
 
 
 
-export { changeSearchText, fetchUsers, fetchEvents };
+//mapDispatchToProps to currentUser is in app and
+
+
+//dispatch fetchUser function to app
+
+
+///dispatch function to App
+
+
+
+
+
+
+
+
+
+
+
+export { changeSearchText, fetchUsers, fetchEvents, getCurrentUser, setCurrentUser, logOutCurrentUser};

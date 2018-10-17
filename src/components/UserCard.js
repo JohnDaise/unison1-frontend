@@ -21,16 +21,10 @@ render(){
   )
   }
 }
-const mapStateToProps = (state, ownProps) => {
-  console.log(state, ownProps)
-  // let user = state.users.find(user => user.id === ownProps.userId);
-  // return {
-  //     user: user
-  //   }
-  };
 
 
-export default connect(mapStateToProps)(UserCard);
+
+export default UserCard;
 
 
 //showDetail for a single instrument

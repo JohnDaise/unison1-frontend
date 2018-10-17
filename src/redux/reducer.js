@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 
 const initialState = {
   users: [],
-  currentUser: {},
+  currentUser: null,
   events: [],
   searchTerm: ""
 };
@@ -43,7 +43,7 @@ const loadingReducer = (state = false, action) => {
   }
 };
 
-
+//to create  add dispatch in action mapDispatchToProps
 const eventsReducer = (state = [], action) => {
   switch(action.type){
     case "ADD_EVENT":
@@ -57,10 +57,28 @@ const eventsReducer = (state = [], action) => {
 
 
 
+///do this reducer
+//to login a user dispatch here mapDispatchToProps
+// hold current user info  mapStateToProps
+//boolean if user is logged in mapStateToProps
+const loginReducer = (state = null, action) => {
+  switch(action.type){
+    case "SET_USER:":
+      return action.currentUser
+    case "FORGET_USER":
+        return null;
+    default:
+      return state;
+    }
+}
+
+
+
 
 const rootReducer = combineReducers({
   searchTerm: searchTextReducer,
   users: usersReducer,
+  currentUser: loginReducer,
   events: eventsReducer,
   loading: loadingReducer
 });

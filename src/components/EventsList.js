@@ -13,7 +13,7 @@ const EventsList = (props) => (
       :
         <List>
          {props.events.map(event =>
-           <List.Item><EventListItem event={event} /></List.Item>
+           <List.Item><EventListItem key={event.id} event={event} /></List.Item>
          )}
        </List>}
       </React.Fragment>

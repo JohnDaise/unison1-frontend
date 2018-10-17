@@ -1,6 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react';
+import { connect } from "react-redux";
+import { logOutCurrentUser } from "../redux/actions/index";
+
 
 class NavBar extends React.Component {
     state = {}
@@ -10,7 +13,7 @@ class NavBar extends React.Component {
 
    clickHandler = () => {
     localStorage.clear()
-    this.props.clearUser()
+    this.props.logOutCurrentUser()
   }
 
 
@@ -47,8 +50,10 @@ class NavBar extends React.Component {
   }
 };
 
-export default NavBar;
-
+export default connect(
+null,
+{ logOutCurrentUser }
+)(NavBar);
 
 
 // <NavLink activeClassName="ui active item" className="ui item" exact to="/">
