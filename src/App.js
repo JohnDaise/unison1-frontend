@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
 import NavBar from "./components/NavBar";
+import HomePage from "./components/HomePage";
 import About from "./components/About";
 import Login from "./components/Login";
 import UsersContainer from "./components/UsersContainer";
@@ -14,79 +15,102 @@ import { getCurrentUser } from "./redux/actions/index";
 
 
 
-// const requestHelper = url =>
-//   fetch(url, {
-//     method: "GET",
-//     headers: {
-//       Authorization: `Bearer ${localStorage.getItem("token")}`
-//     }
-//   }).then(res => {
-//     if (res.status === 401) {
-//       alert("login failed");
-//     } else {
-//       return res.json();
-//     }
-//   });
+const requestHelper = url =>
+  fetch(url, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`
+    }
+  }).then(res => {
+    if (res.status === 401) {
+      alert("login failed");
+    } else {
+      return res.json();
+    }
+  });
 
 class App extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     user: null,
-  //     allUsers: [],
-  //     events: []
-  //   };
-  // }
+  constructor() {
+    super();
+    this.state = {
+      currentUser: null,
+      allUsers: [],
+      events: []
+    };
+  }
 
 
   componentDidMount() {
     if (localStorage.getItem("token")) {
-      this.props.getCurrentUser(); //dispatch this function from actions
+      this.fetchUser();
+      // this.props.getCurrentUser(); //dispatch this function from actions
     }
+    this.fetchUsers();
+ this.fetchEvents();
   }
 
 
 
 
- //  clearUser =()=>{
- //    this.setState({user: null})
- //  }
- //
- //
- //
- //
- //
- //
- //  fetchUser = () => {
- //   requestHelper("http://localhost:3001/profile").then(this.updateUser);
- // };
- //
- //
- //
- // updateUser = user => {
- //   this.setState({ user });
- // };
+  clearUser =()=>{
+    this.setState({currentUser: null})
+  }
+
+  fetchUsers = () => {
+  fetch(`http://localhost:3001/users`)
+    .then(response => response.json())
+    .then(allUsers => {
+      this.setState({ allUsers });
+    });
+};
+
+fetchEvents = () => {
+  fetch(`http://localhost:3001/events`)
+    .then(response => response.json())
+    .then(events => {
+      this.setState({ events });
+    });
+};
+
+
+
+
+  fetchUser = () => {
+   requestHelper("http://localhost:3001/profile").then(this.updateUser);
+ };
+
+
+
+ updateUser = user => {
+   this.setState({
+    currentUser: user
+    });
+ };
 
 
 
 
   render() {
+    console.log(this.state)
     return (
       <div className="App">
         <Route path='/' render={(props)=><NavBar
           title="Unison"
           color="#282c34"
           subtitle="Users Network Invite Schedule Organize Notes"
+          currentUser={this.state.currentUser}
+          clearUser={this.clearUser}
          /> } />
         <Switch>
           <Route
             path="/login"
-            render={(props) => <Login updateUser={this.updateUser} />}
+            render={(props) => <Login updateUser={this.updateUser}  />}
           />
         <Route path="/about" component={About} />
         <Route path="/myevents" component={EventsPage} />
+        {!!this.state.currentUser ?
         <Route
-           path="/"
+           exact path="/"
             render={(props) => {
               return (
                 <React.Fragment>
@@ -95,8 +119,19 @@ class App extends Component {
                  </React.Fragment>
                );
              }}
-             />
-           </Switch>
+             /> :
+         <Route
+            exact path="/"
+             render={(props) => {
+                return (
+                  <React.Fragment>
+                    <HomePage />
+                  </React.Fragment>
+                );
+              }}
+            />
+           }
+          </Switch>
       </div>
     );
   }
@@ -112,7 +147,8 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(
-  mapStateToProps,
-  { getCurrentUser }
-)(App);
+export default App;
+// export default connect(
+//   mapStateToProps,
+//   { getCurrentUser }
+// )(App);

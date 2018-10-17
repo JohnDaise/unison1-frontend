@@ -80,32 +80,32 @@ function fetchEvents(value) {
 
 
 ///Login Actions
-function setCurrentUser(currentUser){
-  return { type: "SET_USER", currentUser };
-}
-
-function logOutCurrentUser(currentUser){
-  return { type: "FORGET_USER" };
-}
-
-
-function getCurrentUser(){
-    return function(dispatch, getState){
-        fetch(loginURL, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`
-          }
-        }).then(res => {
-          if (res.status === 401) {
-            dispatch(alert("login failed"));// dispatch
-          } else {
-            return res.json(); //getState
-          }
-        }).then(currentUser => dispatch(setCurrentUser(currentUser)));
-    }
-  }
-
+// function setCurrentUser(currentUser){
+//   return { type: "SET_USER", currentUser };
+// }
+//
+// function logOutCurrentUser(currentUser){
+//   return { type: "FORGET_USER" };
+// }
+//
+//
+// function getCurrentUser(){
+//     return function(dispatch, getState){
+//         fetch(loginURL, {
+//           method: "GET",
+//           headers: {
+//             Authorization: `Bearer ${localStorage.getItem("token")}`
+//           }
+//         }).then(res => {
+//           if (res.status === 401) {
+//             dispatch(alert("login failed"));// dispatch
+//           } else {
+//             return res.json(); //getState
+//           }
+//         }).then(currentUser => dispatch(setCurrentUser(currentUser)));
+//     }
+//   }
+//
 
 
 
@@ -126,7 +126,7 @@ function getCurrentUser(){
 
 
 
+// , getCurrentUser, setCurrentUser, logOutCurrentUser
 
 
-
-export { changeSearchText, fetchUsers, fetchEvents, getCurrentUser, setCurrentUser, logOutCurrentUser};
+export { changeSearchText, fetchUsers, fetchEvents};

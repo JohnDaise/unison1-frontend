@@ -7,6 +7,21 @@ import { setCurrentUser } from "../redux/actions/index";
 const baseUrl = "http://localhost:3001"
 
 class Login extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      email: "",
+      password: ""
+    }
+  }
+
+    onChange = (e) => {
+      this.setState({
+      [e.target.name]: e.target.value
+      })
+    }
+
+
 
     handleSubmit = (e) => {
       e.preventDefault();
@@ -30,24 +45,31 @@ class Login extends React.Component {
       })
       .then(json => {
         console.log(json.user)
-        this.props.setCurrentUser(json.user);
+        // this.props.setCurrentUser(json.user);
+        this.props.updateUser(json.user);
         localStorage.setItem("token", json.token);
       }); ///this works got a user and a token but did not reroute
-
+      this.setState({
+        email: "",
+        password: ""
+      })
     };
 
+
 render(){
+  console.log(this.state)
   return (
     <div className='ui card login' style={{padding: '12px',
     margin: '0 6px 6px'}}>
-    <Form onSubmit={this.handleSubmit}>
+    <Form
+      onSubmit={this.handleSubmit} onClick={this.handleClick}>
       <Form.Field>
       <label> Email </label>
-      <input name='email' placeholder='email' />
+      <input name='email' placeholder='email' onChange={(e)=> this.onChange(e)} />
       </Form.Field>
       <Form.Field>
       <label>Password</label>
-      <input name= 'password' placeholder='Password' />
+      <input name= 'password' placeholder='Password' onChange={(e)=>this.onChange(e)} />
       </Form.Field>
       <Button type='submit'>Submit</Button>
     </Form>
@@ -56,11 +78,13 @@ render(){
   }
 }
 
-export default connect(
-  null,
-  { setCurrentUser }
-)(Login);
 
+export default Login;
+// export default connect(
+//   null,
+//   { setCurrentUser }
+// )(Login);
+//
 
 
 

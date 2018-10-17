@@ -1,8 +1,8 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { Button } from 'semantic-ui-react';
 import { connect } from "react-redux";
-import { logOutCurrentUser } from "../redux/actions/index";
+// import { logOutCurrentUser } from "../redux/actions/index";
 
 
 class NavBar extends React.Component {
@@ -13,7 +13,8 @@ class NavBar extends React.Component {
 
    clickHandler = () => {
     localStorage.clear()
-    this.props.logOutCurrentUser()
+    this.props.clearUser()
+    // this.props.logOutCurrentUser();
   }
 
 
@@ -22,38 +23,51 @@ class NavBar extends React.Component {
     return (
       <div className="ui inverted menu">
               <NavLink exact to="/" className="ui item" activeClassName="ui active item">
-              Home
+                Home
               </NavLink>
+              {!!this.props.currentUser ?
               <NavLink activeClassName="ui active item" className="ui item" to="/myevents">
-              My Events
-              </NavLink>
+                My Events
+              </NavLink>: null}
               <NavLink activeClassName="ui active item" className="ui item" to="/about">
-              About
+                About
               </NavLink>
-            {this.props.user ? (
-              <React.Fragment>
-                <span className="ui item">Logged in as: {this.props.user.name}</span>
-                <Button onClick={this.clickHandler}>Logout</Button>
-                </React.Fragment>
-            ) : (
-              <NavLink
-                  exact
-                  to="/login"
-                  className="ui item"
-                  activeClassName="ui active item"
-                  >
-                  Login
-              </NavLink>
-            )}
+        {this.props.currentUser ? (
+        <React.Fragment>
+          <span className="ui item">Logged in as: {this.props.currentUser.name}</span>
+          <Button onClick={this.clickHandler}>Logout</Button>
+          </React.Fragment>
+      ) : (
+        <NavLink
+            exact
+            to="/login"
+            className="ui item"
+            activeClassName="ui active item"
+            >
+            Login
+        </NavLink>
+      )}
       </div>
       );
   }
 };
 
-export default connect(
-null,
-{ logOutCurrentUser }
-)(NavBar);
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    loading: state.loading,
+    currentUser: state.currentUser
+  };
+};
+
+export default NavBar;
+// export default withRouter(connect(
+// mapStateToProps,
+// { logOutCurrentUser }
+// )(NavBar));
+
+
+
 
 
 // <NavLink activeClassName="ui active item" className="ui item" exact to="/">

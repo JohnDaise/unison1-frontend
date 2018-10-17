@@ -1,6 +1,8 @@
 import React from "react";
 import NewEventForm from './NewEventForm'
 import EventsList from './EventsList'
+import EventDetail from './EventDetail'
+import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchEvents } from "../redux/actions/index";
 
@@ -19,7 +21,28 @@ class EventsPage extends React.Component {
     return (
       <div>
         <NewEventForm />
-        <EventsList />
+
+        <Switch>
+          <Route
+              path="/myevents/"
+              render={() => {
+                return (
+                  <EventsList />
+                  )
+                }}
+            />
+          <Route
+            exact path="/myevents/:eventId"
+            render={(data) => {
+              return (
+                <EventDetail eventId={data.match.params.eventId} />
+              )
+            }}
+          />
+        </Switch>
+
+
+
       </div>
     )}
 };
