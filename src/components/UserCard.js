@@ -1,25 +1,41 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Grid, Card, Button, Modal } from 'semantic-ui-react'
+import { Grid, Card, Button, Modal } from 'semantic-ui-react';
+import { fetchEvents } from "../redux/actions/index";
 import AddUserToEvent from './AddUserToEvent'
 
 
 class UserCard extends React.Component {
 
-/// create a function that finds the value of the dropdown, gets the matching event, then creates a new user_event to make association between that user and event
+//dispatch fetchEvents
 
 addPlayerToEvent = () => {
-  let event = this.props.events.find( event => event.name === this.props.dropValue.value)
-  console.log(event)
-  // this.props.dropValue.value = value of dropdown
-
-  //capture user id
-  //capture event id
-  //create user_event using both
-}
+  //make some sort of conditional so players are not added more than once
+  if (this.props.dropValue.value){
+  let eventId = this.props.events.find( event => event.name === this.props.dropValue.value).id
+  let playerId = this.props.user.id
+  fetch(`http://localhost:3001/user_events/`, {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+    'Content-Type': 'application/json',
+    Accept: "application/json"
+  },
+  body: JSON.stringify({
+        user_id: playerId,
+        event_id: eventId
+      })
+  })
+    .then(r => r.json())
+      .then(json => console.log(json))
+  this.props.fetchEvents();
+  this.props.playerAddedModal()
+} else {
+ this.props.openWarningModal()
+}}
 
 render(){
-  console.log(this.props.events)
+  console.log(this.props.user.id)
   return(
     <Grid.Column>
     <Card>
@@ -48,22 +64,4 @@ const mapStateToProps = state => {
 
 
 
-export default connect(mapStateToProps)(UserCard);
-
-
-//showDetail for a single instrument
-// <Card >
-//   <Card.Header as='h3'>{this.props.instrument.brand} {this.props.instrument.name}</Card.Header>
-//     {this.props.instrument.category_id === 2 ?
-//     <Image src={this.props.instrument.pic_url} size='medium' rounded={true} centered verticalAlign='middle' />
-//     :<Image src={this.props.instrument.pic_url} size='small' rounded={true} centered verticalAlign='middle' />}
-//   <Card.Content>
-//     <Header as='h5' >
-//       Color: {this.props.instrument.color} <br/>
-//       Condition: {this.props.instrument.condition}<br/>
-//     </Header>
-//     <Header as='h4' color='red' >
-//       Price: ${this.props.instrument.price}<br/>
-//     </Header>
-//   </Card.Content>
-// </Card>
+export default connect(mapStateToProps,{ fetchEvents })(UserCard);
