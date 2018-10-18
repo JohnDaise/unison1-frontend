@@ -3,18 +3,20 @@ import React from "react";
 import EventListItem  from './EventListItem'
 import { connect } from "react-redux";
 
-import { Grid, Loader, List } from 'semantic-ui-react'
+import { Grid, Loader, List, Button } from 'semantic-ui-react'
 
 
 const EventsList = (props) => (
+  console.log(props),
       <React.Fragment>
         {props.loading ?
         <Loader active inline='centered' />
       :
         <List>
-         {props.events.map(event =>
+          {props.currentUser ?
+          props.events.filter(event => event.user_id === props.currentUser.id ).map(event =>
            <List.Item><EventListItem key={event.id} event={event} /></List.Item>
-         )}
+         ) : null}
        </List>}
       </React.Fragment>
 );

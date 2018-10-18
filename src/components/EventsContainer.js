@@ -17,7 +17,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Container, Divider } from 'semantic-ui-react'
 
 
-class EventsPage extends React.Component {
+class EventsContainer extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -32,8 +32,6 @@ class EventsPage extends React.Component {
     });
   }
 
-
-
   componentDidMount() {
       this.props.fetchEvents();
     }
@@ -46,21 +44,21 @@ class EventsPage extends React.Component {
   render(){
     return (
       <React.Fragment>
-        <Container textAlign='left'>
-          <DatePicker
-            selected={this.state.startDate}
-            onChange={this.handleChange}
-          />
-      </Container>
-      <Container textAlign='right'>
-        <NewEventForm currentUser={this.props.currentUser} />
-      </Container>
-      <Container>
-        <EventsList />
-      </Container>
-      <Container>
-        <EventDetail />
-      </Container>
+          <Container textAlign='left'>
+              <DatePicker
+                selected={this.state.startDate}
+                onChange={this.handleChange}
+              />
+          </Container>
+          <Container textAlign='right'>
+              <NewEventForm currentUser={this.props.currentUser} />
+          </Container>
+          <Container>
+              <EventsList currentUser={this.props.currentUser} />
+          </Container>
+          <Container>
+              <EventDetail />
+          </Container>
       </React.Fragment>
     )}
 };
@@ -74,21 +72,4 @@ class EventsPage extends React.Component {
 export default connect(
   null,
   { fetchEvents }
-)(EventsPage);
-
-
-// <Switch>
-//   <Route
-//     path="/myevents/:eventId"
-//     render={data => {
-//       return <EventDetail event={"selectedEvent"} />;
-//     }}
-//   />
-//   <Route
-//     path="/"
-//     render={() => (
-//       <EventsList />
-//     )}
-//   />
-// </Switch>
-//
+)(EventsContainer);

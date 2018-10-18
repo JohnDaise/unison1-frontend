@@ -7,7 +7,7 @@ import HomePage from "./components/HomePage";
 import About from "./components/About";
 import Login from "./components/Login";
 import UsersContainer from "./components/UsersContainer";
-import EventsPage from "./components/EventsPage";
+import EventsContainer from "./components/EventsContainer";
 import SearchBar from "./components/SearchBar";
 
 import { connect } from "react-redux";
@@ -73,12 +73,9 @@ fetchEvents = () => {
 };
 
 
-
-
   fetchUser = () => {
    requestHelper("http://localhost:3001/profile").then(this.updateUser);
  };
-
 
 
  updateUser = user => {
@@ -88,10 +85,7 @@ fetchEvents = () => {
  };
 
 
-
-
   render() {
-    console.log(this.state)
     return (
       <div className="App">
         <Route path='/' render={(props)=><NavBar
@@ -108,7 +102,7 @@ fetchEvents = () => {
           />
         <Route path="/about" component={About} />
         <Route path="/myevents"
-          render={(props) => <EventsPage currentUser={this.state.currentUser} />}
+          render={(props) => <EventsContainer currentUser={this.state.currentUser} />}
          />
         {!!this.state.currentUser ?
         <Route
