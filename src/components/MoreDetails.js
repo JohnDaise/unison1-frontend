@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from 'semantic-ui-react'
+import { Grid, Modal } from 'semantic-ui-react'
 
 
 const MoreDetails = () => {
@@ -12,11 +12,7 @@ const MoreDetails = () => {
       <h1>"MoreDetails"</h1>
     </Grid.Column>
   )
-
-
-
-
-
+  
 }
 
 
