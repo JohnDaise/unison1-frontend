@@ -3,8 +3,8 @@ import { Header, Modal, Icon } from 'semantic-ui-react'
 
 const PlayerAddedModal = (props) => (
   <Modal
-      open={props.isModalOpen}
-      onClose={props.closeWarningModal}
+      open={props.isPlayerAddedModalOpen}
+      onClose={props.closePlayerAddedModal}
       size={'mini'}
       >
     <Modal.Header>Player Added<Icon name='check circle outline'/></Modal.Header>

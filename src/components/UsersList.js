@@ -19,6 +19,7 @@ const UsersList = props => (
         events={props.events}
         currentUser={props.currentUser}
         openWarningModal={props.openWarningModal}
+        openPlayerAddedModal={props.openPlayerAddedModal}
         />
     ))}
   </Grid>}

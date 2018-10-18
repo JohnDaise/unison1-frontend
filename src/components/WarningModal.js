@@ -3,7 +3,7 @@ import { Header, Modal, Icon } from 'semantic-ui-react'
 
 const WarningModal = (props) => (
   <Modal
-      open={props.isModalOpen}
+      open={props.isWarningModalOpen}
       onClose={props.closeWarningModal}
       size={'mini'}
       >

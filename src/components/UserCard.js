@@ -29,10 +29,11 @@ addPlayerToEvent = () => {
     .then(r => r.json())
       .then(json => console.log(json))
   this.props.fetchEvents();
-  this.props.playerAddedModal()
+  this.props.openPlayerAddedModal()
 } else {
  this.props.openWarningModal()
 }}
+
 
 render(){
   console.log(this.props.user.id)

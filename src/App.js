@@ -39,8 +39,7 @@ class App extends Component {
     this.state = {
       currentUser: null,
       allUsers: [],
-      events: [],
-      dropValue: null
+      events: []
     };
   }
 
