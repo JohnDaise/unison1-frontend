@@ -10,7 +10,7 @@ class UserCard extends React.Component {
 
 addPlayerToEvent = () => {
   let event = this.props.events.find( event => event.name === this.props.dropValue.value)
-  
+  console.log(event)
   // this.props.dropValue.value = value of dropdown
 
   //capture user id
