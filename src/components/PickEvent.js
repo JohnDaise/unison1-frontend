@@ -28,6 +28,7 @@ handleChange = (e, { value }) => {
 
 
 render(){
+  console.log(this.state.value)
   // const { value } = this.props.events
 //map thru the array of events and make each element of choices a include the event text and value
 
@@ -43,7 +44,7 @@ function createObj(obj){
         <Dropdown
           fluid selection
           size='small'
-          onChange={(e, { value })=> console.log('add user')}
+          onChange={(e, { value })=> this.handleChange(e, { value })}
           placeholder='Choose Event'
           name="choices"
           options={choices}
