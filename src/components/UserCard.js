@@ -16,6 +16,7 @@ addPlayerToEvent = () => {
 }
 
 render(){
+  console.log(this.props.dropValue)
   return(
     <Grid.Column>
     <Card>
@@ -32,9 +33,19 @@ render(){
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    loading: state.loading,
+    events: state.events,
+    dropValue: state.dropValue
+  };
+};
 
 
-export default UserCard;
+
+
+
+export default connect(mapStateToProps)(UserCard);
 
 
 //showDetail for a single instrument

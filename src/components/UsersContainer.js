@@ -4,12 +4,13 @@ import UsersList from './UsersList'
 import { connect } from "react-redux";
 
 import { Grid } from 'semantic-ui-react'
-import { fetchUsers } from "../redux/actions/index";
+import { fetchUsers, fetchEvents } from "../redux/actions/index";
 
 
 class UsersContainer extends React.Component {
   componentDidMount() {
       this.props.fetchUsers();
+      this.props.fetchEvents();
     }
 
 
@@ -26,5 +27,5 @@ class UsersContainer extends React.Component {
 
 export default connect(
   null,
-  { fetchUsers }
+  { fetchUsers, fetchEvents }
 )(UsersContainer);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-
+import { changeDropValue } from "../redux/actions";
 import { Dropdown } from 'semantic-ui-react'
 
 
@@ -16,15 +16,10 @@ class PickEvent extends React.Component {
     }
   }
 
-handleChange = (e, { value }) => {
-  this.setState({ value })
-  return this.state.value
-}
+// handleChange = (e, { value }) => {
+//   this.setState({ value });
+// };
 
-///need to find a way to capture state of this dropdown and place into this callback
-// props.filterBySort = (this.state.value) => {
-//
-// }
 
 
 render(){
@@ -44,7 +39,7 @@ function createObj(obj){
         <Dropdown
           fluid selection
           size='small'
-          onChange={(e, { value })=> this.handleChange(e, { value })}
+          onChange={(e, { value })=> this.props.onChange(e, { value })}
           placeholder='Choose Event'
           name="choices"
           options={choices}
@@ -57,11 +52,17 @@ function createObj(obj){
 const mapStateToProps = state => {
   return {
     loading: state.loading,
-    events: state.events
+    events: state.events,
+    value: state.dropValue
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onChange: value => dispatch(changeDropValue(value))
   };
 };
 
 
 
-
-export default connect(mapStateToProps)(PickEvent);
+export default connect(mapStateToProps, mapDispatchToProps)(PickEvent);

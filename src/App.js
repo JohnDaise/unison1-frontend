@@ -39,7 +39,8 @@ class App extends Component {
     this.state = {
       currentUser: null,
       allUsers: [],
-      events: []
+      events: [],
+      dropValue: null
     };
   }
 
@@ -51,7 +52,7 @@ class App extends Component {
       // this.props.getCurrentUser(); //dispatch this function from actions
     }
     this.fetchUsers();
- this.fetchEvents();
+    this.fetchEvents();
   }
 
 
@@ -90,6 +91,8 @@ fetchEvents = () => {
  };
 
 
+
+
   render() {
     return (
       <div className="App">
@@ -117,7 +120,9 @@ fetchEvents = () => {
                 <React.Fragment>
                   <PickEvent currentUser={this.state.currentUser} />
                   <SearchBar />
-                  <UsersContainer currentUser={this.state.currentUser}/>
+                  <UsersContainer
+                    currentUser={this.state.currentUser}
+                    />
                  </React.Fragment>
                );
              }}

@@ -7,6 +7,10 @@ function changeSearchText(value) {
   return { type: "CHANGE_SEARCH_TEXT", value: value };
 }
 
+function changeDropValue(value) {
+  return { type: "CHANGE_DROP_VALUE", value: value}
+}
+
 ///User Actions
 
 function fetchedUsers(users){
@@ -26,6 +30,7 @@ function fetchUsers(value) {
        .then(users => dispatch(fetchedUsers(users)));
    };
 }
+
 
 
 
@@ -129,4 +134,4 @@ function fetchEvents(value) {
 // , getCurrentUser, setCurrentUser, logOutCurrentUser
 
 
-export { changeSearchText, fetchUsers, fetchEvents, fetchedEvents };
+export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchedEvents };

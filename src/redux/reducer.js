@@ -4,13 +4,23 @@ import { combineReducers } from "redux";
 const initialState = {
   users: [],
   events: [],
-  searchTerm: ""
+  searchTerm: "",
+  dropValue: null
 };
 
 
 const searchTextReducer = (state = "", action) => {
   switch (action.type) {
     case "CHANGE_SEARCH_TEXT":
+      return action.value;
+    default:
+      return state;
+  }
+};
+
+const dropDownReducer = (state = "", action) => {
+  switch (action.type) {
+    case "CHANGE_DROP_VALUE":
       return action.value;
     default:
       return state;
@@ -76,6 +86,7 @@ const loginReducer = (state = null, action) => {
 
 const rootReducer = combineReducers({
   searchTerm: searchTextReducer,
+  dropValue: dropDownReducer,
   users: usersReducer,
   currentUser: loginReducer,
   events: eventsReducer,
