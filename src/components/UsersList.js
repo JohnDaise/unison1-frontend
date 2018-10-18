@@ -15,7 +15,10 @@ const UsersList = props => (
     {props.users.map(user => (
       <UserCard
         key={user.id}
-        user={user} />
+        user={user}
+        events={props.events}
+        currentUser={props.currentUser}
+        />
     ))}
   </Grid>}
   </React.Fragment>

@@ -129,4 +129,4 @@ function fetchEvents(value) {
 // , getCurrentUser, setCurrentUser, logOutCurrentUser
 
 
-export { changeSearchText, fetchUsers, fetchEvents};
+export { changeSearchText, fetchUsers, fetchEvents, fetchedEvents };

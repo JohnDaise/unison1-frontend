@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Grid, Card } from 'semantic-ui-react'
+import { Grid, Card, Button, Modal } from 'semantic-ui-react'
+import AddUserToEvent from './AddUserToEvent'
 
 
 class UserCard extends React.Component {
@@ -15,7 +16,7 @@ render(){
         Phone Number: {this.props.user.phone_number}<br/>
         Bio: {this.props.user.bio}
       </Card.Content>
-
+      <AddUserToEvent currentUser={this.props.currentUser}/>
     </Card>
     </Grid.Column>
   )

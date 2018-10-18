@@ -111,7 +111,7 @@ fetchEvents = () => {
               return (
                 <React.Fragment>
                   <SearchBar />
-                  <UsersContainer/>
+                  <UsersContainer currentUser={this.state.currentUser}/>
                  </React.Fragment>
                );
              }}

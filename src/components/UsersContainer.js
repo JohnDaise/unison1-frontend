@@ -16,7 +16,7 @@ class UsersContainer extends React.Component {
   render(){
     return (
       <React.Fragment>
-        <UsersList />
+        <UsersList  currentUser={this.props.currentUser} />
       </React.Fragment>
     );
     }
