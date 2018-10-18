@@ -9,14 +9,17 @@ class UserCard extends React.Component {
 /// create a function that finds the value of the dropdown, gets the matching event, then creates a new user_event to make association between that user and event
 
 addPlayerToEvent = () => {
-  console.log('added user to event')
+  let event = this.props.events.find( event => event.name === this.props.dropValue.value)
+  
+  // this.props.dropValue.value = value of dropdown
+
   //capture user id
   //capture event id
   //create user_event using both
 }
 
 render(){
-  console.log(this.props.dropValue)
+  console.log(this.props.events)
   return(
     <Grid.Column>
     <Card>

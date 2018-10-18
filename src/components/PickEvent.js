@@ -39,7 +39,11 @@ function createObj(obj){
         <Dropdown
           fluid selection
           size='small'
-          onChange={(e, { value })=> this.props.onChange(e, { value })}
+          onChange={(e, value )=> {
+            e.persist();
+             console.log(e.target.textContent);
+            this.props.onChange(value)}
+          }
           placeholder='Choose Event'
           name="choices"
           options={choices}
