@@ -29,7 +29,7 @@ class NewEventForm extends React.Component{
             location: this.state.location,
             time: this.state.time,
             notes: this.state.notes,
-            user_id: this.props.user.id
+            user_id: this.props.currentUser.id
           })
       })
         .then(r => r.json())
@@ -50,7 +50,7 @@ class NewEventForm extends React.Component{
 
 render(){
   return(
-    <Modal trigger={<Button> Create New Event </Button>}>
+    <Modal trigger={<Button circular icon='plus'/>}>
       <Modal.Content>
       <Modal.Header>Create New Event</Modal.Header>
         <Form onSubmit={(e) => this.handleSubmit(e)}>

@@ -107,7 +107,9 @@ fetchEvents = () => {
             render={(props) => <Login updateUser={this.updateUser}  />}
           />
         <Route path="/about" component={About} />
-        <Route path="/myevents" component={EventsPage} />
+        <Route path="/myevents"
+          render={(props) => <EventsPage currentUser={this.state.currentUser} />}
+         />
         {!!this.state.currentUser ?
         <Route
            exact path="/"

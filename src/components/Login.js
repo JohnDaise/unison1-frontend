@@ -44,7 +44,6 @@ class Login extends React.Component {
         }
       })
       .then(json => {
-        console.log(json.user)
         // this.props.setCurrentUser(json.user);
         this.props.updateUser(json.user);
         localStorage.setItem("token", json.token);
@@ -57,7 +56,6 @@ class Login extends React.Component {
 
 
 render(){
-  console.log(this.state)
   return (
     <div className='ui card login' style={{padding: '12px',
     margin: '0 6px 6px'}}>

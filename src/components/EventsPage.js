@@ -1,13 +1,39 @@
 import React from "react";
 import NewEventForm from './NewEventForm'
+import UpdateEventForm from './UpdateEventForm'
 import EventsList from './EventsList'
 import EventDetail from './EventDetail'
+
+
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchEvents } from "../redux/actions/index";
 
 
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
+
+import { Container, Divider } from 'semantic-ui-react'
+
+
 class EventsPage extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      startDate: moment()
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(date) {
+    this.setState({
+      startDate: date
+    });
+  }
+
+
+
   componentDidMount() {
       this.props.fetchEvents();
     }
@@ -19,35 +45,50 @@ class EventsPage extends React.Component {
 
   render(){
     return (
-      <div>
-        <NewEventForm />
-
-        <Switch>
-          <Route
-              path="/myevents/"
-              render={() => {
-                return (
-                  <EventsList />
-                  )
-                }}
-            />
-          <Route
-            exact path="/myevents/:eventId"
-            render={(data) => {
-              return (
-                <EventDetail eventId={data.match.params.eventId} />
-              )
-            }}
+      <React.Fragment>
+        <Container textAlign='left'>
+          <DatePicker
+            selected={this.state.startDate}
+            onChange={this.handleChange}
           />
-        </Switch>
-
-
-
-      </div>
+      </Container>
+      <Container textAlign='right'>
+        <NewEventForm currentUser={this.props.currentUser} />
+      </Container>
+      <Container>
+        <EventsList />
+      </Container>
+      <Container>
+        <EventDetail />
+      </Container>
+      </React.Fragment>
     )}
 };
+
+// <React.Fragment>
+//   <EventsList />
+//   <EventDetail/>
+// </React.Fragment>
+//
 
 export default connect(
   null,
   { fetchEvents }
 )(EventsPage);
+
+
+// <Switch>
+//   <Route
+//     path="/myevents/:eventId"
+//     render={data => {
+//       return <EventDetail event={"selectedEvent"} />;
+//     }}
+//   />
+//   <Route
+//     path="/"
+//     render={() => (
+//       <EventsList />
+//     )}
+//   />
+// </Switch>
+//

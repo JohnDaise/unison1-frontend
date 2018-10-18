@@ -1,21 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Route, Switch  } from "react-router-dom";
 import { connect } from "react-redux";
-import { Table } from 'semantic-ui-react'
+import { Grid, Image } from 'semantic-ui-react'
+import MoreDetails from './MoreDetails'
+import CommentsList from './CommentsList'
+
 
 class EventDetail extends React.Component {
+
   render() {
-    return (
-      <div>
-
-      <h4>
-
-      </h4>
-      //Event Details Table
-
-      //Comments Box
-      </div>
-    )
+      return (
+        <Grid columns={2} divided>
+          <MoreDetails />
+          <CommentsList />
+        </Grid>
+      )
   }
 }
 
