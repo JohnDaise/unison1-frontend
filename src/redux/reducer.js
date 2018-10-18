@@ -3,7 +3,6 @@ import { combineReducers } from "redux";
 
 const initialState = {
   users: [],
-  currentUser: null,
   events: [],
   searchTerm: ""
 };

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
+
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
 import About from "./components/About";
@@ -9,6 +10,9 @@ import Login from "./components/Login";
 import UsersContainer from "./components/UsersContainer";
 import EventsContainer from "./components/EventsContainer";
 import SearchBar from "./components/SearchBar";
+import PickEvent from "./components/PickEvent";
+
+
 
 import { connect } from "react-redux";
 import { getCurrentUser } from "./redux/actions/index";
@@ -43,6 +47,7 @@ class App extends Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
       this.fetchUser();
+      this.fetchEvents();
       // this.props.getCurrentUser(); //dispatch this function from actions
     }
     this.fetchUsers();
@@ -104,12 +109,13 @@ fetchEvents = () => {
         <Route path="/myevents"
           render={(props) => <EventsContainer currentUser={this.state.currentUser} />}
          />
-        {!!this.state.currentUser ?
+        {this.state.currentUser ?
         <Route
            exact path="/"
             render={(props) => {
               return (
                 <React.Fragment>
+                  <PickEvent currentUser={this.state.currentUser} />
                   <SearchBar />
                   <UsersContainer currentUser={this.state.currentUser}/>
                  </React.Fragment>
@@ -135,7 +141,6 @@ fetchEvents = () => {
 
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     loading: state.loading,
     currentUser: state.currentUser
