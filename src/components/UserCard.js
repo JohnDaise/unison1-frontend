@@ -10,6 +10,7 @@ class UserCard extends React.Component {
 //dispatch fetchEvents
 
 addPlayerToEvent = () => {
+  console.log(this.props.dropValue.value)
   //make some sort of conditional so players are not added more than once
   if (this.props.dropValue.value){
   let eventId = this.props.events.find( event => event.name === this.props.dropValue.value).id

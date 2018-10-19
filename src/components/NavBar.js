@@ -1,8 +1,9 @@
 import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
-import { Button } from 'semantic-ui-react';
 import { connect } from "react-redux";
 // import { logOutCurrentUser } from "../redux/actions/index";
+import { Button } from 'semantic-ui-react';
+import "../App.css";
 
 
 class NavBar extends React.Component {
@@ -21,7 +22,8 @@ class NavBar extends React.Component {
   render(){
 
     return (
-      <div className="ui inverted menu">
+      <React.Fragment>
+      <div className="ui inverted menu navbar">
               <NavLink exact to="/" className="ui item" activeClassName="ui active item">
                 Home
               </NavLink>
@@ -33,13 +35,12 @@ class NavBar extends React.Component {
                 About
               </NavLink>
         {this.props.currentUser ? (
-        <React.Fragment>
-          <span className="ui item">Logged in as: {this.props.currentUser.name}</span>
-          <Button onClick={this.clickHandler}>Logout</Button>
-          </React.Fragment>
+          <div className="logout">
+            <span className="ui item">Logged in as: {this.props.currentUser.name}</span>
+            <Button attached='top' onClick={this.clickHandler}>Logout</Button>
+          </div>
       ) : (
         <NavLink
-            exact
             to="/login"
             className="ui item"
             activeClassName="ui active item"
@@ -48,6 +49,7 @@ class NavBar extends React.Component {
         </NavLink>
       )}
       </div>
+      </React.Fragment>
       );
   }
 };

@@ -95,13 +95,13 @@ fetchEvents = () => {
   render() {
     return (
       <div className="App">
-        <Route path='/' render={(props)=><NavBar
+        <NavBar
           title="Unison"
           color="#282c34"
           subtitle="Users Network Invite Schedule Organize Notes"
           currentUser={this.state.currentUser}
           clearUser={this.clearUser}
-         /> } />
+         />
         <Switch>
           <Route
             path="/login"
@@ -111,6 +111,7 @@ fetchEvents = () => {
         <Route path="/myevents"
           render={(props) => <EventsContainer currentUser={this.state.currentUser} />}
          />
+       ///logged in routes
         {this.state.currentUser ?
         <Route
            exact path="/"

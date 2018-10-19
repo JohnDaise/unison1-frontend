@@ -6,32 +6,41 @@ import { connect } from "react-redux";
 import { Grid, Loader } from 'semantic-ui-react'
 
 
-const UsersList = props => (
+class UsersList extends React.Component {
+
+render(){
+  const otherUsers = this.props.users.filter(user => this.props.currentUser.id !== user.id)
+
+  return (
   <React.Fragment>
-     {props.loading ?
+     {this.props.loading ?
         <Loader active inline='centered' />
        :
   <Grid centered columns={3} >
-    {props.users.map(user => (
+    { otherUsers.map(user => (
       <UserCard
         key={user.id}
         user={user}
-        events={props.events}
-        currentUser={props.currentUser}
-        openWarningModal={props.openWarningModal}
-        openPlayerAddedModal={props.openPlayerAddedModal}
+        events={this.props.events}
+        currentUser={this.props.currentUser}
+        openWarningModal={this.props.openWarningModal}
+        openPlayerAddedModal={this.props.openPlayerAddedModal}
         />
     ))}
   </Grid>}
   </React.Fragment>
-);
+)}
+};
 
 
 
 const mapStateToProps = state => {
   return {
     loading: state.loading,
-    users: state.users.filter(user => user.name.toLowerCase().includes(state.searchTerm.toLowerCase()))
+    users: state.users.filter(user =>
+      user.name.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+      user.bio.toLowerCase().includes(state.searchTerm.toLowerCase())
+    )
   };
 };
 

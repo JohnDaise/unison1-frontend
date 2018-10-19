@@ -16,14 +16,22 @@ class PickEvent extends React.Component {
     }
   }
 
-// handleChange = (e, { value }) => {
-//   this.setState({ value });
-// };
+componentDidMount(){
+  this.handleChange();
+}
+
+handleChange = () => {
+  this.setState({
+    value:{
+      text: '',
+      value: ''
+    }
+  });
+};
 
 
 
 render(){
-  console.log(this.state.value)
   // const { value } = this.props.events
 //map thru the array of events and make each element of choices a include the event text and value
 

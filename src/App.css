@@ -35,6 +35,15 @@
   color: #61dafb;
 }
 
+.ui-inverted-menu-navbar{
+  align-items: right;
+
+}
+
+.logout{
+
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

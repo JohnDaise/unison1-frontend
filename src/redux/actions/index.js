@@ -60,26 +60,6 @@ function fetchEvents(value) {
 
 
 
-// function increaseVotes(paintingId) {
-//   return function(dispatch, getState) {
-//     const votes = getState().paintings.find(
-//       painting => painting.id === paintingId
-//     ).votes;
-//     fetch(`${URL}/${paintingId}`, {
-//       method: "PATCH",
-//       body: JSON.stringify({
-//         votes: votes + 1
-//       }),
-//       headers: {
-//         "Content-type": "application/json",
-//         Accept: "application/json"
-//       }
-//     })
-//       .then(res => res.json())
-//       .then(painting => dispatch(paintingUpdated(painting)));
-//   };
-//   // return { type: "INCREASE_VOTES", paintingId };
-// }
 
 
 

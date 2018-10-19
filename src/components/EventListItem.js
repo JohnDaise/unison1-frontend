@@ -11,7 +11,7 @@ return(
     className="item"
     event={event}
     to={`/myevents/${event.id}`}>
-    <h2>{event.name}</h2><DeleteButton/>
+    <h2>{event.name}</h2>
   </Link>
 )
 
