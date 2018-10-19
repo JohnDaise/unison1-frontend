@@ -21,7 +21,6 @@ const EventsList = (props) => (
 );
 
 const mapStateToProps = state => {
-  console.log(state.events)
   return {
     loading: state.loading,
     events: state.events

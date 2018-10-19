@@ -8,6 +8,7 @@ import CommentsList from './CommentsList'
 
 class EventDetail extends React.Component {
   render() {
+    console.log(this.props)
       return (
         <Grid columns={2} divided>
           <MoreDetails />
@@ -18,8 +19,10 @@ class EventDetail extends React.Component {
 }
 
   const mapStateToProps = (state, propsFromParent) => {
+    console.log(state, propsFromParent.eventId)
+    let event = state.events.find(event => event.id === propsFromParent.eventId)
     return {
-      event: state.events.find(event => event.id === propsFromParent.eventId)
+      event: event
     };
    };
 

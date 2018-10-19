@@ -91,7 +91,6 @@ fetchEvents = () => {
 
 
 
-
   render() {
     return (
       <div className="App">
@@ -105,13 +104,12 @@ fetchEvents = () => {
         <Switch>
           <Route
             path="/login"
-            render={(props) => <Login updateUser={this.updateUser}  />}
+            render={() => <Login updateUser={this.updateUser}  />}
           />
         <Route path="/about" component={About} />
         <Route path="/myevents"
-          render={(props) => <EventsContainer currentUser={this.state.currentUser} />}
+          render={() => <EventsContainer currentUser={this.state.currentUser} />}
          />
-       ///logged in routes
         {this.state.currentUser ?
         <Route
            exact path="/"
@@ -131,9 +129,7 @@ fetchEvents = () => {
             exact path="/"
              render={(props) => {
                 return (
-                  <React.Fragment>
                     <HomePage />
-                  </React.Fragment>
                 );
               }}
             />

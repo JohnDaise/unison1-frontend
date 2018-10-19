@@ -37,7 +37,6 @@ addPlayerToEvent = () => {
 
 
 render(){
-  console.log(this.props.user.id)
   return(
     <Grid.Column>
     <Card>
