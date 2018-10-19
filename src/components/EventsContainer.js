@@ -14,7 +14,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { Container, Divider } from 'semantic-ui-react'
+import { Container, Divider, Grid } from 'semantic-ui-react'
 
 
 class EventsContainer extends React.Component {
@@ -43,39 +43,45 @@ class EventsContainer extends React.Component {
 ///need a switch below for each event routes for events should be restful so they are shareable also add scroll
   render(){
     return (
-      <React.Fragment>
+      <Grid columns={3} divided>
+        <Grid.Column>
+          <NewEventForm currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} />
+          <EventsList currentUser={this.props.currentUser}  />
+        </Grid.Column>
+        <Grid.Column>
+          <Container >
+            <Switch>
+              <Route
+                 path="/myevents/:eventId"
+                 render={(data) => {
+                   console.log(data)
+                   let singleEvent = this.props.events.find(
+                     event => event.id === data.match.params.eventId
+                   )
+                  return <EventDetail singleEvent={singleEvent} eventId={data.match.params.eventId} />
+                 }}
+                 />
+            </Switch>
+          </Container>
+        </Grid.Column>
+        <Grid.Column>
           <Container textAlign='left'>
               <DatePicker
                 selected={this.state.startDate}
                 onChange={this.handleChange}
               />
           </Container>
-          <Container textAlign='right'>
-              <NewEventForm currentUser={this.props.currentUser} />
-          </Container>
-          <Switch>
-            <Route
-               path="/myevents/:eventId"
-               render={(data) => {
-                 console.log(data)
-                 let singleEvent = this.props.events.find(
-                   event => event.id === data.match.params.eventId
-                 )
-                return <EventDetail singleEvent={singleEvent} eventId={data.match.params.eventId} />
-               }}
-               />
-               <Route
-              path="/"
-              render={() => (
-                <div className="ui narrow container segment">
-                  <EventsList currentUser={this.props.currentUser} />
-                </div>
-              )}
-            />
+        </Grid.Column>
 
-          </Switch>
 
-      </React.Fragment>
+
+
+
+
+
+
+
+      </Grid>
     )}
 };
 

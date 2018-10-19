@@ -10,10 +10,12 @@ class NewEventForm extends React.Component{
     this.state={
      name: "",
      location: "",
+     date: "",
      time: null,
      notes: ""
     }
   }
+
 
    handleSubmit = (e) => {
       e.preventDefault();
@@ -27,6 +29,7 @@ class NewEventForm extends React.Component{
       body: JSON.stringify({
             name: this.state.name,
             location: this.state.location,
+            date: this.state.date,
             time: this.state.time,
             notes: this.state.notes,
             user_id: this.props.currentUser.id
@@ -50,7 +53,7 @@ class NewEventForm extends React.Component{
 
 render(){
   return(
-    <Modal trigger={<Button circular icon='plus'/>}>
+    <Modal trigger={<Button circular float="right" icon='plus'/>}>
       <Modal.Content>
       <Modal.Header>Create New Event</Modal.Header>
         <Form onSubmit={(e) => this.handleSubmit(e)}>
@@ -61,6 +64,10 @@ render(){
           <Form.Field>
             <label>Location</label>
             <input name='location' placeholder='Location' onChange={(e)=> this.handleChange(e)} />
+          </Form.Field>
+          <Form.Field>
+            <label>Date</label>
+            <input name='date' placeholder='Date' onChange={(e)=> this.handleChange(e)} />
           </Form.Field>
           <Form.Field>
             <label>Time</label>
@@ -81,13 +88,7 @@ render(){
 
 
 }
-//
-// # Event
-// # t.string :name
-// # t.date :datetime
-// # t.string :location
-// # t.string :notes
-// # t.integer :user_id
+
 
 
 export default NewEventForm;

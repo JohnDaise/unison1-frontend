@@ -7,11 +7,12 @@ import { Segment } from 'semantic-ui-react'
 const EventListItem = ({event}) => {
 
 return(
+  console.log({event}),
   <Link
     className="item"
     event={event}
     to={`/myevents/${event.id}`}>
-    <h2>{event.name}</h2>
+    <h2>{event.name} : {event.date}</h2>
   </Link>
 )
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Grid, Card, Button, Modal } from 'semantic-ui-react';
+import { Grid, Card, Button, Modal, Image, Icon } from 'semantic-ui-react';
 import { fetchEvents } from "../redux/actions/index";
 import AddUserToEvent from './AddUserToEvent'
 
@@ -37,14 +37,18 @@ addPlayerToEvent = () => {
 
 
 render(){
+  console.log(this.props)
   return(
     <Grid.Column>
     <Card>
       <Card.Content>
+        <Image src={this.props.user.pic_url} circular size="small"/>
+          <br/>
+          <br/>
         <Card.Header as='h3' id={this.props.user.id}  >{this.props.user.name}</Card.Header>
-        Email: {this.props.user.email}<br/>
-        Phone Number: {this.props.user.phone_number}<br/>
-        Bio: {this.props.user.bio}
+        <Icon name="envelope"/> {this.props.user.email}<br/>
+        <Icon name="phone"/> {this.props.user.phone_number}<br/>
+        <Icon name="file alternate"/> {this.props.user.bio}
       </Card.Content>
       <Button onClick={()=> this.addPlayerToEvent() }>Add Player</Button>
     </Card>
