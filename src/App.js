@@ -9,8 +9,10 @@ import About from "./components/About";
 import Login from "./components/Login";
 import UsersContainer from "./components/UsersContainer";
 import EventsContainer from "./components/EventsContainer";
+import EventDetail from "./components/EventDetail";
 import SearchBar from "./components/SearchBar";
 import PickEvent from "./components/PickEvent";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 
 
@@ -93,7 +95,7 @@ fetchEvents = () => {
 
   render() {
     return (
-      <div className="App">
+      <React.Fragment>
         <NavBar
           title="Unison"
           color="#282c34"
@@ -101,45 +103,33 @@ fetchEvents = () => {
           currentUser={this.state.currentUser}
           clearUser={this.clearUser}
          />
-        <Switch>
-          <Route
-            path="/login"
-            render={() => <Login updateUser={this.updateUser}  />}
-          />
-        <Route path="/about" component={About} />
-        <Route path="/myevents"
-          render={() => <EventsContainer currentUser={this.state.currentUser} />}
-         />
-        {this.state.currentUser ?
-        <Route
-           exact path="/"
-            render={(props) => {
-              return (
-                <React.Fragment>
-                  <PickEvent currentUser={this.state.currentUser} />
-                  <SearchBar />
-                  <UsersContainer
-                    currentUser={this.state.currentUser}
-                    />
-                 </React.Fragment>
-               );
-             }}
-             /> :
+       <Switch>
          <Route
             exact path="/"
              render={(props) => {
                 return (
                     <HomePage />
-                );
-              }}
+                    );
+                  }}
             />
-           }
-          </Switch>
-      </div>
-    );
-  }
-}
+          <Route exact path="/login"
+            render={() => <Login updateUser={this.updateUser} /> }
+            />
+          <Route exact path="/about" component={About} />
+          <ProtectedRoutes
+            path='/'
+            component={ProtectedRoutes}
+            fetchUsers={this.fetchUsers}
+            fetchEvents={this.fetchEvents}
+            currentUser={this.state.currentUser}
+            {...this.props}
+             />
+      </Switch>
+  </React.Fragment>
+)}
 
+
+}
 
 const mapStateToProps = state => {
   return {

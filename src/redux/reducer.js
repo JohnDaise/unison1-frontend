@@ -41,10 +41,10 @@ const loadingReducer = (state = false, action) => {
   switch (action.type) {
     case "FETCHING_USERS":
       return true;
-    case "FETCHED_USERS":
-      return false;
     case "FETCHING_EVENTS":
       return true;
+      case "FETCHED_USERS":
+      return false;
     case "FETCHED_EVENTS":
       return false;
     default:

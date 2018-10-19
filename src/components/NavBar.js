@@ -28,6 +28,10 @@ class NavBar extends React.Component {
                 Home
               </NavLink>
               {!!this.props.currentUser ?
+              <NavLink exact to="/players" className="ui item" activeClassName="ui active item">
+                Players
+              </NavLink>: null}
+              {!!this.props.currentUser ?
               <NavLink activeClassName="ui active item" className="ui item" to="/myevents">
                 My Events
               </NavLink>: null}

@@ -7,14 +7,14 @@ import EventDetail from './EventDetail'
 
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchEvents, fetchedEvents } from "../redux/actions/index";
+import { fetchEvents, fetchUsers, fetchedEvents, loading } from "../redux/actions/index";
 
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { Container, Divider, Grid } from 'semantic-ui-react'
+import { Container, Divider, Grid, Loader } from 'semantic-ui-react'
 
 
 class EventsContainer extends React.Component {
@@ -34,6 +34,7 @@ class EventsContainer extends React.Component {
 
   componentDidMount() {
       this.props.fetchEvents();
+      this.props.fetchUsers();
     }
 
   handleClick= (e) => {
@@ -42,6 +43,7 @@ class EventsContainer extends React.Component {
    }
 ///need a switch below for each event routes for events should be restful so they are shareable also add scroll
   render(){
+
     return (
       <Grid columns={3} divided>
         <Grid.Column>
@@ -49,20 +51,22 @@ class EventsContainer extends React.Component {
           <EventsList currentUser={this.props.currentUser}  />
         </Grid.Column>
         <Grid.Column>
+          {this.props.loading ?
+            <Loader active inline='centered' />
+            :
           <Container >
             <Switch>
               <Route
-                 path="/myevents/:eventId"
-                 render={(data) => {
-                   console.log(data)
-                   let singleEvent = this.props.events.find(
-                     event => event.id === data.match.params.eventId
-                   )
-                  return <EventDetail singleEvent={singleEvent} eventId={data.match.params.eventId} />
+                path="/myevents/:eventId"
+                 render={ data => {
+                  return (
+                     <EventDetail currentUser={this.props.currentUser} eventId={data.match.params.eventId} />
+                   );
                  }}
-                 />
+            />
             </Switch>
           </Container>
+        }
         </Grid.Column>
         <Grid.Column>
           <Container textAlign='left'>
@@ -72,15 +76,6 @@ class EventsContainer extends React.Component {
               />
           </Container>
         </Grid.Column>
-
-
-
-
-
-
-
-
-
       </Grid>
     )}
 };
@@ -96,13 +91,14 @@ class EventsContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     loading: state.loading,
-    events: state.events
+    events: state.events,
+    users: state.users
   };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchEvents }
+  { fetchEvents, fetchUsers }
 )(EventsContainer);
 
 // <Switch>
