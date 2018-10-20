@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { Grid, Image, Loader } from 'semantic-ui-react';
 import MoreDetails from './MoreDetails';
 import CommentsList from './CommentsList';
+import Posts from './Posts';
+import NewPostForm from './NewPostForm';
 
 
 class EventDetail extends React.Component {
@@ -17,9 +19,20 @@ class EventDetail extends React.Component {
            {this.props.loading ?
               <Loader active inline='centered' />
              :
-        <div>
-          "Here it is"
-        </div>}
+        <Grid columns={2}>
+          <Grid.Column textAlign='center'>
+            <h1>{this.props.event.name}</h1>
+            <h2>{this.props.event.date}</h2>
+            <h2>{this.props.event.location}</h2>
+            <h2>{this.props.event.time}</h2>
+            <h2>{this.props.event.notes}</h2>
+            <NewPostForm currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} />
+            <Posts currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} />
+          </Grid.Column>
+          <Grid.Column textAlign='center'>
+            <CommentsList />
+          </Grid.Column>
+        </Grid>}
         </React.Fragment>
       )
   }

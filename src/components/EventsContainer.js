@@ -45,28 +45,10 @@ class EventsContainer extends React.Component {
   render(){
 
     return (
-      <Grid columns={3} divided>
-        <Grid.Column>
+      <Grid columns={2} divided>
+        <Grid.Column textAlign='center'>
           <NewEventForm currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} />
-          <EventsList currentUser={this.props.currentUser}  />
-        </Grid.Column>
-        <Grid.Column>
-          {this.props.loading ?
-            <Loader active inline='centered' />
-            :
-          <Container >
-            <Switch>
-              <Route
-                path="/myevents/:eventId"
-                 render={ data => {
-                  return (
-                     <EventDetail currentUser={this.props.currentUser} eventId={data.match.params.eventId} />
-                   );
-                 }}
-            />
-            </Switch>
-          </Container>
-        }
+          <EventsList currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents}  />
         </Grid.Column>
         <Grid.Column>
           <Container textAlign='left'>
@@ -80,13 +62,6 @@ class EventsContainer extends React.Component {
     )}
 };
 
-// <Container>
-//     <EventsList currentUser={this.props.currentUser} />
-// </Container>
-// <Container>
-//     <EventDetail />
-// </Container>
-//
 
 const mapStateToProps = state => {
   return {

@@ -18,7 +18,6 @@ class ProtectedRoutes extends Component {
 
 
   render() {
-    console.log(this.props.currentUser)
     if(!this.props.currentUser){
     return <Redirect to="/login" />
     }
@@ -45,7 +44,7 @@ class ProtectedRoutes extends Component {
             exact path="/myevents/:eventId"
             render={ data => {
               return (
-                <EventDetail {...this.props} currentUser={this.props.currentUser} eventId={data.match.params.eventId} />
+                <EventDetail {...this.props} currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} eventId={data.match.params.eventId} />
                 );
              }} />
       </React.Fragment>
