@@ -10,11 +10,15 @@ class UserCard extends React.Component {
 //dispatch fetchEvents
 
 addPlayerToEvent = () => {
+//adjust logic and find a way to empty dropValue componentDidMount
   console.log(this.props.dropValue.value)
-  //make some sort of conditional so players are not added more than once
   if (this.props.dropValue.value){
-  let eventId = this.props.events.find( event => event.name === this.props.dropValue.value).id
-  let playerId = this.props.user.id
+    let event = this.props.events.find( event => event.name === this.props.dropValue.value)
+    let eventId = event.id
+    let playerId = this.props.user.id
+  if (event.users.map(user => user.id).includes(playerId)){
+    window.alert("Player already added")
+  } else {
   fetch(`http://localhost:3001/user_events/`, {
   method: "POST",
   headers: {
@@ -31,6 +35,7 @@ addPlayerToEvent = () => {
       .then(json => console.log(json))
   this.props.fetchEvents();
   this.props.openPlayerAddedModal()
+  }
 } else {
  this.props.openWarningModal()
 }}
@@ -60,6 +65,7 @@ const mapStateToProps = state => {
   return {
     loading: state.loading,
     events: state.events,
+    users: state.users,
     dropValue: state.dropValue
   };
 };
