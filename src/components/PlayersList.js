@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, List, Image } from 'semantic-ui-react'
+import { Grid, List, Image, Icon } from 'semantic-ui-react'
 
 import { connect } from "react-redux";
 import { fetchEvents, fetchUsers, fetchedEvents, loading } from "../redux/actions/index";
@@ -8,7 +8,7 @@ const PlayersList = (props) => {
 
 
 
-
+//each list item should be a link that renders a simple user details modal
   return(
     console.log(props),
     <List>
@@ -21,6 +21,8 @@ const PlayersList = (props) => {
              'Organizer'
            </List.Description>
          </List.Content>
+         <br/>
+         <br/>
       </List.Item>
       {props.players.map( p=>
         <List.Item>

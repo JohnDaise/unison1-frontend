@@ -38,7 +38,7 @@ render(){
 function createObj(obj){
   return {text: obj.name, value: obj.name }
 }
-  const choices = this.props.events.map( event => createObj(event))
+  const choices = this.props.userEvents.map( event => createObj(event))
 
 
 
@@ -61,10 +61,13 @@ function createObj(obj){
 }
 
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, propsFromParent) => {
+  console.log(state.events)
+  let userEvents = state.events.filter( event => event.user_id === propsFromParent.currentUser.id)
   return {
     loading: state.loading,
     events: state.events,
+    userEvents: userEvents,
     value: state.dropValue
   };
 };
