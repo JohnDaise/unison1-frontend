@@ -58,3 +58,9 @@ ui.menu {
   background-color: #282c34;
 
 }
+
+
+
+.post-col {
+  overflow-y: scroll;
+}

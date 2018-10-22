@@ -19,13 +19,15 @@ class EventDetail extends React.Component {
            {this.props.loading ?
               <Loader active inline='centered' />
              :
-        <Grid columns={2}>
+        <Grid columns={3}>
           <Grid.Column textAlign='center'>
             <h1>{this.props.event.name}</h1>
             <h2>{this.props.event.date}</h2>
             <h2>{this.props.event.location}</h2>
             <h2>{this.props.event.time}</h2>
             <h2>{this.props.event.notes}</h2>
+          </Grid.Column>
+          <Grid.Column className={"post-col"}>
             <NewPostForm currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} />
             <PostList currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} />
           </Grid.Column>

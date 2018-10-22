@@ -9,14 +9,16 @@ const Post = (props) => {
 
 //new post form creates an iframe element if it includes a url otherwise would just show post content
 //-sets the src string and would need an id
+//find simple way to check if there is a valid url (maybe npm package) before rendering
 
   return(
     <React.Fragment>
+
     {props.post.url !== "" ?
       <div>
       Notes: <p>{props.post.content}</p>
       <iframe width="380"
-      height="157"
+      height="200"
       src={props.post.url}
       frameborder="0"
       allow="autoplay; encrypted-media"

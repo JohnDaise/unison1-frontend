@@ -18,8 +18,9 @@ let post = {url: "https://www.youtube.com/embed/Rp8WL621uGM", content: "Lets do 
     </Grid.Column>
 
   )
-
 }
+
+
 
 
 
