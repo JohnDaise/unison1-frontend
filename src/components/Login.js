@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, withRouter } from "react-router-dom";
 import { Button, Form } from 'semantic-ui-react'
 
 import { connect } from "react-redux";
@@ -52,6 +53,7 @@ class Login extends React.Component {
         email: "",
         password: ""
       })
+      this.props.history.push("/")
     };
 
 
@@ -77,7 +79,8 @@ render(){
 }
 
 
-export default Login;
+export default withRouter(Login);
+
 // export default connect(
 //   null,
 //   { setCurrentUser }
