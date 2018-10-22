@@ -1,5 +1,6 @@
 const usersURL = "http://localhost:3001/users";
 const eventsURL = "http://localhost:3001/events";
+const postsURL = "http://localhost:3001/posts"
 const loginURL = "http://localhost:3001/profile"
 
 
@@ -59,6 +60,31 @@ function fetchEvents(value) {
 }
 
 
+//Post Actions
+
+function createPost(post) {
+  return { type: "ADD_POST", post };
+}
+
+function fetchedPosts(posts){
+  return { type: "FETCHED_POSTS", posts };
+}
+
+function loadingPosts() {
+  return { type: "FETCHING_POSTS" };
+}
+
+
+function fetchPosts(value) {
+  return dispatch => {
+     dispatch(loadingPosts());
+     fetch(postsURL)
+       .then(res => res.json())
+       .then(posts => dispatch(fetchedPosts(posts)));
+   };
+}
+
+
 
 
 
@@ -114,4 +140,4 @@ function fetchEvents(value) {
 // , getCurrentUser, setCurrentUser, logOutCurrentUser
 
 
-export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchedEvents, createEvent };
+export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchedEvents, createEvent, createPost, fetchPosts, fetchedPosts, loadingPosts };

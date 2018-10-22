@@ -7,7 +7,6 @@ import { fetchedEvents } from "../redux/actions/index";
 
 
 const AddUserToEvent = (props) => {
-  console.log(props)
   return(
   <Modal trigger={<Button>Add Player</Button>}>
     <Form>

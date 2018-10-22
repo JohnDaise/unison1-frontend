@@ -49,7 +49,6 @@ function createObj(obj){
           size='small'
           onChange={(e, value )=> {
             e.persist();
-             console.log(e.target.textContent);
             this.props.onChange(value)}
           }
           placeholder='Choose Event'
@@ -62,7 +61,6 @@ function createObj(obj){
 
 
 const mapStateToProps = (state, propsFromParent) => {
-  console.log(state.events)
   let userEvents = state.events.filter( event => event.user_id === propsFromParent.currentUser.id)
   return {
     loading: state.loading,

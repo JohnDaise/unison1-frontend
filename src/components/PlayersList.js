@@ -10,7 +10,6 @@ const PlayersList = (props) => {
 
 //each list item should be a link that renders a simple user details modal
   return(
-    console.log(props),
     <List>
       <strong><h1>Users</h1></strong>
       <List.Item>
@@ -47,7 +46,6 @@ const PlayersList = (props) => {
 
 
 const mapStateToProps = (state, propsFromParent )=> {
-  console.log(propsFromParent)
   let organizer = state.users.find(user => user.id === parseInt(propsFromParent.currentUser.id))
   return {
     loading: state.loading,

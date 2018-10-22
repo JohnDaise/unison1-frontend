@@ -11,7 +11,6 @@ class UserCard extends React.Component {
 
 addPlayerToEvent = () => {
 //adjust logic and find a way to empty dropValue componentDidMount
-  console.log(this.props.dropValue.value)
   if (this.props.dropValue.value){
     let event = this.props.events.find( event => event.name === this.props.dropValue.value)
     let eventId = event.id

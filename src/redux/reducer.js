@@ -4,6 +4,7 @@ import { combineReducers } from "redux";
 const initialState = {
   users: [],
   events: [],
+  posts: [],
   searchTerm: "",
   dropValue: null
 };
@@ -66,6 +67,19 @@ const eventsReducer = (state = [], action) => {
 }
 
 
+const postsReducer = (state = [], action) => {
+  let newPosts = []
+  switch(action.type){
+    case "ADD_POST":
+      return newPosts = [...state, action.post]
+    case "FETCHED_POSTS":
+        return action.posts;
+    default:
+      return state;
+  }
+}
+
+
 
 ///do this reducer
 //to login a user dispatch here mapDispatchToProps
@@ -91,7 +105,8 @@ const rootReducer = combineReducers({
   users: usersReducer,
   currentUser: loginReducer,
   events: eventsReducer,
-  loading: loadingReducer
+  loading: loadingReducer,
+  posts: postsReducer
 });
 
 

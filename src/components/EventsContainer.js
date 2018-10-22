@@ -7,7 +7,7 @@ import EventDetail from './EventDetail'
 
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchEvents, fetchUsers, fetchedEvents, loading } from "../redux/actions/index";
+import { fetchEvents, fetchUsers, fetchPosts, fetchedEvents, loading } from "../redux/actions/index";
 
 
 import DatePicker from 'react-datepicker';
@@ -31,6 +31,7 @@ class EventsContainer extends React.Component {
   componentDidMount() {
       this.props.fetchEvents();
       this.props.fetchUsers();
+      this.props.fetchPosts();
     }
 
   handleChange(date) {
@@ -40,19 +41,25 @@ class EventsContainer extends React.Component {
   }
 
 
+
+
 closeEventFormModal = () => {
   this.setState({
     isNewEventFormModalOpen: false
   })
 }
 
+openEventFormModal = () => {
+  this.setState({
+    isNewEventFormModalOpen: true
+  })
+}
 
 
   handleClick= (e) => {
      e.preventDefault();
-     console.log("Create NEW Event Form")
    }
-///need a switch below for each event routes for events should be restful so they are shareable also add scroll
+
   render(){
 
     return (
@@ -61,8 +68,8 @@ closeEventFormModal = () => {
           <NewEventForm
             currentUser={this.props.currentUser}
             fetchEvents={this.props.fetchEvents}
-            isNewEventFormModalOpen={this.state.isNewEventFormModalOpen}
             closeEventFormModal={this.closeEventFormModal}
+            openEventFormModal={this.openEventFormModal}
              />
           <EventsList currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents}  />
         </Grid.Column>
@@ -89,7 +96,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchEvents, fetchUsers }
+  { fetchEvents, fetchUsers, fetchPosts }
 )(EventsContainer);
 
 // <Switch>

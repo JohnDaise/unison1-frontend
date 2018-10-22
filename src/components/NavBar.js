@@ -60,7 +60,6 @@ class NavBar extends React.Component {
 };
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     loading: state.loading,
     currentUser: state.currentUser

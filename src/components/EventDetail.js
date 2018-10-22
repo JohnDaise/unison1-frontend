@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, Route, Switch  } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchEvents, loading } from "../redux/actions/index";
+import { fetchEvents, fetchPosts, loading } from "../redux/actions/index";
 
-import { Grid, Image, Loader } from 'semantic-ui-react';
+import { Grid, Image, Loader, Button } from 'semantic-ui-react';
 import MoreDetails from './MoreDetails';
 import PlayersList from './PlayersList';
 import PostList from './PostList';
@@ -14,11 +14,11 @@ class EventDetail extends React.Component {
 
 componentDidMount(){
   this.props.fetchEvents();
+  this.props.fetchPosts();
 }
 
 
   render() {
-    console.log("state", this.state)
       return (
         <React.Fragment>
            {this.props.loading ?
@@ -31,10 +31,12 @@ componentDidMount(){
             <h2>{this.props.event.location}</h2>
             <h2>{this.props.event.time}</h2>
             <h2>{this.props.event.notes}</h2>
+            <Button> Update Event </Button>
+            <Button> Delete Event </Button>
           </Grid.Column>
           <Grid.Column className={"post-col"}>
-            <NewPostForm currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} />
-            <PostList currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} />
+            <NewPostForm currentUser={this.props.currentUser} singleEvent={this.props.event} fetchEvents={this.props.fetchEvents} />
+            <PostList currentUser={this.props.currentUser} singleEvent={this.props.event} fetchEvents={this.props.fetchEvents} />
           </Grid.Column>
           <Grid.Column textAlign='center'>
             <PlayersList currentUser={this.props.currentUser} players={this.props.event.users} />
@@ -46,11 +48,11 @@ componentDidMount(){
 }
 
   const mapStateToProps = (state, propsFromParent) => {
-    console.log("propsFromParent", propsFromParent)
     let event = state.events.find(event => event.id === parseInt(propsFromParent.eventId))
     return {
       loading: state.loading,
       events: state.events,
+      posts: state.posts,
       event: event
 
     };
@@ -58,7 +60,7 @@ componentDidMount(){
 
    export default connect(
      mapStateToProps,
-     { fetchEvents }
+     { fetchEvents, fetchPosts }
    )(EventDetail);
 
 

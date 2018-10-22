@@ -1,6 +1,11 @@
 import React from "react";
 
-import { Form, Button, Modal } from 'semantic-ui-react'
+
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { createPost } from "../redux/actions";
+
+import { Form, Button, Modal, TextArea } from 'semantic-ui-react'
 
 
 
@@ -16,7 +21,12 @@ class NewPostForm extends React.Component{
 
    handleSubmit = (e) => {
       e.preventDefault();
-      console.log("new post")
+      let data = {
+        content:this.state.content,
+        url: this.state.url,
+        user_id: this.props.currentUser.id,
+        event_id: this.props.singleEvent.id
+      }
       fetch(`http://localhost:3001/posts/`, {
       method: "POST",
       headers: {
@@ -24,29 +34,12 @@ class NewPostForm extends React.Component{
         'Content-Type': 'application/json',
         Accept: "application/json"
       },
-      body: JSON.stringify({
-            content:this.state.content,
-            url: this.state.url,
-            user_id: this.props.currentUser.id
-          })
+      body: JSON.stringify(data)
       })
         .then(r => r.json())
-          .then(json => console.log(json))
-      //     this.props.dispatch({
-      // type:'ADD_EVENT',
-      // data});
-      this.props.fetchEvents();
+          .then(json => this.props.createPost(json)) //create post action using json
+
     }
-
-    // <h1>"Posts"</h1>
-    // <iframe width="380"
-    // height="157"
-    // src="https://www.youtube.com/embed/Rp8WL621uGM"
-    // frameborder="0"
-    // allow="autoplay; encrypted-media"
-    // allowfullscreen></iframe>
-
-
 
 
     handleChange = (e) => {
@@ -59,13 +52,18 @@ class NewPostForm extends React.Component{
 
 render(){
   return(
-    <Modal trigger={<Button circular float="right" icon='plus'/>}>
+    <Modal
+      trigger={
+      <Button circular>
+        Create New Post
+      </Button>}
+      >
       <Modal.Content>
       <Modal.Header>Write New Post</Modal.Header>
         <Form onSubmit={(e) => this.handleSubmit(e)}>
           <Form.Field>
-            <label> </label>
-            <input name='content' placeholder='' onChange={(e)=> this.handleChange(e)} />
+            <label>Message</label>
+            <input name='content' placeholder='Message...' onChange={(e)=> this.handleChange(e)} />
           </Form.Field>
           <Form.Field>
             <label>URL</label>
@@ -84,5 +82,7 @@ render(){
 }
 
 
-
-export default NewPostForm;
+export default connect(
+  null ,
+  { createPost }
+)(withRouter(NewPostForm));

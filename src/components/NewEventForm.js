@@ -11,7 +11,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 //in the backend make the event date a datetime attribute
 
 
-import { Form, Button, Modal } from 'semantic-ui-react'
+import { Form, Button, Modal, TextArea } from 'semantic-ui-react'
 
 
 
@@ -49,7 +49,7 @@ class NewEventForm extends React.Component{
       })
         .then(r => r.json())
           .then(json => this.props.createEvent(json))
-      this.props.closeEventFormModal(e);
+      this.props.closeEventFormModal();
       //     this.props.dispatch({
       // type:'ADD_EVENT',
       // data});
@@ -65,13 +65,15 @@ class NewEventForm extends React.Component{
 
 
 render(){
-  console.log(this.props.isNewEventFormModalOpen)
   return(
     <Modal
-      trigger={<Button circular float="right" icon='plus'
-        open={this.props.isNewEventFormModalOpen}
-        onClose={(e)=> this.props.closeEventFormModal(e)}
-        />}>
+      onClose={()=> this.props.closeEventFormModal()}
+      onOpen={()=> this.props.openEventFormModal()}
+      trigger={
+         <Button circular>
+           Create New Event
+         </Button>}
+      >
       <Modal.Content>
       <Modal.Header>Create New Event</Modal.Header>
         <Form onSubmit={(e) => this.handleSubmit(e)}>
@@ -93,7 +95,7 @@ render(){
           </Form.Field>
           <Form.Field>
             <label>Notes</label>
-            <input name='notes' placeholder='Notes' onChange={(e)=> this.handleChange(e)} />
+             <TextArea name='notes' placeholder='Notes' onChange={(e)=> this.handleChange(e)}/>
           </Form.Field>
           <Button type='submit'>Submit</Button>
         </Form>
