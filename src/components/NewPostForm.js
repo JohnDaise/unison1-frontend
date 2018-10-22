@@ -25,8 +25,8 @@ class NewPostForm extends React.Component{
         Accept: "application/json"
       },
       body: JSON.stringify({
-            content:"",
-            url:"",
+            content:this.state.content,
+            url: this.state.url,
             user_id: this.props.currentUser.id
           })
       })
@@ -37,6 +37,17 @@ class NewPostForm extends React.Component{
       // data});
       this.props.fetchEvents();
     }
+
+    // <h1>"Posts"</h1>
+    // <iframe width="380"
+    // height="157"
+    // src="https://www.youtube.com/embed/Rp8WL621uGM"
+    // frameborder="0"
+    // allow="autoplay; encrypted-media"
+    // allowfullscreen></iframe>
+
+
+
 
     handleChange = (e) => {
         this.setState({

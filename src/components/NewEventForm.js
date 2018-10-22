@@ -36,7 +36,7 @@ class NewEventForm extends React.Component{
           })
       })
         .then(r => r.json())
-          .then(json => console.log(json))
+          .then(json => console.log(json)) //do something this json so it renders
       //     this.props.dispatch({
       // type:'ADD_EVENT',
       // data});

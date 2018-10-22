@@ -49,11 +49,12 @@ class Login extends React.Component {
         this.props.updateUser(json.user);
         localStorage.setItem("token", json.token);
       }); ///this works got a user and a token but did not reroute
+      this.props.history.push("/")
       this.setState({
         email: "",
         password: ""
       })
-      this.props.history.push("/")
+
     };
 
 

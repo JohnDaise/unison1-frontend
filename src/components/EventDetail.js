@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Grid, Image, Loader } from 'semantic-ui-react';
 import MoreDetails from './MoreDetails';
 import PlayersList from './PlayersList';
-import Posts from './Posts';
+import PostList from './PostList';
 import NewPostForm from './NewPostForm';
 
 
@@ -27,7 +27,7 @@ class EventDetail extends React.Component {
             <h2>{this.props.event.time}</h2>
             <h2>{this.props.event.notes}</h2>
             <NewPostForm currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} />
-            <Posts currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} />
+            <PostList currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} />
           </Grid.Column>
           <Grid.Column textAlign='center'>
             <PlayersList currentUser={this.props.currentUser} players={this.props.event.users} />
