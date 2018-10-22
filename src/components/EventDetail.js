@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, Route, Switch  } from "react-router-dom";
 import { connect } from "react-redux";
+import { fetchEvents, loading } from "../redux/actions/index";
+
 import { Grid, Image, Loader } from 'semantic-ui-react';
 import MoreDetails from './MoreDetails';
 import PlayersList from './PlayersList';
@@ -10,10 +12,13 @@ import NewPostForm from './NewPostForm';
 
 class EventDetail extends React.Component {
 
+componentDidMount(){
+  this.props.fetchEvents();
+}
 
 
   render() {
-    console.log("props", this.props)
+    console.log("state", this.state)
       return (
         <React.Fragment>
            {this.props.loading ?
@@ -44,13 +49,19 @@ class EventDetail extends React.Component {
     console.log("propsFromParent", propsFromParent)
     let event = state.events.find(event => event.id === parseInt(propsFromParent.eventId))
     return {
-      event: event,
-      loading: state.loading
+      loading: state.loading,
+      events: state.events,
+      event: event
 
     };
    };
 
-  export default connect(mapStateToProps)(EventDetail);
+   export default connect(
+     mapStateToProps,
+     { fetchEvents }
+   )(EventDetail);
+
+
   //
   // <React.Fragment>>
   //   <h1>{this.props.event.name}</h1>

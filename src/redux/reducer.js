@@ -54,9 +54,10 @@ const loadingReducer = (state = false, action) => {
 
 //to create  add dispatch in action mapDispatchToProps
 const eventsReducer = (state = [], action) => {
+  let newEvents = []
   switch(action.type){
     case "ADD_EVENT":
-      return state.concat([action.payload]);
+      return newEvents = [...state, action.event]
     case "FETCHED_EVENTS":
         return action.events;
     default:

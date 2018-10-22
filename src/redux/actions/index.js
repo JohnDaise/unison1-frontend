@@ -37,7 +37,7 @@ function fetchUsers(value) {
 ///Event Actions
 
 function createEvent(event) {
-  return { type: "ADD_EVENT", payload: event };
+  return { type: "ADD_EVENT", event };
 }
 
 function fetchedEvents(events){
@@ -114,4 +114,4 @@ function fetchEvents(value) {
 // , getCurrentUser, setCurrentUser, logOutCurrentUser
 
 
-export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchedEvents };
+export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchedEvents, createEvent };

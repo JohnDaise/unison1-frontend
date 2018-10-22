@@ -21,10 +21,17 @@ class EventsContainer extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      startDate: moment()
+      startDate: moment(),
+      isNewEventFormModalOpen: false,
+      isUpdateEventFormModalOpen: false
     };
     this.handleChange = this.handleChange.bind(this);
   }
+
+  componentDidMount() {
+      this.props.fetchEvents();
+      this.props.fetchUsers();
+    }
 
   handleChange(date) {
     this.setState({
@@ -32,10 +39,14 @@ class EventsContainer extends React.Component {
     });
   }
 
-  componentDidMount() {
-      this.props.fetchEvents();
-      this.props.fetchUsers();
-    }
+
+closeEventFormModal = () => {
+  this.setState({
+    isNewEventFormModalOpen: false
+  })
+}
+
+
 
   handleClick= (e) => {
      e.preventDefault();
@@ -47,7 +58,12 @@ class EventsContainer extends React.Component {
     return (
       <Grid columns={2} divided>
         <Grid.Column textAlign='center'>
-          <NewEventForm currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} />
+          <NewEventForm
+            currentUser={this.props.currentUser}
+            fetchEvents={this.props.fetchEvents}
+            isNewEventFormModalOpen={this.state.isNewEventFormModalOpen}
+            closeEventFormModal={this.closeEventFormModal}
+             />
           <EventsList currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents}  />
         </Grid.Column>
         <Grid.Column>

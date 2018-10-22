@@ -1,5 +1,9 @@
 import React from "react";
 
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { createEvent } from "../redux/actions";
+
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -8,8 +12,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 import { Form, Button, Modal } from 'semantic-ui-react'
-
-
 
 
 
@@ -28,6 +30,14 @@ class NewEventForm extends React.Component{
 
    handleSubmit = (e) => {
       e.preventDefault();
+      let data = {
+        name: this.state.name,
+        location: this.state.location,
+        date: this.state.date,
+        time: this.state.time,
+        notes: this.state.notes,
+        user_id: this.props.currentUser.id
+      };
       fetch(`http://localhost:3001/events/`, {
       method: "POST",
       headers: {
@@ -35,22 +45,16 @@ class NewEventForm extends React.Component{
         'Content-Type': 'application/json',
         Accept: "application/json"
       },
-      body: JSON.stringify({
-            name: this.state.name,
-            location: this.state.location,
-            date: this.state.date,
-            time: this.state.time,
-            notes: this.state.notes,
-            user_id: this.props.currentUser.id
-          })
+      body: JSON.stringify(data)
       })
         .then(r => r.json())
-          .then(json => console.log(json)) //do something this json so it renders
+          .then(json => this.props.createEvent(json))
+      this.props.closeEventFormModal(e);
       //     this.props.dispatch({
       // type:'ADD_EVENT',
       // data});
-      this.props.fetchEvents();
-    }
+      // this.props.history.push("/myevents/");
+      };
 
     handleChange = (e) => {
         this.setState({
@@ -61,8 +65,13 @@ class NewEventForm extends React.Component{
 
 
 render(){
+  console.log(this.props.isNewEventFormModalOpen)
   return(
-    <Modal trigger={<Button circular float="right" icon='plus'/>}>
+    <Modal
+      trigger={<Button circular float="right" icon='plus'
+        open={this.props.isNewEventFormModalOpen}
+        onClose={(e)=> this.props.closeEventFormModal(e)}
+        />}>
       <Modal.Content>
       <Modal.Header>Create New Event</Modal.Header>
         <Form onSubmit={(e) => this.handleSubmit(e)}>
@@ -100,4 +109,7 @@ render(){
 
 
 
-export default NewEventForm;
+export default connect(
+  null ,
+  { createEvent }
+)(withRouter(NewEventForm));
