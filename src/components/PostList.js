@@ -43,6 +43,7 @@ const mapStateToProps = (state, propsFromParent) => {
 
 export default connect(mapStateToProps)(PostList);
 
+
 // {props.currentUser.posts.map(post => {
 //     <Post post={post}/>
 //     }
