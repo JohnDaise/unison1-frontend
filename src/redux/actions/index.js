@@ -196,4 +196,4 @@ function fetchPosts(value) {
 // , getCurrentUser, setCurrentUser, logOutCurrentUser
 
 
-export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchUserEvents, fetchedEvents, fetchedUserEvents, createEvent, createPost, fetchPosts, fetchedPosts, loadingPosts };
+export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchUserEvents, fetchedEvents, fetchedUserEvents, createEvent, createPost, fetchPosts, fetchedPosts, loadingPosts, updateEvent, eventUpdated };

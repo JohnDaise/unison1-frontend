@@ -1,7 +1,7 @@
 import React from "react";
-import { Link, Route, Switch  } from "react-router-dom";
+import { Link, Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchEvents, fetchPosts, loading } from "../redux/actions/index";
+import { fetchEvents, fetchPosts, loading, updateEvent } from "../redux/actions/index";
 
 import { Grid, Image, Loader, Button } from 'semantic-ui-react';
 import MoreDetails from './MoreDetails';
@@ -37,17 +37,19 @@ handleChange = (e) => {
 editable = (e) => {
    e.preventDefault();
   let form = e.target.parentNode
-  let name = console.log(form.getElementsByClassName("h")[0].innerText)
-  let date = console.log(form.getElementsByClassName("h")[1].innerText)
-  let time = console.log(form.getElementsByClassName("h")[2].innerText)
-  let location = console.log(form.getElementsByClassName("h")[3].innerText)
-  let notes = console.log(form.getElementsByClassName("h")[4].innerText)
-let event = {
+  let name = form.getElementsByClassName("h")[0].innerText
+  let date = form.getElementsByClassName("h")[1].innerText
+  let time = form.getElementsByClassName("h")[2].innerText
+  let location = form.getElementsByClassName("h")[3].innerText
+  let notes = form.getElementsByClassName("h")[4].innerText
+let payload = {
   name: name,
   datetime: date,
   location: location,
-  notes: notes
+  notes: notes,
+  user_id: this.props.currentUser.id
 }
+console.log(payload)
 if (this.state.editable === "false") {
   e.target.innerText = "Save"
   this.setState({
@@ -60,6 +62,11 @@ if (this.state.editable === "false") {
     editable: "false"
   })
   console.log("sent update")
+  this.props.updateEvent({
+    eventId: this.props.event.id,
+    payload
+  });
+  this.props.history.push("/myevents/"+this.props.event.id);
   }
 }
 
@@ -117,14 +124,5 @@ if (this.state.editable === "false") {
 
    export default connect(
      mapStateToProps,
-     { fetchEvents, fetchPosts }
-   )(EventDetail);
-
-
-  //
-  // <React.Fragment>>
-  //   <h1>{this.props.event.name}</h1>
-  //   <h3>{this.props.event.location}</h3>
-  //   <h3>{this.props.event.time}</h3>
-  //   <h3>{this.props.event.notes}</h3>
-  // </React.Fragment>
+     { fetchEvents, fetchPosts, updateEvent }
+   )(withRouter(EventDetail));

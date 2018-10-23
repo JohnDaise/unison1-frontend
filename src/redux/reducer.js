@@ -58,10 +58,6 @@ const loadingReducer = (state = false, action) => {
 const eventsReducer = (state = [], action) => {
   let newEvents = []
   switch(action.type){
-    case "ADD_EVENT":
-      return newEvents = [...state, action.event]
-    case "FETCHED_EVENTS":
-        return action.events;
     case "EVENT_UPDATED":
       return state.map(event => {
         if (event.id === action.event.id) {
@@ -70,6 +66,11 @@ const eventsReducer = (state = [], action) => {
           return event;
         }
       });
+    case "ADD_EVENT":
+      return newEvents = [...state, action.event]
+    case "FETCHED_EVENTS":
+        return action.events;
+
     default:
       return state;
   }
