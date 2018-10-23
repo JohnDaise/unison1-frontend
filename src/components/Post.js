@@ -37,8 +37,32 @@ renderIframe = (params) => {
             </div>
           )
         }
-
-
+      else if (this.props.post.url.includes('pdf')){
+      return (
+          <div>
+          Notes: <p>{this.props.post.content}</p>
+          <iframe width="380"
+            height="157"
+            src={this.props.post.url}
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen></iframe>
+            </div>
+          )
+        }
+      else if (this.props.post.url.includes('jpg')){
+      return (
+          <div>
+          Notes: <p>{this.props.post.content}</p>
+          <iframe width="380"
+            height="157"
+            src={this.props.post.url}
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen></iframe>
+            </div>
+          )
+        }
          else {
             return (
               <div>
@@ -51,7 +75,6 @@ renderIframe = (params) => {
 
 render(){
   return(
-    console.log(this.props.post),
     <React.Fragment>
         {this.renderIframe(this.props.post.url)}
      </React.Fragment>
