@@ -8,6 +8,8 @@ import MoreDetails from './MoreDetails';
 import PlayersList from './PlayersList';
 import PostList from './PostList';
 import NewPostForm from './NewPostForm';
+import moment from 'moment';
+
 
 
 class EventDetail extends React.Component {
@@ -18,7 +20,19 @@ componentDidMount(){
 }
 
 
+
+
   render() {
+
+    let weekday = {
+     1: "Sunday",
+     2: "Monday",
+     3: "Tuesday",
+     4: "Wednesday",
+     5: "Thursday",
+     6: "Friday",
+     7: "Saturday",
+    }
       return (
         <React.Fragment>
            {this.props.loading ?
@@ -27,8 +41,7 @@ componentDidMount(){
         <Grid columns={3}>
           <Grid.Column textAlign='center'>
             <h1>{this.props.event.name}</h1>
-            <h2>{this.props.event.datetime}</h2>
-            <h2>{this.props.event.datetime}</h2>
+            <h2> {weekday[moment(this.props.event.datetime, 'DD-MM-YYYY').format('E')]} {moment(this.props.event.datetime, 'DD-MM-YYYY').format('MMM-DD-YYYY')}</h2>
             <h2>{this.props.event.location}</h2>
             <h2>{this.props.event.notes}</h2>
             <Button> Update Event </Button>

@@ -62,7 +62,6 @@ openEventFormModal = () => {
    }
 
   render(){
-
     return (
       <Grid columns={2} divided>
         <Grid.Column textAlign='center'>
@@ -79,7 +78,7 @@ openEventFormModal = () => {
               <DatePicker
                 selected={this.state.startDate}
                 onChange={this.handleChange}
-                highlightDates={[moment().subtract(7, "days"), moment().add(7, "days")]}
+                highlightDates={[moment()]}
               />
           </Container>
         </Grid.Column>
