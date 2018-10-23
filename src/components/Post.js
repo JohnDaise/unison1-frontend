@@ -2,8 +2,6 @@ import React from "react";
 import { Grid } from 'semantic-ui-react';
 import { connect } from "react-redux";
 
-// import Iframe from 'react-iframe';
-
 
 
 class Post extends React.Component{

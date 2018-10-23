@@ -72,7 +72,7 @@ class NewEventForm extends React.Component{
 
 
 render(){
-  console.log(this.state.startDate._d)
+  console.log(moment("Friday November 02 2018 4:30 pm"))
   return(
     <Modal
       onClose={()=> this.props.closeEventFormModal()}
