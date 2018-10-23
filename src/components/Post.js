@@ -9,9 +9,9 @@ import Iframe from 'react-iframe';
 const Post = (props) => {
 
 
-//new post form creates an iframe element if it includes a url otherwise would just show post content
-//-sets the src string and would need an id
-//find simple way to check if there is a valid url (maybe npm package) before rendering
+//make a case switch for if URL is a youtube vid, pdf or music file
+
+
 
   return(
     console.log(props.post),

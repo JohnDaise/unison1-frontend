@@ -31,6 +31,13 @@ render(){
   </React.Fragment>
 )}
 };
+//
+// function(searchTerm){
+//   user.bio.toLowerCase().includes(searchTerm.toLowerCase().split(" ").filter(word => user.bio.toLowerCase().includes(word))[0])
+//
+//   user.bio.toLowerCase().includes(state.searchTerm.toLowerCase())
+//     user.name.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+// }
 
 
 
@@ -38,8 +45,8 @@ const mapStateToProps = state => {
   return {
     loading: state.loading,
     users: state.users.filter(user =>
-      user.name.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
-      user.bio.toLowerCase().includes(state.searchTerm.toLowerCase())
+        user.name.toLowerCase().includes(state.searchTerm.toLowerCase().split(" ").filter(word => user.name.toLowerCase().includes(word))[0]) ||
+        user.bio.toLowerCase().includes(state.searchTerm.toLowerCase().split(" ").filter(word => user.bio.toLowerCase().includes(word))[0])
     )
   };
 };
