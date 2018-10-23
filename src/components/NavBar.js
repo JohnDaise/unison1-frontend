@@ -35,6 +35,10 @@ class NavBar extends React.Component {
               <NavLink activeClassName="ui active item" className="ui item" to="/myevents">
                 My Events
               </NavLink>: null}
+              {!!this.props.currentUser ?
+              <NavLink activeClassName="ui active item" className="ui item" to="/gigs">
+                Gigs
+              </NavLink>: null}
               {!this.props.currentUser ?
               <NavLink activeClassName="ui active item" className="ui item" to="/about">
                 About

@@ -4,6 +4,7 @@ import { combineReducers } from "redux";
 const initialState = {
   users: [],
   events: [],
+  userEvents: [],
   posts: [],
   searchTerm: "",
   dropValue: null
@@ -67,6 +68,19 @@ const eventsReducer = (state = [], action) => {
 }
 
 
+const userEventsReducer = (state = [], action) => {
+  let newUserEvents = []
+  switch(action.type){
+    case "ADD_USER_EVENT":
+      return newUserEvents = [...state, action.ue]
+    case "FETCHED_USER_EVENTS":
+        return action.ues;
+    default:
+      return state;
+  }
+}
+
+
 const postsReducer = (state = [], action) => {
   let newPosts = []
   switch(action.type){
@@ -105,6 +119,7 @@ const rootReducer = combineReducers({
   users: usersReducer,
   currentUser: loginReducer,
   events: eventsReducer,
+  userEvents: userEventsReducer,
   loading: loadingReducer,
   posts: postsReducer
 });

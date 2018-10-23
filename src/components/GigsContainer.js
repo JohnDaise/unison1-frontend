@@ -1,13 +1,13 @@
 import React from "react";
 import NewEventForm from './NewEventForm'
 import UpdateEventForm from './UpdateEventForm'
-import EventsList from './EventsList'
-import EventDetail from './EventDetail'
+import GigsList from './GigsList'
+import GigDetail from './GigDetail'
 
 
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchEvents, fetchUsers, fetchUserEvents, fetchPosts, fetchedEvents, loading } from "../redux/actions/index";
+import { fetchEvents, fetchUsers, fetchPosts, fetchedEvents, fetchUserEvents, loading } from "../redux/actions/index";
 
 
 import DatePicker from 'react-datepicker';
@@ -17,7 +17,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Container, Divider, Grid, Loader } from 'semantic-ui-react'
 
 
-class EventsContainer extends React.Component {
+class GigsContainer extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -62,17 +62,10 @@ openEventFormModal = () => {
    }
 
   render(){
-
     return (
       <Grid columns={2} divided>
         <Grid.Column textAlign='center'>
-          <NewEventForm
-            currentUser={this.props.currentUser}
-            fetchEvents={this.props.fetchEvents}
-            closeEventFormModal={this.closeEventFormModal}
-            openEventFormModal={this.openEventFormModal}
-             />
-          <EventsList currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents}  />
+          <GigsList currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents}  />
         </Grid.Column>
         <Grid.Column>
           <Container textAlign='left'>
@@ -97,23 +90,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchEvents, fetchUsers, fetchPosts, fetchUserEvents }
-)(EventsContainer);
-
-// <Switch>
-// <Route
-//   path="/myevents/:eventId"
-//   render={data => {
-//     let singleEvent = this.state.events.find(
-//       event => event.id === data.match.params.eventId
-//     );
-//     return <EventDetail singleEvent={singleEvent}/>;
-//     }}
-//     />
-//   <Route
-//     path="/"
-//     render={() => (
-//       <EventsList />
-//     )}
-//     />
-// </Switch>
+  { fetchEvents, fetchUsers, fetchPosts, fetchUserEvents  }
+)(GigsContainer);

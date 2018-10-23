@@ -1,5 +1,6 @@
 const usersURL = "http://localhost:3001/users";
 const eventsURL = "http://localhost:3001/events";
+const userEventsURL = "http://localhost:3001/user_events";
 const postsURL = "http://localhost:3001/posts"
 const loginURL = "http://localhost:3001/profile"
 
@@ -58,6 +59,32 @@ function fetchEvents(value) {
        .then(events => dispatch(fetchedEvents(events)));
    };
 }
+
+
+///UserEvent Actions
+
+function createUserEvent(ue) {
+  return { type: "ADD_USER_EVENT", ue };
+}
+
+function fetchedUserEvents(ues){
+  return { type: "FETCHED_USER_EVENTS", ues };
+}
+
+function loadingUserEvents() {
+  return { type: "FETCHING_USER_EVENTS" };
+}
+
+
+function fetchUserEvents(value) {
+  return dispatch => {
+     dispatch(loadingUserEvents());
+     fetch(userEventsURL)
+       .then(res => res.json())
+       .then(ues => dispatch(fetchedUserEvents(ues)));
+   };
+}
+
 
 
 //Post Actions
@@ -140,4 +167,4 @@ function fetchPosts(value) {
 // , getCurrentUser, setCurrentUser, logOutCurrentUser
 
 
-export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchedEvents, createEvent, createPost, fetchPosts, fetchedPosts, loadingPosts };
+export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchUserEvents, fetchedEvents, fetchedUserEvents, createEvent, createPost, fetchPosts, fetchedPosts, loadingPosts };

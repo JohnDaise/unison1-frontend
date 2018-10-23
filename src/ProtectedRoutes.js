@@ -4,7 +4,9 @@ import "./App.css";
 
 import UsersContainer from "./components/UsersContainer";
 import EventsContainer from "./components/EventsContainer";
+import GigsContainer from "./components/GigsContainer";
 import EventDetail from "./components/EventDetail";
+import GigDetail from "./components/GigDetail";
 import SearchBar from "./components/SearchBar";
 import PickEvent from "./components/PickEvent";
 
@@ -45,6 +47,14 @@ class ProtectedRoutes extends Component {
             render={ data => {
               return (
                 <EventDetail {...this.props} currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} eventId={data.match.params.eventId} />
+                );
+             }} />
+          <Route exact path="/gigs" render={(props) => <GigsContainer {...this.props} currentUser={this.props.currentUser} />}/>
+          <Route
+            exact path="/gigs/:gigId"
+            render={ data => {
+              return (
+                <GigDetail {...this.props} currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents} gigId={data.match.params.gigId} />
                 );
              }} />
       </React.Fragment>
