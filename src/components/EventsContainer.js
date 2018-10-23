@@ -79,6 +79,7 @@ openEventFormModal = () => {
               <DatePicker
                 selected={this.state.startDate}
                 onChange={this.handleChange}
+                highlightDates={[moment().subtract(7, "days"), moment().add(7, "days")]}
               />
           </Container>
         </Grid.Column>

@@ -21,11 +21,13 @@ class NewEventForm extends React.Component{
     this.state={
      name: "",
      location: "",
-     date: "",
-     time: null,
+     startDate: moment(),
      notes: ""
-    }
-  }
+   };
+ }
+
+
+
 
 
    handleSubmit = (e) => {
@@ -33,8 +35,7 @@ class NewEventForm extends React.Component{
       let data = {
         name: this.state.name,
         location: this.state.location,
-        date: this.state.date,
-        time: this.state.time,
+        datetime: this.state.startDate,
         notes: this.state.notes,
         user_id: this.props.currentUser.id
       };
@@ -62,9 +63,23 @@ class NewEventForm extends React.Component{
         })
       }
 
+      handleDateChange= (date) => {
+        this.setState({
+          startDate: date
+        });
+      }
+
+      formatDate = moment => {
+          let year = moment.year();
+          let month = moment.month() + 1;
+          let day = moment.date();
+          return `${year}-${month}-${day}`;
+          }
+
 
 
 render(){
+  console.log(this.state.startDate._d)
   return(
     <Modal
       onClose={()=> this.props.closeEventFormModal()}
@@ -86,12 +101,13 @@ render(){
             <input name='location' placeholder='Location' onChange={(e)=> this.handleChange(e)} />
           </Form.Field>
           <Form.Field>
-            <label>Date</label>
-            <input name='date' placeholder='Date' onChange={(e)=> this.handleChange(e)} />
-          </Form.Field>
-          <Form.Field>
-            <label>Time</label>
-            <input name='time' placeholder='Time' onChange={(e)=> this.handleChange(e)} />
+            <label>Date and Time</label>
+              <DatePicker
+                selected={this.state.startDate}
+                onChange={this.handleDateChange}
+                showTimeSelect
+                timeFormat="HH:mm"
+              />
           </Form.Field>
           <Form.Field>
             <label>Notes</label>

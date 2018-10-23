@@ -27,9 +27,9 @@ componentDidMount(){
         <Grid columns={3}>
           <Grid.Column textAlign='center'>
             <h1>{this.props.event.name}</h1>
-            <h2>{this.props.event.date}</h2>
+            <h2>{this.props.event.datetime}</h2>
+            <h2>{this.props.event.datetime}</h2>
             <h2>{this.props.event.location}</h2>
-            <h2>{this.props.event.time}</h2>
             <h2>{this.props.event.notes}</h2>
             <Button> Update Event </Button>
             <Button> Delete Event </Button>

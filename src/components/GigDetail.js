@@ -5,7 +5,7 @@ import { fetchEvents, fetchPosts, loading } from "../redux/actions/index";
 
 import { Grid, Image, Loader, Button } from 'semantic-ui-react';
 import PlayersList from './PlayersList';
-import PostList from './PostList';
+// import PostList from './PostList';
 
 
 
@@ -18,7 +18,7 @@ componentDidMount(){
 
 
   render() {
-    console.log(this.props)
+    console.log(this.props.gig.event)
       return (
         <React.Fragment>
            {this.props.loading ?
@@ -26,17 +26,17 @@ componentDidMount(){
              :
         <Grid columns={3}>
           <Grid.Column textAlign='center'>
-            <h1>{}</h1>
-            <h2>{}</h2>
-            <h2>{}</h2>
-            <h2>{}</h2>
-            <h2>{}</h2>
+          <h1>{this.props.gig.event.name}</h1>
+          <h2>{this.props.gig.event.date}</h2>
+          <h2>{this.props.gig.event.location}</h2>
+          <h2>{this.props.gig.event.time}</h2>
+          <h2>{this.props.gig.event.notes}</h2>
           </Grid.Column>
           <Grid.Column className={"post-col"}>
-            // <PostList currentUser={this.props.currentUser}  />
+           make a different/parallel component here to PostList called GigPostList
           </Grid.Column>
           <Grid.Column textAlign='center'>
-            // <PlayersList currentUser={this.props.currentUser}  />
+          make a different/parallel component here to PlayerList called GigPlayerList
           </Grid.Column>
         </Grid>}
         </React.Fragment>
@@ -44,14 +44,17 @@ componentDidMount(){
   }
 }
 
+
   const mapStateToProps = (state, propsFromParent) => {
-    console.log(propsFromParent)
+    console.log(state.events)
     let gig = state.userEvents.find(gig => gig.id === parseInt(propsFromParent.gigId))
+    let event =  state.events.find( event => event.id === gig.id)
     return {
       loading: state.loading,
       events: state.events,
       posts: state.posts,
-      gig: gig
+      gig: gig,
+      event: event
     };
    };
 
@@ -59,3 +62,6 @@ componentDidMount(){
      mapStateToProps,
      { fetchEvents, fetchPosts }
    )(GigDetail);
+
+
+   ///need to make a different/parallel component to PostList called GigPostList so that gig details are rendered for players
