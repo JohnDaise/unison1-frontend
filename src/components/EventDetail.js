@@ -25,15 +25,17 @@ componentDidMount(){
   render() {
 
     let weekday = {
-     1: "Sunday",
-     2: "Monday",
-     3: "Tuesday",
-     4: "Wednesday",
-     5: "Thursday",
-     6: "Friday",
-     7: "Saturday",
-    }
+     0: "Sunday",
+     1: "Monday",
+     2: "Tuesday",
+     3: "Wednesday",
+     4: "Thursday",
+     5: "Friday",
+     6: "Saturday",
+  }
+
       return (
+        console.log(moment(this.props.event.datetime).format('MMMM Do YYYY, h:mm a')),
         <React.Fragment>
            {this.props.loading ?
               <Loader active inline='centered' />
@@ -41,7 +43,8 @@ componentDidMount(){
         <Grid columns={3}>
           <Grid.Column textAlign='center'>
             <h1>{this.props.event.name}</h1>
-            <h2> {weekday[moment(this.props.event.datetime, 'DD-MM-YYYY').format('E')]} {moment(this.props.event.datetime, 'DD-MM-YYYY').format('MMM-DD-YYYY')}</h2>
+            <h2> {weekday[moment(this.props.event.datetime).format('E')]} {moment(this.props.event.datetime.substring(0,10), 'YYYY-MM-DD').format('LL')}</h2>
+            <h2>{moment(this.props.event.datetime).format('h:mm a')}</h2>
             <h2>{this.props.event.location}</h2>
             <h2>{this.props.event.notes}</h2>
             <Button> Update Event </Button>
