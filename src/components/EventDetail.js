@@ -19,7 +19,8 @@ class EventDetail extends React.Component {
      name: "",
      location: "",
      startDate: moment(),
-     notes: ""
+     notes: "",
+     editable: "false"
    };
  }
 componentDidMount(){
@@ -32,6 +33,36 @@ handleChange = (e) => {
       [e.target.name]: e.target.value
     })
   }
+
+editable = (e) => {
+   e.preventDefault();
+  let form = e.target.parentNode
+  let name = console.log(form.getElementsByClassName("h")[0].innerText)
+  let date = console.log(form.getElementsByClassName("h")[1].innerText)
+  let time = console.log(form.getElementsByClassName("h")[2].innerText)
+  let location = console.log(form.getElementsByClassName("h")[3].innerText)
+  let notes = console.log(form.getElementsByClassName("h")[4].innerText)
+let event = {
+  name: name,
+  datetime: date,
+  location: location,
+  notes: notes
+}
+if (this.state.editable === "false") {
+  e.target.innerText = "Save"
+  this.setState({
+    editable: "true"
+  })
+
+} else {
+  e.target.innerText = "Update Event"
+  this.setState({
+    editable: "false"
+  })
+  console.log("sent update")
+  }
+}
+
 
   render() {
 
@@ -52,12 +83,12 @@ handleChange = (e) => {
              :
         <Grid columns={3}>
           <Grid.Column textAlign='center' computer={3}>
-            <h1 contenteditable={"false"} name={'name'} onChange={this.handleEdit}>{this.props.event.name}</h1>
-            <h2 contenteditable={"false"} name={'date'} onChange={this.handleEdit}> {weekday[moment(this.props.event.datetime).format('E')]} {moment(this.props.event.datetime).format('MMMM DD YYYY')}</h2>
-            <h2 contenteditable={"false"} name={'time'} onChange={this.handleEdit}>{moment(this.props.event.datetime).format('h:mm a')}</h2>
-            <h2 contenteditable={"false"} name={'location'} onChange={this.handleEdit}>{this.props.event.location}</h2>
-            <h2 contenteditable={"false"} name={'notes'} onChange={this.handleEdit}>{this.props.event.notes}</h2>
-            <Button> Update Event </Button>
+            <h1 class="h" contenteditable={this.state.editable} name={'name'} onChange={this.handleEdit}>{this.props.event.name}</h1>
+            <h2 class="h" contenteditable={this.state.editable} name={'date'} onChange={this.handleEdit}> {weekday[moment(this.props.event.datetime).format('E')]} {moment(this.props.event.datetime).format('MMMM DD YYYY')}</h2>
+            <h2 class="h" contenteditable={this.state.editable} name={'time'} onChange={this.handleEdit}>{moment(this.props.event.datetime).format('h:mm a')}</h2>
+            <h2 class="h" contenteditable={this.state.editable} name={'location'} onChange={this.handleEdit}>{this.props.event.location}</h2>
+            <h2 class="h" contenteditable={this.state.editable} name={'notes'} onChange={this.handleEdit}>{this.props.event.notes}</h2>
+            <Button onClick={(e) => this.editable(e)}> Update Event </Button>
             <Button> Delete Event </Button>
           </Grid.Column>
           <Grid.Column className={"post-col"} textAlign='center' computer={10}>
