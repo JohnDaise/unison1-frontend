@@ -77,8 +77,7 @@ openEventFormModal = () => {
           <Container textAlign='left'>
               <DatePicker
                 selected={this.state.startDate}
-                onChange={this.handleChange}
-                highlightDates={[moment()]}
+                highlightDates={this.props.events.map(event => moment(event.datetime))}
               />
           </Container>
         </Grid.Column>
