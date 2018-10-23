@@ -21,8 +21,10 @@ const EventListItem = (props) => {
 
 
 return(
+  console.log(moment(props.event.datetime).format('MMMM DD YYYY, h:mm a')),
+  console.log(moment(props.event.datetime).format('MMMM DD YYYY')),
   <Link to={`/myevents/${props.event.id}`}>
-    <h2>{props.event.name} : {weekday[moment(props.event.datetime).format('E')]} {moment(props.event.datetime.substring(0,10), 'YYYY-MM-DD').format('LL')}</h2>
+    <h2>{props.event.name} : {weekday[moment(props.event.datetime).format('E')]} {moment(props.event.datetime).format('MMMM DD YYYY')}</h2>
   </Link>
 )
 
