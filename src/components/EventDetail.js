@@ -51,7 +51,7 @@ handleChange = (e) => {
               <Loader active inline='centered' />
              :
         <Grid columns={3}>
-          <Grid.Column textAlign='center'>
+          <Grid.Column textAlign='center' computer={3}>
             <h1 contenteditable={"false"} name={'name'} onChange={this.handleEdit}>{this.props.event.name}</h1>
             <h2 contenteditable={"false"} name={'date'} onChange={this.handleEdit}> {weekday[moment(this.props.event.datetime).format('E')]} {moment(this.props.event.datetime).format('MMMM DD YYYY')}</h2>
             <h2 contenteditable={"false"} name={'time'} onChange={this.handleEdit}>{moment(this.props.event.datetime).format('h:mm a')}</h2>
@@ -60,11 +60,11 @@ handleChange = (e) => {
             <Button> Update Event </Button>
             <Button> Delete Event </Button>
           </Grid.Column>
-          <Grid.Column className={"post-col"}>
+          <Grid.Column className={"post-col"} textAlign='center' computer={10}>
             <NewPostForm currentUser={this.props.currentUser} singleEvent={this.props.event} fetchEvents={this.props.fetchEvents} />
             <PostList currentUser={this.props.currentUser} singleEvent={this.props.event} fetchEvents={this.props.fetchEvents} />
-          </Grid.Column>
-          <Grid.Column textAlign='center'>
+          </Grid.Column >
+          <Grid.Column textAlign='center' computer={3}>
             <PlayersList currentUser={this.props.currentUser} players={this.props.event.users} />
           </Grid.Column>
         </Grid>}

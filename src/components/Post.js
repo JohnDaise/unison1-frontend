@@ -15,8 +15,8 @@ renderIframe = (params) => {
         return (
          <div>
          Notes: <p>{this.props.post.content}</p>
-         <iframe width="380"
-           height="157"
+       <iframe width="400"
+           height="300"
            src={"https://www.youtube.com/embed/"+ this.props.post.url.split("=")[1]}
            frameborder="0"
            allow="autoplay; encrypted-media"
@@ -28,8 +28,8 @@ renderIframe = (params) => {
       return (
           <div>
           Notes: <p>{this.props.post.content}</p>
-          <iframe width="380"
-            height="157"
+        <iframe width="400"
+            height="300"
             src={"https://www.youtube.com/embed/"+ this.props.post.url.split("/")[3]}
             frameborder="0"
             allow="autoplay; encrypted-media"
@@ -41,8 +41,8 @@ renderIframe = (params) => {
       return (
           <div>
           Notes: <p>{this.props.post.content}</p>
-          <iframe width="380"
-            height="157"
+        <iframe width="600"
+            height="300"
             src={this.props.post.url}
             frameborder="0"
             allow="autoplay; encrypted-media"
@@ -54,8 +54,8 @@ renderIframe = (params) => {
       return (
           <div>
           Notes: <p>{this.props.post.content}</p>
-          <iframe width="380"
-            height="157"
+        <iframe width="600"
+            height="300"
             src={this.props.post.url}
             frameborder="0"
             allow="autoplay; encrypted-media"
