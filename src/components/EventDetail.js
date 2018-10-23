@@ -13,14 +13,25 @@ import moment from 'moment';
 
 
 class EventDetail extends React.Component {
-
+  constructor(){
+    super()
+    this.state={
+     name: "",
+     location: "",
+     startDate: moment(),
+     notes: ""
+   };
+ }
 componentDidMount(){
   this.props.fetchEvents();
   this.props.fetchPosts();
 }
 
-
-
+handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
 
   render() {
 
@@ -33,20 +44,19 @@ componentDidMount(){
      5: "Friday",
      6: "Saturday",
   }
-
+//onClick will make all elements editable. use vanilla js and add id's to the editable elements
       return (
-        console.log(moment(this.props.event.datetime).format('MMMM DD YYYY, h:mm a')),
         <React.Fragment>
            {this.props.loading ?
               <Loader active inline='centered' />
              :
         <Grid columns={3}>
           <Grid.Column textAlign='center'>
-            <h1>{this.props.event.name}</h1>
-            <h2> {weekday[moment(this.props.event.datetime).format('E')]} {moment(this.props.event.datetime).format('MMMM DD YYYY')}</h2>
-            <h2>{moment(this.props.event.datetime).format('h:mm a')}</h2>
-            <h2>{this.props.event.location}</h2>
-            <h2>{this.props.event.notes}</h2>
+            <h1 contenteditable={"false"} name={'name'} onChange={this.handleEdit}>{this.props.event.name}</h1>
+            <h2 contenteditable={"false"} name={'date'} onChange={this.handleEdit}> {weekday[moment(this.props.event.datetime).format('E')]} {moment(this.props.event.datetime).format('MMMM DD YYYY')}</h2>
+            <h2 contenteditable={"false"} name={'time'} onChange={this.handleEdit}>{moment(this.props.event.datetime).format('h:mm a')}</h2>
+            <h2 contenteditable={"false"} name={'location'} onChange={this.handleEdit}>{this.props.event.location}</h2>
+            <h2 contenteditable={"false"} name={'notes'} onChange={this.handleEdit}>{this.props.event.notes}</h2>
             <Button> Update Event </Button>
             <Button> Delete Event </Button>
           </Grid.Column>

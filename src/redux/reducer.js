@@ -62,6 +62,14 @@ const eventsReducer = (state = [], action) => {
       return newEvents = [...state, action.event]
     case "FETCHED_EVENTS":
         return action.events;
+    case "EVENT_UPDATED":
+      return state.map(event => {
+        if (event.id === action.event.id) {
+          return action.event;
+        } else {
+          return event;
+        }
+      });
     default:
       return state;
   }

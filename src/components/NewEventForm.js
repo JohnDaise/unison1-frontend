@@ -69,13 +69,6 @@ class NewEventForm extends React.Component{
         });
       }
 
-      formatDate = moment => {
-          let year = moment.year();
-          let month = moment.month() + 1;
-          let day = moment.date();
-          return `${year}-${month}-${day}`;
-          }
-
 
 
 render(){

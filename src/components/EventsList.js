@@ -19,7 +19,7 @@ const EventsList = (props) => (
        </List>}
       </React.Fragment>
 );
-
+///sort events by date
 const mapStateToProps = state => {
   return {
     loading: state.loading,

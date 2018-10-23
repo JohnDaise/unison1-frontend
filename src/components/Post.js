@@ -6,37 +6,60 @@ import Iframe from 'react-iframe';
 
 
 
-const Post = (props) => {
+class Post extends React.Component{
 
 
-//make a case switch for if URL is a youtube vid, pdf or music file
+renderIframe = (params) => {
 
-
-
-  return(
-    console.log(props.post),
-    console.log("https://www.youtube.com/embed/"+ props.post.url.split("/")[3]),
-    <React.Fragment>
-        {props.post.url !== "" ?
+      if (this.props.post.url.includes('youtube')){
+        return (
+         <div>
+         Notes: <p>{this.props.post.content}</p>
+         <iframe width="380"
+           height="157"
+           src={"https://www.youtube.com/embed/"+ this.props.post.url.split("=")[1]}
+           frameborder="0"
+           allow="autoplay; encrypted-media"
+           allowfullscreen></iframe>
+           </div>
+         )
+       }
+      else if (this.props.post.url.includes('youtu')){
+      return (
           <div>
-          Notes: <p>{props.post.content}</p>
-        <iframe width="380"
-          height="157"
-          src={"https://www.youtube.com/embed/"+ props.post.url.split("/")[3]}
-          frameborder="0"
-          allow="autoplay; encrypted-media"
-          allowfullscreen></iframe>
-          </div> :
-          <div>
-            <p>{props.post.content}</p>
-          </div>
+          Notes: <p>{this.props.post.content}</p>
+          <iframe width="380"
+            height="157"
+            src={"https://www.youtube.com/embed/"+ this.props.post.url.split("/")[3]}
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen></iframe>
+            </div>
+          )
         }
-     </React.Fragment>
-  )
 
 
+         else {
+            return (
+              <div>
+                <p>{this.props.post.content}</p>
+              </div>
+            )
+          }
 }
 
+
+render(){
+  return(
+    console.log(this.props.post),
+    <React.Fragment>
+        {this.renderIframe(this.props.post.url)}
+     </React.Fragment>
+  )
+  }
+}
+
+ export default Post;
 // const mapStateToProps = (state, propsFromParent) => {
 //   // let post = state.posts.find(post => post.id === props.singleEvent.id)
 //   return {
@@ -47,7 +70,25 @@ const Post = (props) => {
 //  };
 //
 //  export default connect(mapStateToProps)(Post);
- export default Post;
+
+
+
+ // case this.props.post.url.includes('jpg'):
+ // return (
+ //    <div>
+ //    Notes: <p>{this.props.post.content}</p>
+ //      <iframe
+ //        style="border:1px solid #666CCC"
+ //        title="PDF in an i-Frame"
+ //        src={this.props.post.url}
+ //        frameborder="1"
+ //        scrolling="auto"
+ //        height="1100"
+ //        width="850" ></iframe>
+ //      </div>
+ //    )
+ //      break;
+
 
 
 // let event = state.events.find(event => event.id === parseInt(propsFromParent.eventId))

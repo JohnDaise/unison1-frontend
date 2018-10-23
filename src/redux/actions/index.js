@@ -42,6 +42,35 @@ function createEvent(event) {
   return { type: "ADD_EVENT", event };
 }
 
+
+function eventUpdated(event) {
+  return { type: "EVENT_UPDATED", event };
+}
+
+
+function updateEvent({ payload, eventId }) {
+  return function(dispatch, getState) {
+    const organizer = getState().events.find(event => event.id === eventId).user;
+    let data = {
+      name: payload.name,
+      location: payload.location,
+      datetime: payload.startDate,
+      notes: payload.notes
+    };
+    fetch(`${eventsURL}/${eventId}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(event => dispatch(eventUpdated(event)));
+  };
+};
+
+
 function fetchedEvents(events){
   return { type: "FETCHED_EVENTS", events };
 }
