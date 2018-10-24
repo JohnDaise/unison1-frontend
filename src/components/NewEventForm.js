@@ -39,6 +39,9 @@ class NewEventForm extends React.Component{
         notes: this.state.notes,
         user_id: this.props.currentUser.id
       };
+      if(this.state.name === ""){
+        window.alert("Please Fill in an Event Name")
+      } else {
       fetch(`http://localhost:3001/events/`, {
       method: "POST",
       headers: {
@@ -55,7 +58,7 @@ class NewEventForm extends React.Component{
       // type:'ADD_EVENT',
       // data});
       // this.props.history.push("/myevents/");
-      };
+    }};
 
     handleChange = (e) => {
         this.setState({
@@ -69,14 +72,19 @@ class NewEventForm extends React.Component{
         });
       }
 
+     //  open={this.props.isUpdateModalOpen}
+     // onOpen={()=> this.props.openUpdateModal()}
+     // onClose={()=> this.props.closeUpdateModal()}
+     //
 
 
 render(){
-  console.log(moment("Friday November 02 2018 4:30 pm"))
+  console.log(this.props.isNewEventFormModalOpen)
   return(
     <Modal
-      onClose={()=> this.props.closeEventFormModal()}
+      open={this.props.isNewEventFormModalOpen}
       onOpen={()=> this.props.openEventFormModal()}
+      onClose={()=> this.props.closeEventFormModal()}
       trigger={
          <Button circular>
            Create New Event
@@ -84,7 +92,10 @@ render(){
       >
       <Modal.Content>
       <Modal.Header>Create New Event</Modal.Header>
-        <Form onSubmit={(e) => this.handleSubmit(e)}>
+        <Form onSubmit={(e) =>
+            {
+              this.handleSubmit(e)}
+            }>
           <Form.Field>
             <label> Name </label>
             <input name='name' placeholder='Name' onChange={(e)=> this.handleChange(e)} />

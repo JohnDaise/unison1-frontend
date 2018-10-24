@@ -62,6 +62,7 @@ openEventFormModal = () => {
    }
 
   render(){
+    console.log(this.state.isNewEventFormModalOpen)
     return (
       <Grid columns={2} divided>
         <Grid.Column textAlign='center'>
@@ -70,6 +71,7 @@ openEventFormModal = () => {
             fetchEvents={this.props.fetchEvents}
             closeEventFormModal={this.closeEventFormModal}
             openEventFormModal={this.openEventFormModal}
+            isNewEventFormModalOpen={this.state.isNewEventFormModalOpen}
              />
           <EventsList currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents}  />
         </Grid.Column>
