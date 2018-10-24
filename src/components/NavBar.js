@@ -23,17 +23,18 @@ class NavBar extends React.Component {
 
     return (
       <React.Fragment>
-      <div className="ui inverted menu navbar">
+      <div className="ui inverted four item menu navbar" size='small'>
+              {!this.props.currentUser ?
               <NavLink exact to="/" className="ui item" activeClassName="ui active item">
                 Home
-              </NavLink>
+              </NavLink>: null}
+              {!!this.props.currentUser ?
+                <NavLink activeClassName="ui active item" className="ui item" to="/myevents">
+                  My Events
+                </NavLink>: null}
               {!!this.props.currentUser ?
               <NavLink exact to="/players" className="ui item" activeClassName="ui active item">
                 Players
-              </NavLink>: null}
-              {!!this.props.currentUser ?
-              <NavLink activeClassName="ui active item" className="ui item" to="/myevents">
-                My Events
               </NavLink>: null}
               {!!this.props.currentUser ?
               <NavLink activeClassName="ui active item" className="ui item" to="/gigs">
@@ -44,10 +45,12 @@ class NavBar extends React.Component {
                 About
               </NavLink>: null}
         {this.props.currentUser ? (
-          <div className="logout" >
-            <span className="ui item">Logged in as: {this.props.currentUser.name}</span>
-            <Button attached='top' onClick={this.clickHandler}>Logout</Button>
-          </div>
+          <div className= "ui item" >
+            <Button.Group basic inverted vertical>
+              <Button onClick={()=> window.alert(`Hi ${this.props.currentUser.name.split(" ")[0]}!`)}>Logged in as: {this.props.currentUser.name}</Button>
+              <Button onClick={this.clickHandler}>Logout</Button>
+            </Button.Group>
+        </div>
       ) : (
         <NavLink
             to="/login"
