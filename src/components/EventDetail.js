@@ -22,7 +22,8 @@ class EventDetail extends React.Component {
      location: "",
      startDate: moment(),
      notes: "",
-     editable: "false"
+     editable: "false",
+     isNewPostFormModalOpen: false,
    };
  }
 componentDidMount(){
@@ -41,6 +42,19 @@ handleChange = (e) => {
       startDate: date
     });
   }
+
+  closePostFormModal = () => {
+    this.setState({
+      isNewPostFormModalOpen: false
+    })
+  }
+
+  openPostFormModal = () => {
+    this.setState({
+      isNewPostFormModalOpen: true
+    })
+  }
+
 
 
 editable = (e) => {
@@ -123,7 +137,13 @@ if (this.state.editable === "false") {
             </Button>
           </Grid.Column>
           <Grid.Column className={"post-col"} textAlign='center' computer={9}>
-            <NewPostForm currentUser={this.props.currentUser} singleEvent={this.props.event} fetchEvents={this.props.fetchEvents} />
+            <NewPostForm
+              currentUser={this.props.currentUser}
+              singleEvent={this.props.event}
+              closePostFormModal={this.closePostFormModal}
+              openPostFormModal={this.openPostFormModal}
+              isNewPostFormModalOpen={this.state.isNewPostFormModalOpen}
+              fetchEvents={this.props.fetchEvents} />
             <PostList currentUser={this.props.currentUser} singleEvent={this.props.event} fetchEvents={this.props.fetchEvents} />
           </Grid.Column >
           <Grid.Column textAlign='center' computer={3}>

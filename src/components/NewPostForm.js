@@ -38,7 +38,7 @@ class NewPostForm extends React.Component{
       })
         .then(r => r.json())
           .then(json => this.props.createPost(json)) //create post action using json
-
+          this.props.closePostFormModal();
     }
 
 
@@ -53,6 +53,9 @@ class NewPostForm extends React.Component{
 render(){
   return(
     <Modal
+      open={this.props.isNewPostFormModalOpen}
+      onOpen={()=> this.props.openPostFormModal()}
+      onClose={()=> this.props.closePostFormModal()}
       trigger={
       <Button circular>
         Create New Post
