@@ -72,16 +72,20 @@ function updateEvent({ payload, eventId }) {
 
 
 function eventDeleted(event) {
-  return { type: "EVENT_DELETED", event };
+  console.log("hello")
+  return {
+    type: "EVENT_DELETED", event
+  };
 }
 
 function deleteEvent(eventId) {
+  console.log("hello again")
   return function(dispatch, getState) {
     fetch(`${eventsURL}/${eventId}`, {
       method: "DELETE"
     })
       .then(res => res.json())
-      .then( json => console.log(json));
+      .then( json => dispatch(eventDeleted(json)));
   };
 }
 
@@ -211,4 +215,4 @@ function fetchPosts(value) {
 // , getCurrentUser, setCurrentUser, logOutCurrentUser
 
 
-export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchUserEvents, fetchedEvents, fetchedUserEvents, createEvent, createPost, fetchPosts, fetchedPosts, loadingPosts, updateEvent, eventUpdated, deleteEvent };
+export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchUserEvents, fetchedEvents, fetchedUserEvents, createEvent, createPost, fetchPosts, fetchedPosts, loadingPosts, updateEvent, eventUpdated, deleteEvent, eventDeleted };

@@ -57,7 +57,11 @@ const loadingReducer = (state = false, action) => {
 //to create  add dispatch in action mapDispatchToProps
 const eventsReducer = (state = [], action) => {
   let newEvents = []
+  console.log("hey inside event reducer")
   switch(action.type){
+    case "EVENT_DELETED":
+    console.log("event deleted reducer")
+      return state.filter( event => event.id !== action.event.id)
     case "EVENT_UPDATED":
       return state.map(event => {
         if (event.id === action.event.id) {
@@ -66,10 +70,9 @@ const eventsReducer = (state = [], action) => {
           return event;
         }
       });
+
     case "ADD_EVENT":
       return newEvents = [...state, action.event]
-    case "EVENT_DELETED":
-      return state.filter( event => event.id !== action.event.id)
     case "FETCHED_EVENTS":
         return action.events;
     default:
