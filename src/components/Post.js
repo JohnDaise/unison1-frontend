@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from 'semantic-ui-react';
+import { Grid, Message } from 'semantic-ui-react';
 import { connect } from "react-redux";
 
 
@@ -11,7 +11,7 @@ renderIframe = (params) => {
 
       if (this.props.post.url.includes('youtube')){
         return (
-         <div>
+         <Message compact floating>
          Notes: <p>{this.props.post.content}</p>
        <iframe width="400"
            height="300"
@@ -19,12 +19,12 @@ renderIframe = (params) => {
            frameborder="0"
            allow="autoplay; encrypted-media"
            allowfullscreen></iframe>
-           </div>
+       </Message>
          )
        }
       else if (this.props.post.url.includes('youtu')){
       return (
-          <div>
+          <Message compact floating>
           Notes: <p>{this.props.post.content}</p>
         <iframe width="400"
             height="300"
@@ -32,40 +32,40 @@ renderIframe = (params) => {
             frameborder="0"
             allow="autoplay; encrypted-media"
             allowfullscreen></iframe>
-            </div>
+          </Message>
           )
         }
       else if (this.props.post.url.includes('pdf')){
       return (
-          <div>
+          <Message compact floating>
           Notes: <p>{this.props.post.content}</p>
         <iframe width="600"
-            height="300"
+            height="600"
             src={this.props.post.url}
             frameborder="0"
             allow="autoplay; encrypted-media"
             allowfullscreen></iframe>
-            </div>
+            </Message>
           )
         }
       else if (this.props.post.url.includes('jpg')){
       return (
-          <div>
+          <Message compact floating>
           Notes: <p>{this.props.post.content}</p>
         <iframe width="600"
-            height="300"
+            height="600"
             src={this.props.post.url}
             frameborder="0"
             allow="autoplay; encrypted-media"
             allowfullscreen></iframe>
-            </div>
+            </Message>
           )
         }
          else {
             return (
-              <div>
+              <Message floating>
                 <p>{this.props.post.content}</p>
-              </div>
+              </Message>
             )
           }
 }

@@ -144,6 +144,9 @@ if (this.state.editable === "false") {
               openPostFormModal={this.openPostFormModal}
               isNewPostFormModalOpen={this.state.isNewPostFormModalOpen}
               fetchEvents={this.props.fetchEvents} />
+            <br/>
+            <br/>
+            <br/>
             <PostList currentUser={this.props.currentUser} singleEvent={this.props.event} fetchEvents={this.props.fetchEvents} />
           </Grid.Column >
           <Grid.Column textAlign='center' computer={3}>
