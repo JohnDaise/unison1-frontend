@@ -1,10 +1,11 @@
 import React from "react";
-import { Link, Route, Switch  } from "react-router-dom";
+import { Link, Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchEvents, fetchPosts, loading } from "../redux/actions/index";
 
 import { Grid, Image, Loader, Button } from 'semantic-ui-react';
 import PlayersList from './PlayersList';
+import GigPostList from './GigPostList';
 // import PostList from './PostList';
 
 import DatePicker from 'react-datepicker';
@@ -36,7 +37,8 @@ componentDidMount(){
   }
 
 
-  console.log(this.props)
+    let gigs = this.props.users.find(user => user.id === this.props.currentUser.id).events
+    console.log(this.props)
       return (
         <React.Fragment>
            {this.props.loading ?
@@ -44,16 +46,16 @@ componentDidMount(){
              :
         <Grid columns={3}>
           <Grid.Column textAlign='center' computer={4}>
-            <h1 name={'name'}>{this.props.gig.event.name}</h1>
-            <h2 name={'date'}> {weekday[moment(this.props.gig.event.datetime).format('E')]} {moment(this.props.gig.event.datetime).format('MMMM DD YYYY')}</h2>
-            <h2 name={'time'} >{moment(this.props.gig.event.datetime).format('h:mm a')}</h2>
-            <h2 name={'location'} >{this.props.gig.event.location}</h2>
-            Notes: <h2 name={'notes'} >{this.props.gig.event.notes}</h2>
+            <h1 name={'name'}>{this.props.gig.name}</h1>
+            <h2 name={'date'}> {weekday[moment(this.props.gig.datetime).format('E')]} {moment(this.props.gig.datetime).format('MMMM DD YYYY')}</h2>
+            <h2 name={'time'} >{moment(this.props.gig.datetime).format('h:mm a')}</h2>
+            <h2 name={'location'} >{this.props.gig.location}</h2>
+            Notes: <h2 name={'notes'} >{this.props.gig.notes}</h2>
           </Grid.Column>
-          <Grid.Column className={"post-col"}>
-           make a different/parallel component here to PostList called GigPostList
+          <Grid.Column className={"post-col"} computer={9}>
+             <GigPostList currentUser={this.props.currentUser} gig={this.props.gig} />
           </Grid.Column>
-          <Grid.Column textAlign='center'>
+          <Grid.Column textAlign='center' computer={3}>
           make a different/parallel component here to PlayerList called GigPlayerList
           </Grid.Column>
         </Grid>}
@@ -65,7 +67,7 @@ componentDidMount(){
 
   const mapStateToProps = (state, propsFromParent) => {
     let player = state.users.find(user => user.id === propsFromParent.currentUser.id)
-    let gig = state.userEvents.find(gig => gig.id === parseInt(propsFromParent.gigId))
+    let gig = state.events.find(gig => gig.id === parseInt(propsFromParent.gigId))
     let event =  state.events.find( event => event.id === gig.id)
     /// this array is a player's gigs console.log(player.events)
     return {
@@ -81,7 +83,7 @@ componentDidMount(){
    export default connect(
      mapStateToProps,
      { fetchEvents, fetchPosts }
-   )(GigDetail);
+   )(withRouter(GigDetail));
 
 
    ///need to make a different/parallel component to PostList called GigPostList so that gig details are rendered for players
