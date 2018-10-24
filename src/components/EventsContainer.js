@@ -62,7 +62,6 @@ openEventFormModal = () => {
    }
 
   render(){
-    console.log(this.state.isNewEventFormModalOpen)
     return (
       <Grid columns={2} divided>
         <Grid.Column textAlign='center'>

@@ -38,6 +38,7 @@ componentDidMount(){
 
 
     let gigs = this.props.users.find(user => user.id === this.props.currentUser.id).events
+
       return (
         <React.Fragment>
            {this.props.loading ?

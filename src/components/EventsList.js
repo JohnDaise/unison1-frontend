@@ -13,6 +13,8 @@ const EventsList = (props) => (
       :
         <List>
           {props.currentUser ?
+            props.events.filter(event => event.user_id === props.currentUser.id ).length === 0 ?
+            <h1>No Events Scheduled</h1>:
           props.events.filter(event => event.user_id === props.currentUser.id ).map(event =>
            <List.Item><EventListItem key={event.id} event={event} /></List.Item>
          ) : null}

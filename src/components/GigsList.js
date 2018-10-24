@@ -18,9 +18,13 @@ return(
       :
         <List>
           {player ?
+            player.events.length === 0 ?
+            <h1>No Gigs Scheduled</h1>:
           player.events.map(gig =>
            <List.Item><GigListItem gig={gig} /></List.Item>
-         ) : null }
+         )
+
+         : null }
        </List>}
       </React.Fragment>
     )
