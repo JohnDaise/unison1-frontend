@@ -37,6 +37,13 @@ handleChange = (e) => {
     })
   }
 
+  handleDateChange= (date) => {
+    this.setState({
+      startDate: date
+    });
+  }
+
+
 editable = (e) => {
    e.preventDefault();
   let form = e.target.parentNode
@@ -47,8 +54,8 @@ editable = (e) => {
 let payload = {
   name: name,
   location: location,
-  notes: notes,
-  user_id: this.props.currentUser.id
+  datetime: this.state.startDate,
+  notes: notes
 }
 console.log(payload)
 if (this.state.editable === "false") {
@@ -67,7 +74,6 @@ if (this.state.editable === "false") {
     eventId: this.props.event.id,
     payload
   });
-  this.props.fetchEvents();
   this.props.history.push("/myevents/"+this.props.event.id);
   }
 }
@@ -84,7 +90,8 @@ if (this.state.editable === "false") {
      5: "Friday",
      6: "Saturday",
   }
-//onClick will make all elements editable. use vanilla js and add id's to the editable elements
+
+  console.log(this.state.startDate)
       return (
         <React.Fragment>
            {this.props.loading ?
@@ -96,14 +103,16 @@ if (this.state.editable === "false") {
             <h2 class="h"  name={'date'} onChange={this.handleEdit}> {weekday[moment(this.props.event.datetime).format('E')]} {moment(this.props.event.datetime).format('MMMM DD YYYY')}</h2>
             <h2 class="h"  name={'time'} onChange={this.handleEdit}>{moment(this.props.event.datetime).format('h:mm a')}</h2>
             <h2 class="h" contenteditable={this.state.editable} name={'location'} onChange={this.handleEdit}>{this.props.event.location}</h2>
-            <h2 class="h" contenteditable={this.state.editable} name={'notes'} onChange={this.handleEdit}>{this.props.event.notes}</h2>
+            Notes: <h2 class="h" contenteditable={this.state.editable} name={'notes'} onChange={this.handleEdit}>{this.props.event.notes}</h2>
             <Button onClick={(e) => this.editable(e)}> Update Event </Button>
-              <DatePicker
+            {!!this.state.editable ?
+            <DatePicker
                 selected={this.state.startDate}
                 onChange={this.handleDateChange}
                 showTimeSelect
                 timeFormat="HH:mm"
-              />
+              /> :null
+            }
             <Button> Delete Event </Button>
           </Grid.Column>
           <Grid.Column className={"post-col"} textAlign='center' computer={9}>

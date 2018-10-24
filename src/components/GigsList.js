@@ -6,23 +6,28 @@ import { connect } from "react-redux";
 import { Grid, Loader, List, Button } from 'semantic-ui-react'
 
 //map thru all userEvents that include currentUser id. those userEvents will have event ids
-const GigsList = (props) => (
-  console.log(props.userEvents.filter(gig => gig.user_id === props.currentUser.id).map(gig => gig.event)),
-    // console.log(props.events.filter(event => event.users.filter( user => user === props.currentUser))),
+class GigsList extends React.Component{
+
+
+render(){
+  let player =  this.props.users.find(user => user.id === this.props.currentUser.id);
+return(
       <React.Fragment>
-        {props.loading ?
+        {this.props.loading ?
         <Loader active inline='centered' />
       :
         <List>
-          {props.currentUser ?
-          props.userEvents.filter(gig => gig.user_id === props.currentUser.id).map(gig =>
-           <List.Item><GigListItem gig={gig.event} /></List.Item>
+          {player ?
+          player.events.map(gig =>
+           <List.Item><GigListItem gig={gig} /></List.Item>
          ) : null }
        </List>}
       </React.Fragment>
-);
+    )
+  }
+};
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, propsFromParent) => {
   return {
     loading: state.loading,
     events: state.events,
