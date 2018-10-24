@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchEvents, fetchPosts, loading } from "../redux/actions/index";
 
 import { Grid, Image, Loader, Button } from 'semantic-ui-react';
-import PlayersList from './PlayersList';
+import GigPlayerList from './GigPlayerList';
 import GigPostList from './GigPostList';
 // import PostList from './PostList';
 
@@ -56,7 +56,7 @@ componentDidMount(){
              <GigPostList currentUser={this.props.currentUser} gig={this.props.gig} />
           </Grid.Column>
           <Grid.Column textAlign='center' computer={3}>
-          make a different/parallel component here to PlayerList called GigPlayerList
+            <GigPlayerList currentUser={this.props.currentUser} gig={this.props.gig} />
           </Grid.Column>
         </Grid>}
         </React.Fragment>

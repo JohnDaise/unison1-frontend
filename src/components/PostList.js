@@ -21,10 +21,9 @@ const PostList = (props) => {
         {props.eventPosts ?
           props.eventPosts.map( post =>
           <List.Item><Post post={post} currentUser={props.currentUser}/></List.Item>
-        ): null}
+        ): null }
       </List>
     </Grid.Column>
-
   )
 }
 ///get list of posts from mapStateToProps

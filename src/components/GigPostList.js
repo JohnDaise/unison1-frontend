@@ -21,7 +21,7 @@ const GigPostList = (props) => {
         {props.gigPosts ?
           props.gigPosts.map( post =>
             <List.Item><Post post={post} currentUser={props.currentUser}/></List.Item>
-          ) : null}
+          ) : null 
         }
       </List>
     </Grid.Column>
