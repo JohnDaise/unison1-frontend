@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from "react-router-dom";
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Message } from 'semantic-ui-react'
 
 import { connect } from "react-redux";
 import { setCurrentUser } from "../redux/actions/index";
@@ -16,11 +16,11 @@ class Login extends React.Component {
     }
   }
 
-    onChange = (e) => {
-      this.setState({
-      [e.target.name]: e.target.value
-      })
-    }
+  handleChange = (e) => {
+   this.setState({
+     [e.target.name]: e.target.value
+   });
+ };
 
 
 
@@ -32,24 +32,18 @@ class Login extends React.Component {
       });
       fetch(baseUrl + "/login", {
         method: "POST",
+        body: data,
         headers: {
-          "Content-Type": "application/json",
-            Accept: "application/json"
-        },
-        body: data
-      }).then(res => {
-        if (res.status === 401) {
-          alert("login failed");
-        } else {
-          return res.json();
+          "Content-Type": "application/json"
         }
       })
-      .then(json => {
+        .then(res => res.json())
+          .then(json => {
         // this.props.setCurrentUser(json.user);
         this.props.updateUser(json.user);
         localStorage.setItem("token", json.token);
+        this.props.history.push("/")
       }); ///this works got a user and a token but did not reroute
-      this.props.history.push("/")
       this.setState({
         email: "",
         password: ""
@@ -63,14 +57,33 @@ render(){
     <div className='ui card login' style={{padding: '12px',
     margin: '0 6px 6px'}}>
     <Form
-      onSubmit={this.handleSubmit} onClick={this.handleClick}>
+      onSubmit={this.handleSubmit}
+      onClick={this.handleClick}
+      loading={this.props.authenticatingUser}
+      error={this.props.failedLogin}
+      >
+      <Message
+         error
+         header={this.props.failedLogin ? this.props.error : null}
+       />
       <Form.Field>
       <label> Email </label>
-      <input name='email' placeholder='email' onChange={(e)=> this.onChange(e)} />
+      <input
+        name='email'
+        placeholder='email'
+        onChange={this.handleChange}
+        value={this.state.email}
+         />
       </Form.Field>
       <Form.Field>
       <label>Password</label>
-      <input name= 'password' placeholder='Password' onChange={(e)=>this.onChange(e)} />
+      <input
+        name= 'password'
+        type='password'
+        placeholder='Password'
+        onChange={this.handleChange}
+        value={this.state.password}
+         />
       </Form.Field>
       <Button type='submit'>Submit</Button>
     </Form>
