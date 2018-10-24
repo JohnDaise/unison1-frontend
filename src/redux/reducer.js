@@ -68,9 +68,10 @@ const eventsReducer = (state = [], action) => {
       });
     case "ADD_EVENT":
       return newEvents = [...state, action.event]
+    case "EVENT_DELETED":
+      return state.filter( event => event.id !== action.event.id)
     case "FETCHED_EVENTS":
         return action.events;
-
     default:
       return state;
   }

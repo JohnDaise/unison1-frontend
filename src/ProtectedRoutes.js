@@ -41,7 +41,13 @@ class ProtectedRoutes extends Component {
                );
              }}
              />
-          <Route exact path="/myevents" render={(props) => <EventsContainer {...this.props} currentUser={this.props.currentUser} />}/>
+          <Route
+            exact path="/myevents"
+            render={(data) => {
+              return(
+                <EventsContainer {...this.props} currentUser={this.props.currentUser} />
+              );
+            }}/>
           <Route
             exact path="/myevents/:eventId"
             render={ data => {

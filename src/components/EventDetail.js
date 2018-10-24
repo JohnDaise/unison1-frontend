@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchEvents, fetchPosts, loading, updateEvent } from "../redux/actions/index";
+import { fetchEvents, fetchPosts, loading, updateEvent, deleteEvent } from "../redux/actions/index";
 
-import { Grid, Image, Loader, Button } from 'semantic-ui-react';
+import { Grid, Image, Loader, Button, Icon } from 'semantic-ui-react';
 import MoreDetails from './MoreDetails';
 import PlayersList from './PlayersList';
 import PostList from './PostList';
@@ -113,7 +113,23 @@ if (this.state.editable === "false") {
                 timeFormat="HH:mm"
               /> :null
             }
-            <Button> Delete Event </Button>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <Button secondary id={this.props.event.id} onClick={(e)=> {
+                console.log(e.target.id)
+                this.props.deleteEvent(e.target.id);
+                this.props.fetchEvents();
+                this.props.history.push("/myevents")
+              }}>
+              <Icon name='delete' />
+              Delete Event
+            </Button>
           </Grid.Column>
           <Grid.Column className={"post-col"} textAlign='center' computer={9}>
             <NewPostForm currentUser={this.props.currentUser} singleEvent={this.props.event} fetchEvents={this.props.fetchEvents} />
@@ -141,5 +157,5 @@ if (this.state.editable === "false") {
 
    export default connect(
      mapStateToProps,
-     { fetchEvents, fetchPosts, updateEvent }
+     { fetchEvents, fetchPosts, updateEvent, deleteEvent }
    )(withRouter(EventDetail));

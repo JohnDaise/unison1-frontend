@@ -15,7 +15,6 @@ const PostList = (props) => {
 // let post = {url: "https://www.youtube.com/embed/Rp8WL621uGM", content: "Lets do this verison :)"}
 
   return(
-    console.log(props),
     <Grid.Column>
       <List>
         {props.eventPosts ?

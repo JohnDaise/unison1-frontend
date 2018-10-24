@@ -72,14 +72,8 @@ class NewEventForm extends React.Component{
         });
       }
 
-     //  open={this.props.isUpdateModalOpen}
-     // onOpen={()=> this.props.openUpdateModal()}
-     // onClose={()=> this.props.closeUpdateModal()}
-     //
-
 
 render(){
-  console.log(this.props.isNewEventFormModalOpen)
   return(
     <Modal
       open={this.props.isNewEventFormModalOpen}
