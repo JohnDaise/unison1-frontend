@@ -41,6 +41,9 @@ addPlayerToEvent = () => {
 
 
 render(){
+  // let event = this.props.events.find( event => event.name === this.props.dropValue.value)
+  // let playerId = this.props.user.id
+  // let user = this.
   return(
     <Grid.Column>
     <Card>

@@ -37,16 +37,18 @@ class Login extends React.Component {
           "Content-Type": "application/json"
         }
       })
-        .then(res => res.json())
+        .then(res => res.json().catch(() => {
+          window.alert("Incorrect Email or Password")
+          this.props.history.push("/login")
+        }))
           .then(json => {
         // this.props.setCurrentUser(json.user);
         this.props.updateUser(json.user);
         localStorage.setItem("token", json.token);
-        this.props.history.push("/")
+        this.props.history.push("/myevents")
       }); ///this works got a user and a token but did not reroute
       this.setState({
-        email: "",
-        password: ""
+        email: ""
       })
 
     };

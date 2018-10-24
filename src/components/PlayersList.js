@@ -4,18 +4,22 @@ import { Grid, List, Image, Icon } from 'semantic-ui-react'
 import { connect } from "react-redux";
 import { fetchEvents, fetchUsers, fetchedEvents, loading } from "../redux/actions/index";
 
-const PlayersList = (props) => {
+import PlayersView from './PlayersView'
 
+class PlayersList extends React.Component{
 
-
+  handleClick = () => {
+   console.log("hi")
+  }
 //each list item should be a link that renders a simple user details modal
+  render(){
   return(
     <List>
       <strong><h1>Users</h1></strong>
       <List.Item>
-            <Image avatar src={props.organizer.pic_url} />
+            <Image avatar src={this.props.organizer.pic_url} />
             <List.Content>
-           <List.Header as='a'>{props.organizer.name}</List.Header>
+           <List.Header as='a'>{this.props.organizer.name}</List.Header>
            <List.Description>
              'Organizer'
            </List.Description>
@@ -23,8 +27,10 @@ const PlayersList = (props) => {
          <br/>
          <br/>
       </List.Item>
-      {props.players.map( p=>
-        <List.Item>
+      {this.props.players.map( p=>
+        <List.Item
+          onClick={(e) => this.handleClick(e) }
+          >
               <Image avatar src={p.pic_url} />
               <List.Content>
              <List.Header as='a'>{p.name}</List.Header>
@@ -37,8 +43,7 @@ const PlayersList = (props) => {
 
     </List>
   )
-
-
+}
 
 
 

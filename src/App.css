@@ -37,6 +37,7 @@
 
 .ui-inverted-menu-navbar{
   align-items: right;
+  color: "yellow";
 
 }
 
@@ -53,11 +54,6 @@
   }
 }
 
-
-ui.menu {
-  background-color: #282c34;
-
-}
 
 
 

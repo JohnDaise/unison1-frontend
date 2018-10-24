@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { fetchEvents, fetchPosts, loading, updateEvent, deleteEvent } from "../redux/actions/index";
 
 import { Grid, Image, Loader, Button, Icon } from 'semantic-ui-react';
-import MoreDetails from './MoreDetails';
 import PlayersList from './PlayersList';
 import PostList from './PostList';
 import NewPostForm from './NewPostForm';
@@ -91,13 +90,13 @@ if (this.state.editable === "false") {
      6: "Saturday",
   }
 
-  console.log(this.state.startDate)
+
       return (
         <React.Fragment>
            {this.props.loading ?
               <Loader active inline='centered' />
              :
-        <Grid columns={4}>
+        <Grid columns={3}>
           <Grid.Column textAlign='center' computer={4}>
             <h1 class="h" contenteditable={this.state.editable} name={'name'} onChange={this.handleEdit}>{this.props.event.name}</h1>
             <h2 class="h"  name={'date'} onChange={this.handleEdit}> {weekday[moment(this.props.event.datetime).format('E')]} {moment(this.props.event.datetime).format('MMMM DD YYYY')}</h2>
@@ -105,14 +104,6 @@ if (this.state.editable === "false") {
             <h2 class="h" contenteditable={this.state.editable} name={'location'} onChange={this.handleEdit}>{this.props.event.location}</h2>
             Notes: <h2 class="h" contenteditable={this.state.editable} name={'notes'} onChange={this.handleEdit}>{this.props.event.notes}</h2>
             <Button onClick={(e) => this.editable(e)}> Update Event </Button>
-            {!!this.state.editable ?
-            <DatePicker
-                selected={this.state.startDate}
-                onChange={this.handleDateChange}
-                showTimeSelect
-                timeFormat="HH:mm"
-              /> :null
-            }
             <br/>
             <br/>
             <br/>
@@ -135,7 +126,7 @@ if (this.state.editable === "false") {
             <NewPostForm currentUser={this.props.currentUser} singleEvent={this.props.event} fetchEvents={this.props.fetchEvents} />
             <PostList currentUser={this.props.currentUser} singleEvent={this.props.event} fetchEvents={this.props.fetchEvents} />
           </Grid.Column >
-          <Grid.Column textAlign='center' computer={2}>
+          <Grid.Column textAlign='center' computer={3}>
             <PlayersList currentUser={this.props.currentUser} players={this.props.event.users} />
           </Grid.Column>
         </Grid>}

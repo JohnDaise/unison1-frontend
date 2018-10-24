@@ -44,7 +44,7 @@ class NavBar extends React.Component {
                 About
               </NavLink>: null}
         {this.props.currentUser ? (
-          <div className="logout">
+          <div className="logout" >
             <span className="ui item">Logged in as: {this.props.currentUser.name}</span>
             <Button attached='top' onClick={this.clickHandler}>Logout</Button>
           </div>
