@@ -22,7 +22,7 @@ renderIframe = (params) => {
                console.log(e.target.id)
                this.props.deletePost(e.target.id);
              }}>X</Button> : null }
-         Notes: <p>{this.props.post.content}</p>
+         <h4>{this.props.post.content}</h4>
        <iframe width="400"
            height="300"
            src={"https://www.youtube.com/embed/"+ this.props.post.url.split("=")[1]}
@@ -41,7 +41,7 @@ renderIframe = (params) => {
               console.log(e.target.id)
               this.props.deletePost(e.target.id);
             }}>X</Button> : null}
-          Notes: <p>{this.props.post.content}</p>
+          <h4>{this.props.post.content}</h4>
         <iframe width="400"
             height="300"
             src={"https://www.youtube.com/embed/"+ this.props.post.url.split("/")[3]}
@@ -60,7 +60,7 @@ renderIframe = (params) => {
                 console.log(e.target.id)
                 this.props.deletePost(e.target.id);
               }}>X</Button> : null }
-          Notes: <p>{this.props.post.content}</p>
+          <h4>{this.props.post.content}</h4>
         <iframe width="600"
             height="600"
             src={this.props.post.url}
@@ -79,7 +79,7 @@ renderIframe = (params) => {
                 console.log(e.target.id)
                 this.props.deletePost(e.target.id);
               }}>X</Button> : null }
-          Notes: <p>{this.props.post.content}</p>
+          <h4>{this.props.post.content}</h4>
         <iframe width="600"
             height="600"
             src={this.props.post.url}
@@ -91,8 +91,8 @@ renderIframe = (params) => {
         }
          else {
             return (
-              <Message floating>
-                <p>{this.props.post.content}</p>
+              <Message compact floating>
+                <h2>{this.props.post.content}</h2>
               </Message>
             )
           }

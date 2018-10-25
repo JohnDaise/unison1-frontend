@@ -98,9 +98,9 @@ const postsReducer = (state = [], action) => {
     case "POST_DELETED":
       return state.filter( post => post.id !== action.post.id)
     case "ADD_POST":
-      return newPosts = [...state, action.post]
+      return newPosts = [...state, action.post].reverse()
     case "FETCHED_POSTS":
-        return action.posts;
+        return action.posts.reverse();
     default:
       return state;
   }
