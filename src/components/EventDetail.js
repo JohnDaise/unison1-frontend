@@ -110,13 +110,14 @@ if (this.state.editable === "false") {
            {this.props.loading ?
               <Loader active inline='centered' />
              :
-        <Grid columns={3}>
-          <Grid.Column textAlign='center' computer={3}>
+        <Grid columns={2}>
+          <Grid.Column computer={2} textAlign='center'>
+           <div className={"fixedleftorganizer"} >
             <h3 class="h" contenteditable={this.state.editable} name={'name'} onChange={this.handleEdit}>{this.props.event.name}</h3>
             <h4 class="h"  name={'date'} onChange={this.handleEdit}> {weekday[moment(this.props.event.datetime).format('E')]} {moment(this.props.event.datetime).format('MMMM DD YYYY')}</h4>
             <h4 class="h"  name={'time'} onChange={this.handleEdit}>{moment(this.props.event.datetime).format('h:mm a')}</h4>
             <h4 class="h" contenteditable={this.state.editable} name={'location'} onChange={this.handleEdit}>{this.props.event.location}</h4>
-            Notes: <h4 class="h" contenteditable={this.state.editable} name={'notes'} onChange={this.handleEdit}>{this.props.event.notes}</h4>
+            <h4>Notes:</h4> <p class="h" contenteditable={this.state.editable} name={'notes'} onChange={this.handleEdit}>{this.props.event.notes}</p>
             <Button onClick={(e) => this.editable(e)}> Update Event </Button>
             <br/>
             <br/>
@@ -135,8 +136,9 @@ if (this.state.editable === "false") {
               <Icon name='delete' />
               Delete Event
             </Button>
+          </div>
           </Grid.Column>
-          <Grid.Column className={"post-col"} textAlign='center' computer={10}>
+          <Grid.Column className={"post-col"} textAlign='center' computer={14}>
             <NewPostForm
               currentUser={this.props.currentUser}
               singleEvent={this.props.event}
@@ -148,10 +150,10 @@ if (this.state.editable === "false") {
             <br/>
             <br/>
             <PostList currentUser={this.props.currentUser} singleEvent={this.props.event} fetchEvents={this.props.fetchEvents} />
-          </Grid.Column >
-          <Grid.Column textAlign='center' computer={3}>
-            <PlayersList currentUser={this.props.currentUser} players={this.props.event.users} />
           </Grid.Column>
+              <div className={"fixedright"}>
+            <PlayersList currentUser={this.props.currentUser} players={this.props.event.users} />
+            </div>
         </Grid>}
         </React.Fragment>
       )
