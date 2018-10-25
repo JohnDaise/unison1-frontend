@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Modal, Icon } from 'semantic-ui-react'
+import { Header, Modal, Icon, Container } from 'semantic-ui-react'
 
 const WarningModal = (props) => (
   <Modal
@@ -7,7 +7,9 @@ const WarningModal = (props) => (
       onClose={props.closeWarningModal}
       size={'mini'}
       >
-    <Modal.Header><Icon name='arrow up'/>Please Select An Event<Icon name='arrow up'/></Modal.Header>
+      <Container>
+        <h1><Icon name='arrow up'/>Please Select An Event<Icon name='arrow up'/></h1>
+      </Container>
   </Modal>
 )
 
