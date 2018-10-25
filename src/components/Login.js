@@ -82,7 +82,7 @@ render(){
       <input
         name= 'password'
         type='password'
-        placeholder='Password'
+        placeholder='password'
         onChange={this.handleChange}
         value={this.state.password}
          />

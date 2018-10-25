@@ -21,7 +21,7 @@ class ProtectedRoutes extends Component {
 
   render() {
     if(!this.props.currentUser){
-    return <Redirect to="/login" />
+    return <Redirect to="/" />
     }
      else {
     return (
