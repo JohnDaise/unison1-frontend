@@ -147,6 +147,12 @@ function loadingPosts() {
   return { type: "FETCHING_POSTS" };
 }
 
+function postDeleted(post) {
+  return {
+    type: "POST_DELETED", post
+  };
+}
+
 
 function fetchPosts(value) {
   return dispatch => {
@@ -155,6 +161,18 @@ function fetchPosts(value) {
        .then(res => res.json())
        .then(posts => dispatch(fetchedPosts(posts)));
    };
+}
+
+
+
+function deletePost(postId) {
+  return function(dispatch, getState) {
+    fetch(`${postsURL}/${postId}`, {
+      method: "DELETE"
+    })
+      .then(res => res.json())
+      .then( json => dispatch(postDeleted(json)));
+  };
 }
 
 
@@ -213,4 +231,4 @@ function fetchPosts(value) {
 // , getCurrentUser, setCurrentUser, logOutCurrentUser
 
 
-export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchUserEvents, fetchedEvents, fetchedUserEvents, createEvent, createPost, fetchPosts, fetchedPosts, loadingPosts, updateEvent, eventUpdated, deleteEvent, eventDeleted };
+export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchUserEvents, fetchedEvents, fetchedUserEvents, createEvent, createPost, fetchPosts, fetchedPosts, loadingPosts, updateEvent, eventUpdated, deleteEvent, eventDeleted, deletePost, postDeleted };

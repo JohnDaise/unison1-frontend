@@ -45,14 +45,14 @@ componentDidMount(){
               <Loader active inline='centered' />
              :
         <Grid columns={3}>
-          <Grid.Column textAlign='center' computer={4}>
-            <h1 name={'name'}>{this.props.gig.name}</h1>
-            <h2 name={'date'}> {weekday[moment(this.props.gig.datetime).format('E')]} {moment(this.props.gig.datetime).format('MMMM DD YYYY')}</h2>
-            <h2 name={'time'} >{moment(this.props.gig.datetime).format('h:mm a')}</h2>
-            <h2 name={'location'} >{this.props.gig.location}</h2>
-            Notes: <h2 name={'notes'} >{this.props.gig.notes}</h2>
+          <Grid.Column textAlign='center' computer={3}>
+            <h3 name={'name'}>{this.props.gig.name}</h3>
+            <h4 name={'date'}> {weekday[moment(this.props.gig.datetime).format('E')]} {moment(this.props.gig.datetime).format('MMMM DD YYYY')}</h4>
+            <h4 name={'time'} >{moment(this.props.gig.datetime).format('h:mm a')}</h4>
+            <h4 name={'location'} >{this.props.gig.location}</h4>
+            Notes: <h4 name={'notes'} >{this.props.gig.notes}</h4>
           </Grid.Column>
-          <Grid.Column className={"post-col"} computer={9}>
+          <Grid.Column className={"post-col"} textAlign='center' computer={10}>
              <GigPostList currentUser={this.props.currentUser} gig={this.props.gig} />
           </Grid.Column>
           <Grid.Column textAlign='center' computer={3}>

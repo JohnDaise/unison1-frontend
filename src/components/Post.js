@@ -1,6 +1,10 @@
 import React from "react";
-import { Grid, Message } from 'semantic-ui-react';
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+
+import { fetchEvents, fetchPosts, loading, deletePost } from "../redux/actions/index";
+
+import { Grid, Message, Icon, Button } from 'semantic-ui-react';
 
 
 
@@ -8,10 +12,16 @@ class Post extends React.Component{
 
 
 renderIframe = (params) => {
-
+    let owner = this.props.post.user_id === this.props.currentUser.id
       if (this.props.post.url.includes('youtube')){
         return (
          <Message compact floating>
+           {owner ? <Button id={this.props.post.id}
+             size="small"
+             onClick={(e)=>{
+               console.log(e.target.id)
+               this.props.deletePost(e.target.id);
+             }}>X</Button> : null }
          Notes: <p>{this.props.post.content}</p>
        <iframe width="400"
            height="300"
@@ -19,12 +29,18 @@ renderIframe = (params) => {
            frameborder="0"
            allow="autoplay; encrypted-media"
            allowfullscreen></iframe>
+
        </Message>
          )
        }
       else if (this.props.post.url.includes('youtu')){
       return (
           <Message compact floating>
+          {owner ? <Button id={this.props.post.id}
+            onClick={(e)=>{
+              console.log(e.target.id)
+              this.props.deletePost(e.target.id);
+            }}>X</Button> : null}
           Notes: <p>{this.props.post.content}</p>
         <iframe width="400"
             height="300"
@@ -38,6 +54,12 @@ renderIframe = (params) => {
       else if (this.props.post.url.includes('pdf')){
       return (
           <Message compact floating>
+          {owner ? <Button id={this.props.post.id}
+              size="small"
+              onClick={(e)=>{
+                console.log(e.target.id)
+                this.props.deletePost(e.target.id);
+              }}>X</Button> : null }
           Notes: <p>{this.props.post.content}</p>
         <iframe width="600"
             height="600"
@@ -51,6 +73,12 @@ renderIframe = (params) => {
       else if (this.props.post.url.includes('jpg')){
       return (
           <Message compact floating>
+            {owner ? <Button id={this.props.post.id}
+              size="small"
+              onClick={(e)=>{
+                console.log(e.target.id)
+                this.props.deletePost(e.target.id);
+              }}>X</Button> : null }
           Notes: <p>{this.props.post.content}</p>
         <iframe width="600"
             height="600"
@@ -80,7 +108,23 @@ render(){
   }
 }
 
- export default Post;
+const mapStateToProps = (state, propsFromParent) => {
+  return {
+    loading: state.loading,
+    events: state.events,
+    posts: state.posts
+  };
+ };
+
+
+
+
+export default connect(
+  mapStateToProps,
+  {  fetchEvents, fetchPosts, deletePost }
+)(withRouter(Post));
+
+
 // const mapStateToProps = (state, propsFromParent) => {
 //   // let post = state.posts.find(post => post.id === props.singleEvent.id)
 //   return {

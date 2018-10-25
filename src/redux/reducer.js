@@ -95,6 +95,8 @@ const userEventsReducer = (state = [], action) => {
 const postsReducer = (state = [], action) => {
   let newPosts = []
   switch(action.type){
+    case "POST_DELETED":
+      return state.filter( post => post.id !== action.post.id)
     case "ADD_POST":
       return newPosts = [...state, action.post]
     case "FETCHED_POSTS":
