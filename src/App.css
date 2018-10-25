@@ -80,12 +80,13 @@ div.fixedright {
 }
 
 div.fixedleftorganizer {
-    position: sticky;
+    position: fixed;
     top: 15%;
     left: 0;
-    width: 300px;
+    width: 350px;
     border: 3px solid #282c34;
     word-wrap: break-word;
+    z-index: 1;
 }
 
 div.static {

@@ -57,9 +57,9 @@ render(){
       onOpen={()=> this.props.openPostFormModal()}
       onClose={()=> this.props.closePostFormModal()}
       trigger={
-      <Button circular>
+      <Button circular >
         Create New Post
-      </Button>}
+      </Button >}
       >
       <Modal.Content>
       <Modal.Header>Write New Post</Modal.Header>

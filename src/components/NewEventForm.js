@@ -80,7 +80,7 @@ render(){
       onOpen={()=> this.props.openEventFormModal()}
       onClose={()=> this.props.closeEventFormModal()}
       trigger={
-         <Button circular>
+         <Button circular >
            Create New Event
          </Button>}
       >
