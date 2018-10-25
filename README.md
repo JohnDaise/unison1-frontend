@@ -22,7 +22,7 @@ Often band leaders/ music directors and singer/songwriters pull from a variety o
 Unison is an app for working musicians. Those who are regularly working in a gig economy with a variety of players often don't need to find opportunities but rather need a single page to connect/disseminate information with other working players. This is where Unison is helpful. Band Leaders/Music Directors/Solo Artists can add other musicians onto a particular gig and on that page share important notes, details, and links so everyone can be on the same page.
 
 
- TL ; DR:  Unison is an organizational tool for working musicians and it is meant to be an open network.
+ TL ; DR:  Unison is an organizational tool for working musicians and it is intended to be an open network.
 
 
 
