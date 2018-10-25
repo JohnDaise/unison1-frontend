@@ -68,10 +68,14 @@ openEventFormModal = () => {
      return (
       <Grid columns={2} divided >
         <Grid.Column textAlign='center' computer={12}>
+          <br/>
+          <br/>
           <GigsList currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents}  />
         </Grid.Column>
         <Grid.Column computer={4}>
           <Container textAlign='left' >
+            <br/>
+            <br/>
             { player ?
               <DatePicker
                 selected={this.state.startDate}

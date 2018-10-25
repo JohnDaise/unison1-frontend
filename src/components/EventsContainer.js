@@ -67,6 +67,8 @@ openEventFormModal = () => {
     return (
       <Grid columns={2} divided>
         <Grid.Column textAlign='center' computer={12}>
+          <br/>
+          <br/>
           <NewEventForm
             currentUser={this.props.currentUser}
             fetchEvents={this.props.fetchEvents}
@@ -74,10 +76,14 @@ openEventFormModal = () => {
             openEventFormModal={this.openEventFormModal}
             isNewEventFormModalOpen={this.state.isNewEventFormModalOpen}
              />
+             <br/>
+             <br/>
           <EventsList currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents}  />
         </Grid.Column>
         <Grid.Column computer={4}>
           <Container textAlign='left'>
+            <br/>
+            <br/>
             { myevents ?
               <DatePicker
                 selected={this.state.startDate}

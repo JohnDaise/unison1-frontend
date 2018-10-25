@@ -20,7 +20,7 @@ return(
           {player ?
             player.events.length === 0 ?
             <h1>No Gigs Scheduled</h1>:
-          player.events.map(gig =>
+          player.events.reverse().map(gig =>
            <List.Item><GigListItem gig={gig} /></List.Item>
          )
 

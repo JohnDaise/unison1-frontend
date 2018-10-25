@@ -139,6 +139,8 @@ if (this.state.editable === "false") {
           </div>
           </Grid.Column>
           <Grid.Column className={"post-col"} textAlign='center' computer={14}>
+            <br/>
+            <br/>
             <NewPostForm
               currentUser={this.props.currentUser}
               singleEvent={this.props.event}

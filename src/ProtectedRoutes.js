@@ -31,6 +31,9 @@ class ProtectedRoutes extends Component {
              render={(props) => {
               return (
                 <React.Fragment>
+                  <br/>
+                  <br/>
+                  <br/>
                   <PickEvent {...this.props} currentUser={this.props.currentUser} />
                   <SearchBar />
                   <UsersContainer

@@ -7,11 +7,15 @@ import { Input, Segment } from 'semantic-ui-react';
 
 const SearchBar = (props) => (
      <Segment >
-       <Input
-       size='large'
-       placeholder="Search..."
-       value={props.value}
-       onChange={e => props.onChange(e.target.value)}></Input>
+       <div className="searchbar">
+         <Input
+           fluid
+           icon='search'
+           size='medium'
+           placeholder="Search..."
+           value={props.value}
+           onChange={e => props.onChange(e.target.value)}></Input>
+     </div>
     </Segment>
 )
 

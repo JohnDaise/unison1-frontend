@@ -46,7 +46,7 @@ function createObj(obj){
     <React.Fragment>
         <Dropdown
           fluid selection
-          size='small'
+          size='medium'
           onChange={(e, value )=> {
             e.persist();
             this.props.onChange(value)}

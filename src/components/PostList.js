@@ -18,7 +18,7 @@ const PostList = (props) => {
     <Grid.Column>
       <List>
         {props.eventPosts ?
-          props.eventPosts.map( post =>
+          props.eventPosts.reverse().map( post =>
           <List.Item><Post post={post} currentUser={props.currentUser}/></List.Item>
         ): null }
       </List>
