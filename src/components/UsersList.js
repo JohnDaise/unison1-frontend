@@ -3,7 +3,7 @@ import React from "react";
 import UserCard from './UserCard'
 import { connect } from "react-redux";
 
-import { Grid, Loader } from 'semantic-ui-react'
+import { Grid, Loader, Container } from 'semantic-ui-react'
 
 
 class UsersList extends React.Component {
@@ -13,10 +13,11 @@ render(){
 
   return (
   <React.Fragment>
+    <Container>
      {this.props.loading ?
         <Loader active inline='centered' />
        :
-  <Grid centered columns={3} >
+  <Grid centered columns={4} >
     { otherUsers.map(user => (
       <UserCard
         key={user.id}
@@ -28,6 +29,7 @@ render(){
         />
     ))}
   </Grid>}
+</Container>
   </React.Fragment>
 )}
 };
