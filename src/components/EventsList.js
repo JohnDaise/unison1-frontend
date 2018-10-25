@@ -7,6 +7,7 @@ import { Grid, Loader, List, Button } from 'semantic-ui-react'
 
 
 const EventsList = (props) => (
+  console.log(props.events),
       <React.Fragment>
         {props.loading ?
         <Loader active inline='centered' />

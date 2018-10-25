@@ -72,7 +72,9 @@ const eventsReducer = (state = [], action) => {
     case "ADD_EVENT":
       return newEvents = [...state, action.event]
     case "FETCHED_EVENTS":
-        return action.events;
+        return action.events.slice().sort(function(a, b) {
+           return a.datetime.localeCompare(b.datetime);
+            });
     default:
       return state;
   }

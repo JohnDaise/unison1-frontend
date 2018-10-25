@@ -29,7 +29,6 @@ renderIframe = (params) => {
            frameborder="0"
            allow="autoplay; encrypted-media"
            allowfullscreen></iframe>
-
        </Message>
          )
        }
