@@ -62,22 +62,27 @@ openEventFormModal = () => {
    }
 
   render(){
-    return (
+  let player =  this.props.users.find(user => user.id === this.props.currentUser.id);
+     return (
       <Grid columns={2} divided>
         <Grid.Column textAlign='center'>
           <GigsList currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents}  />
         </Grid.Column>
         <Grid.Column>
           <Container textAlign='left'>
+            { player ?
               <DatePicker
                 selected={this.state.startDate}
                 onChange={this.handleChange}
-              />
+                highlightDates={ player.events.map(event => moment(event.datetime))}
+              /> : null }
           </Container>
         </Grid.Column>
       </Grid>
     )}
 };
+
+// player.events.map(event => moment(event.datetime))
 
 
 const mapStateToProps = state => {

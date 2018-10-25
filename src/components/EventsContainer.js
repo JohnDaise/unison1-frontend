@@ -62,6 +62,8 @@ openEventFormModal = () => {
    }
 
   render(){
+    let myevents = this.props.events.filter( event => event.user.id === this.props.currentUser.id)
+    console.log(myevents)
     return (
       <Grid columns={2} divided>
         <Grid.Column textAlign='center' computer={12}>
@@ -76,10 +78,11 @@ openEventFormModal = () => {
         </Grid.Column>
         <Grid.Column computer={4}>
           <Container textAlign='left'>
+            { myevents ?
               <DatePicker
                 selected={this.state.startDate}
-                highlightDates={this.props.events.map(event => moment(event.datetime))}
-              />
+                highlightDates={myevents.map(event => moment(event.datetime))}
+              /> : null }
           </Container>
         </Grid.Column>
       </Grid>
