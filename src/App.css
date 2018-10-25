@@ -61,6 +61,21 @@
   }
 }
 
+div.fixedleft {
+    position: fixed;
+    top: 15%;
+    left: 0;
+    width: 300px;
+    border: 3px solid #282c34;
+    word-wrap: break-word;
+}
+div.fixedright {
+    position: fixed;
+    top: 15%;
+    right: 0;
+    width: 200px;
+    border: 3px solid #282c34;
+}
 
 
 

@@ -14,7 +14,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { Container, Divider, Grid, Loader } from 'semantic-ui-react'
+import { Container, Divider, Grid, Loader, Sticky } from 'semantic-ui-react'
 
 
 class GigsContainer extends React.Component {
@@ -61,15 +61,17 @@ openEventFormModal = () => {
      e.preventDefault();
    }
 
+
   render(){
+
   let player =  this.props.users.find(user => user.id === this.props.currentUser.id);
      return (
-      <Grid columns={2} divided>
-        <Grid.Column textAlign='center'>
+      <Grid columns={2} divided >
+        <Grid.Column textAlign='center' computer={12}>
           <GigsList currentUser={this.props.currentUser} fetchEvents={this.props.fetchEvents}  />
         </Grid.Column>
-        <Grid.Column>
-          <Container textAlign='left'>
+        <Grid.Column computer={4}>
+          <Container textAlign='left' >
             { player ?
               <DatePicker
                 selected={this.state.startDate}

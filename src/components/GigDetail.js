@@ -3,7 +3,9 @@ import { Link, Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchEvents, fetchPosts, loading } from "../redux/actions/index";
 
-import { Grid, Image, Loader, Button } from 'semantic-ui-react';
+import { Grid, Image, Loader, Button, Menu } from 'semantic-ui-react';
+import "../App.css";
+
 import GigPlayerList from './GigPlayerList';
 import GigPostList from './GigPostList';
 // import PostList from './PostList';
@@ -44,20 +46,20 @@ componentDidMount(){
            {this.props.loading ?
               <Loader active inline='centered' />
              :
-        <Grid columns={3}>
-          <Grid.Column textAlign='center' computer={3}>
-            <h3 name={'name'}>{this.props.gig.name}</h3>
-            <h4 name={'date'}> {weekday[moment(this.props.gig.datetime).format('E')]} {moment(this.props.gig.datetime).format('MMMM DD YYYY')}</h4>
-            <h4 name={'time'} >{moment(this.props.gig.datetime).format('h:mm a')}</h4>
-            <h4 name={'location'} >{this.props.gig.location}</h4>
-            Notes: <h4 name={'notes'} >{this.props.gig.notes}</h4>
-          </Grid.Column>
-          <Grid.Column className={"post-col"} textAlign='center' computer={10}>
+        <Grid columns={1}>
+            <div className={"fixedleft"} >
+              <h3 name={'name'}>{this.props.gig.name}</h3>
+              <h4 name={'date'}> {weekday[moment(this.props.gig.datetime).format('E')]} {moment(this.props.gig.datetime).format('MMMM DD YYYY')}</h4>
+              <h4 name={'time'} >{moment(this.props.gig.datetime).format('h:mm a')}</h4>
+              <h4 name={'location'} >{this.props.gig.location}</h4>
+              <h4>Notes:</h4><p name={'notes'} >{this.props.gig.notes}</p>
+          </div>
+          <Grid.Column className={"post-col"} textAlign='center'>
              <GigPostList currentUser={this.props.currentUser} gig={this.props.gig} />
           </Grid.Column>
-          <Grid.Column textAlign='center' computer={3}>
+            <div className={"fixedright"}>
             <GigPlayerList currentUser={this.props.currentUser} gig={this.props.gig} />
-          </Grid.Column>
+            </div>
         </Grid>}
         </React.Fragment>
       )
