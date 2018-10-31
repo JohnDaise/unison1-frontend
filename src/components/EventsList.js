@@ -5,7 +5,7 @@ import { fetchEvents, loadingEvents } from "../redux/actions/index";
 
 import { connect } from "react-redux";
 
-import { Grid, Loader, List, Button } from 'semantic-ui-react'
+import { Loader, List } from 'semantic-ui-react'
 
 
 class EventsList extends React.Component{

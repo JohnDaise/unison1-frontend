@@ -5,7 +5,6 @@ import WarningModal from './WarningModal'
 import PlayerAddedModal  from './PlayerAddedModal'
 import { connect } from "react-redux";
 
-import { Grid } from 'semantic-ui-react'
 import { fetchUsers, fetchEvents } from "../redux/actions/index";
 
 
@@ -40,7 +39,7 @@ class UsersContainer extends React.Component {
         isPlayerAddedModalOpen: true
       })
     }
-    
+
     closePlayerAddedModal = () => {
       this.setState({
         isPlayerAddedModalOpen: false

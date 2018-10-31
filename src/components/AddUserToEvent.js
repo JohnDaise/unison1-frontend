@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from "react-redux";
 import { List, Button, Form, Modal } from 'semantic-ui-react'
 
-import { fetchedEvents } from "../redux/actions/index";
-
 
 
 const AddUserToEvent = (props) => {

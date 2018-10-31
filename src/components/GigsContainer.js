@@ -1,20 +1,17 @@
 import React from "react";
-import NewEventForm from './NewEventForm'
-import UpdateEventForm from './UpdateEventForm'
+
 import GigsList from './GigsList'
-import GigDetail from './GigDetail'
 
 
-import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchEvents, fetchUsers, fetchPosts, fetchedEvents, fetchUserEvents, loading } from "../redux/actions/index";
+import { fetchEvents, fetchUsers, fetchPosts, fetchUserEvents } from "../redux/actions/index";
 
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { Container, Divider, Grid, Loader, Sticky } from 'semantic-ui-react'
+import { Container, Grid } from 'semantic-ui-react'
 
 
 class GigsContainer extends React.Component {

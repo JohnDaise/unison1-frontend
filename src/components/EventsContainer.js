@@ -1,20 +1,17 @@
 import React from "react";
 import NewEventForm from './NewEventForm'
-import UpdateEventForm from './UpdateEventForm'
+
 import EventsList from './EventsList'
-import EventDetail from './EventDetail'
 
-
-import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchEvents, fetchUsers, fetchUserEvents, fetchPosts, fetchedEvents, loading } from "../redux/actions/index";
+import { fetchEvents, fetchUsers, fetchUserEvents, fetchPosts } from "../redux/actions/index";
 
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { Container, Divider, Grid, Loader } from 'semantic-ui-react'
+import { Container, Grid } from 'semantic-ui-react'
 
 
 class EventsContainer extends React.Component {

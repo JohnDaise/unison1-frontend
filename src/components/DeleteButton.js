@@ -1,9 +1,8 @@
 import React from "react";
 
-import EventListItem  from './EventListItem'
 import { connect } from "react-redux";
 
-import { Modal, Button, Card } from 'semantic-ui-react'
+import { Modal, Button } from 'semantic-ui-react'
 
 
 const DeleteButton = (props) => (

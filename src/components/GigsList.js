@@ -3,7 +3,7 @@ import React from "react";
 import GigListItem  from './GigListItem'
 import { connect } from "react-redux";
 
-import { Grid, Loader, List, Button } from 'semantic-ui-react'
+import { Loader, List } from 'semantic-ui-react'
 
 //map thru all userEvents that include currentUser id. those userEvents will have event ids
 class GigsList extends React.Component{

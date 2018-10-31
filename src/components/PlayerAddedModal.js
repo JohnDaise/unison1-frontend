@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Modal, Icon } from 'semantic-ui-react'
+import { Modal, Icon } from 'semantic-ui-react'
 
 const PlayerAddedModal = (props) => (
   <Modal

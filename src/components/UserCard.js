@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Grid, Card, Button, Modal, Image, Icon } from 'semantic-ui-react';
+import { Grid, Card, Button, Image, Icon } from 'semantic-ui-react';
 import { fetchEvents } from "../redux/actions/index";
-import AddUserToEvent from './AddUserToEvent'
+
 
 
 class UserCard extends React.Component {

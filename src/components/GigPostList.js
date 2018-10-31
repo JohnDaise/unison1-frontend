@@ -1,9 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { Grid, List } from 'semantic-ui-react'
-import Iframe from 'react-iframe'
-import Post from './Post'
+import { Grid, List } from 'semantic-ui-react';
+import Post from './Post';
 
 
 const GigPostList = (props) => {

@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link, withRouter } from "react-router-dom";
-import { Button, Form, Message, Card } from 'semantic-ui-react'
+import { withRouter } from "react-router-dom";
+import { Button, Form, Message } from 'semantic-ui-react'
 
-import { connect } from "react-redux";
-import { setCurrentUser } from "../redux/actions/index";
+
 
 const baseUrl = "http://localhost:3001"
 
@@ -57,7 +56,7 @@ class Login extends React.Component {
 render(){
   return (
     <div className='ui-card-login' style={{padding: '12px',
-    margin: '0 6px 6px', width:'300px', margin:0}}>
+    margin: '0 6px 6px', width:'300px'}}>
     <Form
       onSubmit={this.handleSubmit}
       onClick={this.handleClick}

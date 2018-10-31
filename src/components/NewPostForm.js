@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { createPost } from "../redux/actions";
 
-import { Form, Button, Modal, TextArea } from 'semantic-ui-react'
+import { Form, Button, Modal } from 'semantic-ui-react'
 
 
 
@@ -37,7 +37,11 @@ class NewPostForm extends React.Component{
       body: JSON.stringify(data)
       })
         .then(r => r.json())
-          .then(json => this.props.createPost(json)) //create post action using json
+          .then(json => this.props.createPost(json))
+          this.setState({
+            content: "",
+            url: ""
+          })
           this.props.closePostFormModal();
     }
 
@@ -70,7 +74,7 @@ render(){
           </Form.Field>
           <Form.Field>
             <label>URL</label>
-            <input name='url' placeholder='Video URL' onChange={(e)=> this.handleChange(e)} />
+            <input name='url' placeholder='URL' onChange={(e)=> this.handleChange(e)} />
           </Form.Field>
           <Button type='submit'>Submit</Button>
         </Form>

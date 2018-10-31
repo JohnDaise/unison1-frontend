@@ -2,7 +2,7 @@ const usersURL = "http://localhost:3001/users";
 const eventsURL = "http://localhost:3001/events";
 const userEventsURL = "http://localhost:3001/user_events";
 const postsURL = "http://localhost:3001/posts"
-const loginURL = "http://localhost:3001/profile"
+// const loginURL = "http://localhost:3001/profile"
 
 
 function changeSearchText(value) {
@@ -50,7 +50,7 @@ function eventUpdated(event) {
 
 function updateEvent({ payload, eventId }) {
   return function(dispatch, getState) {
-    const organizer = getState().events.find(event => event.id === eventId).user;
+    // const organizer = getState().events.find(event => event.id === eventId).user;
     let data = {
       name: payload.name,
       location: payload.location,
@@ -191,7 +191,7 @@ function deletePost(postId) {
 // }
 //
 //
-// function getCurrentUser(){
+// function login(email, password){
 //     return function(dispatch, getState){
 //         fetch(loginURL, {
 //           method: "GET",
@@ -231,4 +231,4 @@ function deletePost(postId) {
 // , getCurrentUser, setCurrentUser, logOutCurrentUser
 
 
-export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchUserEvents, fetchedEvents, fetchedUserEvents, createEvent, createPost, fetchPosts, fetchedPosts, loadingPosts, updateEvent, eventUpdated, deleteEvent, loadingEvents, eventDeleted, deletePost, postDeleted };
+export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchUserEvents, fetchedEvents, fetchedUserEvents, createEvent, createUserEvent, createPost, fetchPosts, fetchedPosts, loadingPosts, updateEvent, eventUpdated, deleteEvent, loadingEvents, eventDeleted, deletePost, postDeleted };

@@ -7,17 +7,10 @@ import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
 import About from "./components/About";
 import Login from "./components/Login";
-import UsersContainer from "./components/UsersContainer";
-import EventsContainer from "./components/EventsContainer";
-import EventDetail from "./components/EventDetail";
-import SearchBar from "./components/SearchBar";
-import PickEvent from "./components/PickEvent";
 import ProtectedRoutes from "./ProtectedRoutes";
 
 
 
-import { connect } from "react-redux";
-import { getCurrentUser } from "./redux/actions/index";
 
 
 
@@ -131,12 +124,12 @@ fetchEvents = () => {
 
 }
 
-const mapStateToProps = state => {
-  return {
-    loading: state.loading,
-    currentUser: state.currentUser
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     loading: state.loading,
+//     currentUser: state.currentUser
+//   };
+// };
 
 
 export default App;

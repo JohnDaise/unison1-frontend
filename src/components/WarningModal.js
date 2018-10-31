@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Modal, Icon, Container } from 'semantic-ui-react'
+import { Modal, Icon, Container } from 'semantic-ui-react'
 
 const WarningModal = (props) => (
   <Modal

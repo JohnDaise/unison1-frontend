@@ -1,16 +1,15 @@
 import React from "react";
-import { Link, Route, Switch, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchEvents, fetchPosts, loading } from "../redux/actions/index";
+import { fetchEvents, fetchPosts } from "../redux/actions/index";
 
-import { Grid, Image, Loader, Button, Menu } from 'semantic-ui-react';
+import { Grid, Loader } from 'semantic-ui-react';
 import "../App.css";
 
 import GigPlayerList from './GigPlayerList';
 import GigPostList from './GigPostList';
 // import PostList from './PostList';
 
-import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -39,7 +38,7 @@ componentDidMount(){
   }
 
 
-    let gigs = this.props.users.find(user => user.id === this.props.currentUser.id).events
+    // let gigs = this.props.users.find(user => user.id === this.props.currentUser.id).events
 
       return (
         <React.Fragment>
@@ -68,7 +67,7 @@ componentDidMount(){
 
 
   const mapStateToProps = (state, propsFromParent) => {
-    let player = state.users.find(user => user.id === propsFromParent.currentUser.id)
+    // let player = state.users.find(user => user.id === propsFromParent.currentUser.id)
     let gig = state.events.find(gig => gig.id === parseInt(propsFromParent.gigId))
     let event =  state.events.find( event => event.id === gig.id)
     /// this array is a player's gigs console.log(player.events)

@@ -2,9 +2,9 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { fetchEvents, fetchPosts, loading, deletePost } from "../redux/actions/index";
+import { fetchEvents, fetchPosts, deletePost } from "../redux/actions/index";
 
-import { Grid, Message, Icon, Button } from 'semantic-ui-react';
+import { Message, Button } from 'semantic-ui-react';
 
 
 
@@ -19,12 +19,12 @@ renderIframe = (params) => {
            {owner ? <Button id={this.props.post.id}
              size="small"
              onClick={(e)=>{
-               console.log(e.target.id)
                this.props.deletePost(e.target.id);
              }}>X</Button> : null }
          <h4>{this.props.post.content}</h4>
        <iframe width="400"
            height="300"
+           title={this.props.post.id}
            src={"https://www.youtube.com/embed/"+ this.props.post.url.split("=")[1]}
            frameborder="0"
            allow="autoplay; encrypted-media"
@@ -37,12 +37,12 @@ renderIframe = (params) => {
           <Message compact floating>
           {owner ? <Button id={this.props.post.id}
             onClick={(e)=>{
-              console.log(e.target.id)
               this.props.deletePost(e.target.id);
             }}>X</Button> : null}
           <h4>{this.props.post.content}</h4>
         <iframe width="400"
             height="300"
+            title={this.props.post.id}
             src={"https://www.youtube.com/embed/"+ this.props.post.url.split("/")[3]}
             frameborder="0"
             allow="autoplay; encrypted-media"
@@ -56,12 +56,12 @@ renderIframe = (params) => {
           {owner ? <Button id={this.props.post.id}
               size="small"
               onClick={(e)=>{
-                console.log(e.target.id)
                 this.props.deletePost(e.target.id);
               }}>X</Button> : null }
           <h4>{this.props.post.content}</h4>
         <iframe width="600"
             height="600"
+            title={this.props.post.id}
             src={this.props.post.url}
             frameborder="0"
             allow="autoplay; encrypted-media"
@@ -75,12 +75,12 @@ renderIframe = (params) => {
             {owner ? <Button id={this.props.post.id}
               size="small"
               onClick={(e)=>{
-                console.log(e.target.id)
                 this.props.deletePost(e.target.id);
               }}>X</Button> : null }
           <h4>{this.props.post.content}</h4>
         <iframe width="600"
             height="600"
+            title={this.props.post.id}
             src={this.props.post.url}
             frameborder="0"
             allow="autoplay; encrypted-media"
@@ -91,6 +91,11 @@ renderIframe = (params) => {
          else {
             return (
               <Message compact floating>
+                {owner ? <Button id={this.props.post.id}
+                  size="small"
+                  onClick={(e)=>{
+                    this.props.deletePost(e.target.id);
+                  }}>X</Button> : null }
                 <h2>{this.props.post.content}</h2>
               </Message>
             )

@@ -1,6 +1,5 @@
 import React from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 // import { logOutCurrentUser } from "../redux/actions/index";
 import { Button } from 'semantic-ui-react';
 import "../App.css";
@@ -66,12 +65,7 @@ class NavBar extends React.Component {
   }
 };
 
-const mapStateToProps = state => {
-  return {
-    loading: state.loading,
-    currentUser: state.currentUser
-  };
-};
+
 
 export default NavBar;
 // export default withRouter(connect(

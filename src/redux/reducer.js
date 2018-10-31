@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
 // import userData from "../users.json";
 
-const initialState = {
-  users: [],
-  events: [],
-  userEvents: [],
-  posts: [],
-  searchTerm: "",
-  dropValue: null
-};
+// const initialState = {
+//   users: [],
+//   events: [],
+//   userEvents: [],
+//   posts: [],
+//   searchTerm: "",
+//   dropValue: null
+// };
 
 
 const searchTextReducer = (state = "", action) => {
@@ -56,7 +56,6 @@ const loadingReducer = (state = false, action) => {
 
 //to create  add dispatch in action mapDispatchToProps
 const eventsReducer = (state = [], action) => {
-  let newEvents = []
   switch(action.type){
     case "EVENT_DELETED":
       return state.filter( event => event.id !== action.event.id)
@@ -70,7 +69,7 @@ const eventsReducer = (state = [], action) => {
       });
 
     case "ADD_EVENT":
-      return newEvents = [...state, action.event]
+      return [...state, action.event]
     case "FETCHED_EVENTS":
         return action.events;
     default:
@@ -80,10 +79,9 @@ const eventsReducer = (state = [], action) => {
 
 
 const userEventsReducer = (state = [], action) => {
-  let newUserEvents = []
   switch(action.type){
     case "ADD_USER_EVENT":
-      return newUserEvents = [...state, action.ue]
+      return [...state, action.ue]
     case "FETCHED_USER_EVENTS":
         return action.ues;
     default:
@@ -93,12 +91,12 @@ const userEventsReducer = (state = [], action) => {
 
 
 const postsReducer = (state = [], action) => {
-  let newPosts = []
+
   switch(action.type){
     case "POST_DELETED":
       return state.filter( post => post.id !== action.post.id)
     case "ADD_POST":
-      return newPosts = [...state, action.post];
+      return [...state, action.post];
     case "FETCHED_POSTS":
         return action.posts;
     default:

@@ -1,14 +1,13 @@
 import React from "react";
-import { Link, Route, Switch, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchEvents, fetchPosts, loading, updateEvent, deleteEvent } from "../redux/actions/index";
+import { fetchEvents, fetchPosts, updateEvent, deleteEvent } from "../redux/actions/index";
 
-import { Grid, Image, Loader, Button, Icon } from 'semantic-ui-react';
+import { Grid, Loader, Button, Icon } from 'semantic-ui-react';
 import PlayersList from './PlayersList';
 import PostList from './PostList';
 import NewPostForm from './NewPostForm';
 
-import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 

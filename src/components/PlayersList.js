@@ -1,10 +1,9 @@
 import React from "react";
-import { Grid, List, Image, Icon } from 'semantic-ui-react'
+import { List, Image } from 'semantic-ui-react'
 
 import { connect } from "react-redux";
-import { fetchEvents, fetchUsers, fetchedEvents, loading } from "../redux/actions/index";
+import { fetchEvents, fetchUsers } from "../redux/actions/index";
 
-import PlayersView from './PlayersView'
 
 class PlayersList extends React.Component{
 
