@@ -9,6 +9,7 @@ class UserCard extends React.Component {
 
 //dispatch fetchEvents
 
+
 addPlayerToEvent = () => {
 //adjust logic and find a way to empty dropValue componentDidMount
   if (this.props.dropValue.value){
@@ -41,9 +42,11 @@ addPlayerToEvent = () => {
 
 
 render(){
-  // let event = this.props.events.find( event => event.name === this.props.dropValue.value)
-  // let playerId = this.props.user.id
-  // let user = this.
+  let event = this.props.events.find( event => event.name === this.props.dropValue.value)
+  // let eventId = event.id
+  let playerId = this.props.user.id
+  console.log(event === undefined)
+  console.log(event)
   return(
     <Grid.Column>
     <Card>
@@ -56,7 +59,10 @@ render(){
         <Icon name="phone"/> {this.props.user.phone_number}<br/>
         <Icon name="file alternate"/> {this.props.user.bio}
       </Card.Content>
-      <Button onClick={()=> this.addPlayerToEvent() }>Add Player</Button>
+      {event === undefined ? null :
+        event.users.map( player => player.id).includes(this.props.user.id) ? null :
+          <Button onClick={()=> this.addPlayerToEvent() }>Add Player</Button>
+          }
     </Card>
     </Grid.Column>
   )
