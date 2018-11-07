@@ -24,6 +24,8 @@ const dropDownReducer = (state = "", action) => {
   switch (action.type) {
     case "CHANGE_DROP_VALUE":
       return action.value;
+    case "RESET_DROP_VALUE":
+      return state;
     default:
       return state;
   }
@@ -67,7 +69,6 @@ const eventsReducer = (state = [], action) => {
           return event;
         }
       });
-
     case "ADD_EVENT":
       return [...state, action.event]
     case "FETCHED_EVENTS":
@@ -82,6 +83,8 @@ const userEventsReducer = (state = [], action) => {
   switch(action.type){
     case "ADD_USER_EVENT":
       return [...state, action.ue]
+    case "USER_EVENT_DELETED":
+      return state.filter( ue => ue.id !== action.ue.id)
     case "FETCHED_USER_EVENTS":
         return action.ues;
     default:

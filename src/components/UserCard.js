@@ -45,8 +45,8 @@ render(){
   let event = this.props.events.find( event => event.name === this.props.dropValue.value)
   // let eventId = event.id
   let playerId = this.props.user.id
-  console.log(event === undefined)
-  console.log(event)
+  // console.log(event === undefined)
+  console.log(this.props.dropValue)
   return(
     <Grid.Column>
     <Card>

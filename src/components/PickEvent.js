@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { changeDropValue } from "../redux/actions";
+import { changeDropValue, resetDropValue } from "../redux/actions";
 import { Dropdown } from 'semantic-ui-react'
 
 
@@ -17,8 +17,12 @@ class PickEvent extends React.Component {
   }
 
 componentDidMount(){
+  this.props.reset();
   this.handleChange();
 }
+
+
+
 
 handleChange = () => {
   this.setState({
@@ -72,7 +76,8 @@ const mapStateToProps = (state, propsFromParent) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onChange: value => dispatch(changeDropValue(value))
+    onChange: value => dispatch(changeDropValue(value)),
+    reset: value => dispatch(resetDropValue(value))
   };
 };
 

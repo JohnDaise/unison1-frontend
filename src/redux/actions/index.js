@@ -5,26 +5,30 @@ const postsURL = "http://localhost:3001/posts"
 // const loginURL = "http://localhost:3001/profile"
 
 
-function changeSearchText(value) {
+export function changeSearchText(value) {
   return { type: "CHANGE_SEARCH_TEXT", value: value };
 }
 
-function changeDropValue(value) {
+export function changeDropValue(value) {
   return { type: "CHANGE_DROP_VALUE", value: value}
+}
+
+export function resetDropValue(value) {
+  return { type: "RESET_DROP_VALUE", value: value}
 }
 
 ///User Actions
 
-function fetchedUsers(users){
+export function fetchedUsers(users){
   return { type: "FETCHED_USERS", users };
 }
 
-function loadingUsers() {
+export function loadingUsers() {
   return { type: "FETCHING_USERS" };
 }
 
 
-function fetchUsers(value) {
+export function fetchUsers(value) {
   return dispatch => {
      dispatch(loadingUsers());
      fetch(usersURL)
@@ -38,17 +42,17 @@ function fetchUsers(value) {
 
 ///Event Actions
 
-function createEvent(event) {
+export function createEvent(event) {
   return { type: "ADD_EVENT", event };
 }
 
 
-function eventUpdated(event) {
+export function eventUpdated(event) {
   return { type: "EVENT_UPDATED", event };
 }
 
 
-function updateEvent({ payload, eventId }) {
+export function updateEvent({ payload, eventId }) {
   return function(dispatch, getState) {
     // const organizer = getState().events.find(event => event.id === eventId).user;
     let data = {
@@ -71,13 +75,13 @@ function updateEvent({ payload, eventId }) {
 };
 
 
-function eventDeleted(event) {
+export function eventDeleted(event) {
   return {
     type: "EVENT_DELETED", event
   };
 }
 
-function deleteEvent(eventId) {
+export function deleteEvent(eventId) {
   return function(dispatch, getState) {
     fetch(`${eventsURL}/${eventId}`, {
       method: "DELETE"
@@ -88,16 +92,16 @@ function deleteEvent(eventId) {
 }
 
 
-function fetchedEvents(events){
+export function fetchedEvents(events){
   return { type: "FETCHED_EVENTS", events };
 }
 
-function loadingEvents() {
+export function loadingEvents() {
   return { type: "FETCHING_EVENTS" };
 }
 
 
-function fetchEvents(value) {
+export function fetchEvents(value) {
   return dispatch => {
      dispatch(loadingEvents());
      fetch(eventsURL)
@@ -109,20 +113,20 @@ function fetchEvents(value) {
 
 ///UserEvent Actions
 
-function createUserEvent(ue) {
+export function createUserEvent(ue) {
   return { type: "ADD_USER_EVENT", ue };
 }
 
-function fetchedUserEvents(ues){
+export function fetchedUserEvents(ues){
   return { type: "FETCHED_USER_EVENTS", ues };
 }
 
-function loadingUserEvents() {
+export function loadingUserEvents() {
   return { type: "FETCHING_USER_EVENTS" };
 }
 
 
-function fetchUserEvents(value) {
+export function fetchUserEvents(value) {
   return dispatch => {
      dispatch(loadingUserEvents());
      fetch(userEventsURL)
@@ -132,29 +136,47 @@ function fetchUserEvents(value) {
 }
 
 
+export function userEventDeleted(ue) {
+  return {
+    type: "USER_EVENT_DELETED", ue
+  };
+}
+
+export function deleteUserEvent(ueId) {
+  return function(dispatch, getState) {
+    fetch(`${userEventsURL}/${ueId}`, {
+      method: "DELETE"
+    })
+      .then(res => res.json())
+      .then( json => dispatch(userEventDeleted(json)));
+  };
+}
+
+
+
 
 //Post Actions
 
-function createPost(post) {
+export function createPost(post) {
   return { type: "ADD_POST", post };
 }
 
-function fetchedPosts(posts){
+export function fetchedPosts(posts){
   return { type: "FETCHED_POSTS", posts };
 }
 
-function loadingPosts() {
+export function loadingPosts() {
   return { type: "FETCHING_POSTS" };
 }
 
-function postDeleted(post) {
+export function postDeleted(post) {
   return {
     type: "POST_DELETED", post
   };
 }
 
 
-function fetchPosts(value) {
+export function fetchPosts(value) {
   return dispatch => {
      dispatch(loadingPosts());
      fetch(postsURL)
@@ -165,7 +187,7 @@ function fetchPosts(value) {
 
 
 
-function deletePost(postId) {
+export function deletePost(postId) {
   return function(dispatch, getState) {
     fetch(`${postsURL}/${postId}`, {
       method: "DELETE"
@@ -231,4 +253,4 @@ function deletePost(postId) {
 // , getCurrentUser, setCurrentUser, logOutCurrentUser
 
 
-export { changeSearchText, changeDropValue, fetchUsers, fetchEvents, fetchUserEvents, fetchedEvents, fetchedUserEvents, createEvent, createUserEvent, createPost, fetchPosts, fetchedPosts, loadingPosts, updateEvent, eventUpdated, deleteEvent, loadingEvents, eventDeleted, deletePost, postDeleted };
+// export { changeSearchText, changeDropValue, resetDropValue, fetchUsers, fetchEvents, fetchUserEvents, fetchedEvents, fetchedUserEvents, createEvent, createUserEvent, createPost, fetchPosts, fetchedPosts, loadingPosts, updateEvent, eventUpdated, deleteEvent, loadingEvents, eventDeleted, deletePost, postDeleted };
