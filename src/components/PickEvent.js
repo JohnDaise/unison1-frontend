@@ -1,63 +1,38 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { changeDropValue, resetDropValue } from "../redux/actions";
+import { withRouter } from 'react-router-dom';
+import { changeDropValue, changeRouter } from "../redux/actions";
 import { Dropdown } from 'semantic-ui-react'
 
 
 
 class PickEvent extends React.Component {
-  constructor(){
-    super()
-    this.state={
-      value:{
-        text: '',
-        value: ''
-      }
-    }
-  }
 
-componentDidMount(){
-  this.props.reset();
-  this.handleChange();
-}
-
-
-
-
-handleChange = () => {
-  this.setState({
-    value:{
-      text: '',
-      value: ''
-    }
+constructor(props){
+  super(props)
+  this.props.history.listen((location, action) => {
+    console.log(`The current URL is ${location.pathname}${location.search}${location.hash}`)
+      console.log(`The last navigation action was ${action}`)
+      this.props.reset();
   });
-};
 
+}
 
 
 render(){
-  // const { value } = this.props.events
-//map thru the array of events and make each element of choices a include the event text and value
-
-function createObj(obj){
-  return {text: obj.name, value: obj.name }
-}
-  const choices = this.props.userEvents.map( event => createObj(event))
-
-
-
   return(
     <React.Fragment>
         <Dropdown
           fluid selection
           size='medium'
           onChange={(e, value )=> {
-            e.persist();
+            // e.persist();
             this.props.onChange(value)}
           }
           placeholder='Choose Event'
           name="choices"
-          options={choices}
+          options={this.props.choices}
+          value={this.props.value}
         />
     </React.Fragment>
   )}
@@ -65,22 +40,30 @@ function createObj(obj){
 
 
 const mapStateToProps = (state, propsFromParent) => {
+  function createObj(obj){
+    return {value: obj.name, text: obj.name }
+  }
+  let array = [{ value: '' , text: '' }]
   let userEvents = state.events.filter( event => event.user_id === propsFromParent.currentUser.id)
+  let choices = array.concat(userEvents.map( event => createObj(event)))
+
   return {
     loading: state.loading,
     events: state.events,
     userEvents: userEvents,
-    value: state.dropValue
+    value: state.dropValue.value,
+    choices: choices,
+    selected: choices[0]
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     onChange: value => dispatch(changeDropValue(value)),
-    reset: value => dispatch(resetDropValue(value))
+    reset: change => dispatch(changeRouter(change))
   };
 };
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(PickEvent);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PickEvent));

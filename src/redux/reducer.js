@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+
 // import userData from "../users.json";
 
 // const initialState = {
@@ -20,12 +21,12 @@ const searchTextReducer = (state = "", action) => {
   }
 };
 
-const dropDownReducer = (state = "", action) => {
+const dropDownReducer = (state = {}, action) => {
   switch (action.type) {
     case "CHANGE_DROP_VALUE":
       return action.value;
-    case "RESET_DROP_VALUE":
-      return state;
+    case "ROUTER_CHANGE":
+      return {};
     default:
       return state;
   }

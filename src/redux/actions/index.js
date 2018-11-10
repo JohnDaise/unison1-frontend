@@ -1,3 +1,4 @@
+import { withRouter } from 'react-router-dom';
 const usersURL = "http://localhost:3001/users";
 const eventsURL = "http://localhost:3001/events";
 const userEventsURL = "http://localhost:3001/user_events";
@@ -13,9 +14,20 @@ export function changeDropValue(value) {
   return { type: "CHANGE_DROP_VALUE", value: value}
 }
 
-export function resetDropValue(value) {
-  return { type: "RESET_DROP_VALUE", value: value}
-}
+// export function resetDropValue(value) {
+//   return { type: "ROUTER_CHANGE", value: value}
+// }
+
+export const ROUTER = {
+  CHANGE: "ROUTER_CHANGE"
+};
+
+export function changeRouter(change){
+  return {type: "ROUTER_CHANGE", change}
+};
+
+// hashHistory.listen(change => dispatch(changeRouter(change)));
+
 
 ///User Actions
 

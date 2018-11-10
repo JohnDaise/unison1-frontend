@@ -60,7 +60,6 @@ openEventFormModal = () => {
 
   render(){
     let myevents = this.props.events.filter( event => event.user.id === this.props.currentUser.id)
-    console.log(myevents)
     return (
       <Grid columns={2} divided>
         <Grid.Column textAlign='center' computer={12}>

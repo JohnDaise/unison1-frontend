@@ -5,9 +5,14 @@ import { fetchEvents } from "../redux/actions/index";
 
 
 
+
+
 class UserCard extends React.Component {
 
 //dispatch fetchEvents
+// componentDidMount(){
+//   this.props.resetDropValue(); //need to get this function to actually reset dropValue in the actions
+// }
 
 
 addPlayerToEvent = () => {
@@ -46,7 +51,6 @@ render(){
   // let eventId = event.id
   let playerId = this.props.user.id
   // console.log(event === undefined)
-  console.log(this.props.dropValue)
   return(
     <Grid.Column>
     <Card>
