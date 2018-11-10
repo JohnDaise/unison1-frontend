@@ -1,9 +1,9 @@
-import { withRouter } from 'react-router-dom';
 const usersURL = "http://localhost:3001/users";
 const eventsURL = "http://localhost:3001/events";
 const userEventsURL = "http://localhost:3001/user_events";
 const postsURL = "http://localhost:3001/posts"
 // const loginURL = "http://localhost:3001/profile"
+
 
 
 export function changeSearchText(value) {
@@ -14,19 +14,12 @@ export function changeDropValue(value) {
   return { type: "CHANGE_DROP_VALUE", value: value}
 }
 
-// export function resetDropValue(value) {
-//   return { type: "ROUTER_CHANGE", value: value}
-// }
 
-export const ROUTER = {
-  CHANGE: "ROUTER_CHANGE"
-};
 
 export function changeRouter(change){
   return {type: "ROUTER_CHANGE", change}
 };
 
-// hashHistory.listen(change => dispatch(changeRouter(change)));
 
 
 ///User Actions
@@ -146,6 +139,43 @@ export function fetchUserEvents(value) {
        .then(ues => dispatch(fetchedUserEvents(ues)));
    };
 }
+
+export function addPlayerToEvent({ payload }){
+  return function(dispatch, getState){
+  let data = {
+    eventId: payload.eventId,
+    playerId: payload.playerId,
+    dropValue: payload.dropValue,
+    event: payload.event
+  };
+  console.log(data)
+    fetch(`http://localhost:3001/user_events/`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        'Content-Type': 'application/json',
+        Accept: "application/json"
+          },
+      body: JSON.stringify({
+          user_id: data.playerId,
+          event_id: data.eventId
+      })
+        })
+        .then(r => r.json())
+        .then(ue => dispatch(createUserEvent(ue)))
+        // this.props.fetchEvents();
+        window.alert("Player Added")
+    };
+  };
+
+export function createdUserEvent(ue) {
+  return {
+    type: "USER_EVENT_CREATED", ue
+  };
+}
+
+
+
 
 
 export function userEventDeleted(ue) {
