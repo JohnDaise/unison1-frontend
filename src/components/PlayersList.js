@@ -6,7 +6,7 @@ import { List, Image } from 'semantic-ui-react'
 
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { fetchEvents, fetchUsers, fetchUserEvents, deleteUserEvent } from "../redux/actions/index";
+import { fetchEvents, fetchUsers, fetchUserEvents, deleteUserEvent, hideModal, showModal } from "../redux/actions/index";
 
 
 class PlayersList extends React.Component{
@@ -15,6 +15,10 @@ class PlayersList extends React.Component{
    // this.props.showDetail(this.props.instrument) function to render modal
    // <PlayerDetail/>
    console.log("Player")
+    this.props.showModal({
+     open: true,
+     closeModal: this.closeModal
+    }, 'alert')
   }
 
 
@@ -36,16 +40,7 @@ class PlayersList extends React.Component{
       </List.Item>
       {this.props.players.map( p=>
         <List.Item
-          onClick={(e) => this.handleClick(e)
-
-
-            // console.log(this.props.userEvents.find(ue => ue.user_id === p.id))
-            //open modal
-            // let uEvent = this.props.userEvents.find(ue => ue.user_id === p.id)
-            // this.props.deleteUserEvent(uEvent.id)
-            // this.props.fetchUserEvents();
-            // this.props.history.push(`/myevents/${this.props.event.id}`)
-          }
+           onClick={(e) => this.handleClick(e) }
           >
               <Image avatar src={p.pic_url} />
               <List.Content>
@@ -64,6 +59,14 @@ class PlayersList extends React.Component{
 }
 
 
+// console.log(this.props.userEvents.find(ue => ue.user_id === p.id))
+//open modal
+// let uEvent = this.props.userEvents.find(ue => ue.user_id === p.id)
+// this.props.deleteUserEvent(uEvent.id)
+// this.props.fetchUserEvents();
+// this.props.history.push(`/myevents/${this.props.event.id}`)
+
+
 const mapStateToProps = (state, propsFromParent )=> {
   let organizer = state.users.find(user => user.id === parseInt(propsFromParent.currentUser.id))
   // let player = propsFromParent.players.find
@@ -78,7 +81,15 @@ const mapStateToProps = (state, propsFromParent )=> {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchEvents, fetchUsers, fetchUserEvents, deleteUserEvent }
-)(withRouter(PlayersList));
+const mapDispatchToProps = dispatch => ({
+  fetchEvents:() => dispatch(fetchEvents()),
+  fetchUsers: () => dispatch(fetchUsers()),
+  fetchUserEvents: () => dispatch(fetchUserEvents()),
+  deleteUserEvent: () => dispatch(deleteUserEvent()),
+  hideModal: () => dispatch(hideModal()),
+  showModal: (modalProps, modalType) => {
+  dispatch(showModal({ modalProps, modalType }))
+ }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PlayersList));

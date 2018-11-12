@@ -9,7 +9,7 @@ import { addPlayerToEvent, fetchEvents } from "../redux/actions/index";
 
 // class PlayerDetail extends React.Component {
 
-  const PlayerDetail = ({ closeModal }) => {
+  const PlayerDetail = ({ closeModal, open }) => {
     return (
       <div className="modal-content">
         "Player"

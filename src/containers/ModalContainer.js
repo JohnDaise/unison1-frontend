@@ -3,17 +3,15 @@ import { connect } from 'react-redux';
 import { Modal } from 'semantic-ui-react';
 
 
-const mapStateToProps = state => ({
-  ...state.modal
-})
 
 class ModalContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      player: null
     };
-    this.closeModal = this.closeModal.bind(this)
+    // this.closeModal = this.closeModal.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,7 +22,7 @@ class ModalContainer extends React.Component {
     }
   }
 
-  closeModal() {
+  closeModal = () => {
     this.setState({ modalIsOpen: false })
   }
 
@@ -35,27 +33,27 @@ class ModalContainer extends React.Component {
     return (
       <div>
         <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          contentLabel="Example Modal"
-          ariaHideApp={false}
+          open={this.state.modalIsOpen}
+          onClose={this.closeModal}
         >
-
-          <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-          <button onClick={this.closeModal}>close</button>
-          <div>I am a modal</div>
-          <form>
-            <input />
-            <button>tab navigation</button>
-            <button>stays</button>
-            <button>inside</button>
-            <button>the modal</button>
-          </form>
+        //below were examples of props put into modal
+        // onAfterOpen={this.afterOpenModal}
+        // contentLabel="Example Modal"
+        // ariaHideApp={false}
+        "Hello"
         </Modal>
       </div>
     )
   }
 }
+
+const mapStateToProps = state => ({
+  console.log(this.state)
+  return {
+    loading: state.loading,
+    modal: state.modal
+  };
+})
+
 
 export default connect(mapStateToProps, null)(ModalContainer)

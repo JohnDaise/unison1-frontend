@@ -244,19 +244,25 @@ export function deletePost(postId) {
 // Modal Actions
 
 
-export const showModal = ({ modalProps, modalType }) => dispatch => {
+export function showModal ({ modalProps, modalType }) {
+  return dispatch => {
   dispatch({
     type: ActionTypes.SHOW_MODAL,
     modalProps,
     modalType
   });
 }
+}
 
-export const hideModal = () => dispatch => {
+export function hideModal () {
+  return dispatch => {
   dispatch({
     type: ActionTypes.HIDE_MODAL
   });
 }
+}
+
+
 
 
 
