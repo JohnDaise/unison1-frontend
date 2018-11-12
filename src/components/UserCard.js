@@ -1,13 +1,17 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { Grid, Card, Button, Image, Icon } from 'semantic-ui-react';
-import { addPlayerToEvent } from "../redux/actions/index";
+import { addPlayerToEvent, fetchEvents } from "../redux/actions/index";
 
 
 
 
 
 class UserCard extends React.Component {
+
+  // componentDidMount(){
+  //   this.props.fetchEvents()
+  // }
 
 addPlayer = (e) => {
   e.preventDefault();
@@ -22,7 +26,7 @@ addPlayer = (e) => {
     event: event
   }
   this.props.addPlayerToEvent({payload})
-
+  this.props.fetchEvents()///do something here or above to re render UserList
 }
 
 // addPlayerToEvent = () => {
@@ -107,6 +111,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addPlayerToEvent: value => dispatch(addPlayerToEvent(value)),
+    fetchEvents: value => dispatch(fetchEvents(value))
   };
 };
 

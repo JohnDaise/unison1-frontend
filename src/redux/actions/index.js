@@ -1,3 +1,5 @@
+import ActionTypes from './ActionTypes';
+
 const usersURL = "http://localhost:3001/users";
 const eventsURL = "http://localhost:3001/events";
 const userEventsURL = "http://localhost:3001/user_events";
@@ -237,6 +239,23 @@ export function deletePost(postId) {
       .then(res => res.json())
       .then( json => dispatch(postDeleted(json)));
   };
+}
+
+// Modal Actions
+
+
+export const showModal = ({ modalProps, modalType }) => dispatch => {
+  dispatch({
+    type: ActionTypes.SHOW_MODAL,
+    modalProps,
+    modalType
+  });
+}
+
+export const hideModal = () => dispatch => {
+  dispatch({
+    type: ActionTypes.HIDE_MODAL
+  });
 }
 
 

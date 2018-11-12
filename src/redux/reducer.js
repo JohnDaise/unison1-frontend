@@ -1,15 +1,17 @@
 import { combineReducers } from "redux";
-
+import ActionTypes from './actions/ActionTypes';
 // import userData from "../users.json";
 
-// const initialState = {
-//   users: [],
-//   events: [],
-//   userEvents: [],
-//   posts: [],
-//   searchTerm: "",
-//   dropValue: null
-// };
+const initialState = {
+  users: [],
+  events: [],
+  userEvents: [],
+  posts: [],
+  searchTerm: "",
+  dropValue: null,
+  modalType: null,
+  modalProps: {}
+};
 
 
 const searchTextReducer = (state = "", action) => {
@@ -109,6 +111,22 @@ const postsReducer = (state = [], action) => {
 }
 
 
+const modalReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ActionTypes.SHOW_MODAL:
+      return {
+        modalProps: action.modalProps,
+        modalType: action.modalType,
+        type: action.type
+      }
+    case ActionTypes.HIDE_MODAL:
+      return initialState
+    default:
+      return state
+  }
+}
+
+
 
 ///do this reducer
 //to login a user dispatch here mapDispatchToProps
@@ -136,6 +154,7 @@ const rootReducer = combineReducers({
   events: eventsReducer,
   userEvents: userEventsReducer,
   loading: loadingReducer,
+  modal: modalReducer,
   posts: postsReducer
 });
 

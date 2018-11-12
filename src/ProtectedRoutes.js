@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import "./App.css";
 
-import UsersContainer from "./components/UsersContainer";
-import EventsContainer from "./components/EventsContainer";
-import GigsContainer from "./components/GigsContainer";
+import UsersContainer from "./containers/UsersContainer";
+import EventsContainer from "./containers/EventsContainer";
+import GigsContainer from "./containers/GigsContainer";
 import EventDetail from "./components/EventDetail";
 import GigDetail from "./components/GigDetail";
 import SearchBar from "./components/SearchBar";

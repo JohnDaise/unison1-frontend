@@ -1,5 +1,8 @@
 import React from "react";
+import PlayerDetail from './PlayerDetail'
+
 import { List, Image } from 'semantic-ui-react'
+
 
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -7,6 +10,12 @@ import { fetchEvents, fetchUsers, fetchUserEvents, deleteUserEvent } from "../re
 
 
 class PlayersList extends React.Component{
+
+  handleClick = () => {
+   // this.props.showDetail(this.props.instrument) function to render modal
+   // <PlayerDetail/>
+   console.log("Player")
+  }
 
 
 //each list item should be a link that renders a simple user details modal
@@ -27,13 +36,16 @@ class PlayersList extends React.Component{
       </List.Item>
       {this.props.players.map( p=>
         <List.Item
-          onClick={(e) => {
+          onClick={(e) => this.handleClick(e)
+
+
             // console.log(this.props.userEvents.find(ue => ue.user_id === p.id))
-            let uEvent = this.props.userEvents.find(ue => ue.user_id === p.id)
-            this.props.deleteUserEvent(uEvent.id)
-            this.props.fetchUserEvents();
-            this.props.history.push(`/myevents/${this.props.event.id}`)
-          }}
+            //open modal
+            // let uEvent = this.props.userEvents.find(ue => ue.user_id === p.id)
+            // this.props.deleteUserEvent(uEvent.id)
+            // this.props.fetchUserEvents();
+            // this.props.history.push(`/myevents/${this.props.event.id}`)
+          }
           >
               <Image avatar src={p.pic_url} />
               <List.Content>
