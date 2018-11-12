@@ -15,15 +15,12 @@ class PlayersList extends React.Component{
    // this.props.showDetail(this.props.instrument) function to render modal
    // <PlayerDetail/>
    console.log("Player")
-    this.props.showModal({
-     open: true,
-     closeModal: this.closeModal
-    }, 'alert')
   }
 
 
 //each list item should be a link that renders a simple user details modal
   render(){
+    console.log(this.props)
   return(
     <List>
       <strong><h1>Users</h1></strong>
@@ -43,6 +40,11 @@ class PlayersList extends React.Component{
            onClick={(e) => this.handleClick(e) }
           >
               <Image avatar src={p.pic_url} />
+              <PlayerDetail
+                closePlayerDetailModal={this.props.closePlayerDetailModal}
+                openPlayerDetailModal={this.props.openPlayerDetailModal}
+                isPlayerDetailModalOpen={this.props.isPlayerDetailModalOpen}
+                />
               <List.Content>
              <List.Header id={p.id} as='a'>{p.name}</List.Header>
              <List.Description>

@@ -7,15 +7,24 @@ import { addPlayerToEvent, fetchEvents } from "../redux/actions/index";
 
 
 
-// class PlayerDetail extends React.Component {
 
-  const PlayerDetail = ({ closeModal, open }) => {
+class PlayerDetail extends React.Component {
+  render(){
     return (
-      <div className="modal-content">
-        "Player"
-      </div>
+      <Modal
+        open={this.props.isPlayerDetailModalOpen}
+        onOpen={()=> this.props.openPlayerDetailModal()}
+        onClose={()=> this.props.closePlayerDetailModal()}
+        trigger={
+           <Button circular >
+             Player Detail
+           </Button>}
+        >
+        Hello
+      </Modal>
     )
   }
+}
 
 
 const mapStateToProps = state => {

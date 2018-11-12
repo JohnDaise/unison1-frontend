@@ -23,6 +23,7 @@ class EventDetail extends React.Component {
      notes: "",
      editable: "false",
      isNewPostFormModalOpen: false,
+     isPlayerDetailModalOpen: false,
    };
  }
 componentDidMount(){
@@ -51,6 +52,18 @@ handleChange = (e) => {
   openPostFormModal = () => {
     this.setState({
       isNewPostFormModalOpen: true
+    })
+  }
+
+  closePlayerDetailModal = () => {
+    this.setState({
+      isPlayerDetailModalOpen: false
+    })
+  }
+
+  openPlayerDetailModal = () => {
+    this.setState({
+      isPlayerDetailModalOpen: true
     })
   }
 
@@ -153,7 +166,14 @@ if (this.state.editable === "false") {
             <PostList currentUser={this.props.currentUser} singleEvent={this.props.event} fetchEvents={this.props.fetchEvents} />
           </Grid.Column>
               <div className={"fixedright"}>
-            <PlayersList currentUser={this.props.currentUser} players={this.props.event.users} event={this.props.event} />
+            <PlayersList
+              currentUser={this.props.currentUser}
+              players={this.props.event.users}
+              event={this.props.event}
+              closePlayerDetailModal={this.closePlayerDetailModal}
+              openPlayerDetailModal={this.openPlayerDetailModal}
+              isPlayerDetailModalOpen={this.state.isPlayerDetailModalOpen}
+              />
             </div>
         </Grid>}
         </React.Fragment>
