@@ -24,6 +24,7 @@ class EventDetail extends React.Component {
      editable: "false",
      isNewPostFormModalOpen: false,
      isPlayerDetailModalOpen: false,
+     singlePlayer: null
    };
  }
 componentDidMount(){
@@ -61,9 +62,10 @@ handleChange = (e) => {
     })
   }
 
-  openPlayerDetailModal = () => {
+  openPlayerDetailModal = (player) => {
     this.setState({
-      isPlayerDetailModalOpen: true
+      isPlayerDetailModalOpen: true,
+      singlePlayer: player
     })
   }
 
@@ -169,6 +171,7 @@ if (this.state.editable === "false") {
             <PlayersList
               currentUser={this.props.currentUser}
               players={this.props.event.users}
+              singlePlayer={this.state.singlePlayer}
               event={this.props.event}
               closePlayerDetailModal={this.closePlayerDetailModal}
               openPlayerDetailModal={this.openPlayerDetailModal}

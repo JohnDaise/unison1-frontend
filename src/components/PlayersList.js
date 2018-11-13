@@ -11,16 +11,15 @@ import { fetchEvents, fetchUsers, fetchUserEvents, deleteUserEvent, hideModal, s
 
 class PlayersList extends React.Component{
 
-  handleClick = () => {
-   // this.props.showDetail(this.props.instrument) function to render modal
-   // <PlayerDetail/>
-   console.log("Player")
-  }
+  // handleClick = () => {
+  //  this.props.showDetail(this.props.instrument) function to render modal
+  //  <PlayerDetail/>
+  //  console.log("Player")
+  // }
 
 
 //each list item should be a link that renders a simple user details modal
   render(){
-    console.log(this.props)
   return(
     <List>
       <strong><h1>Users</h1></strong>
@@ -35,25 +34,26 @@ class PlayersList extends React.Component{
          <br/>
          <br/>
       </List.Item>
-      {this.props.players.map( p=>
-        <List.Item
-           onClick={(e) => this.handleClick(e) }
-          >
-              <Image avatar src={p.pic_url} />
-              <PlayerDetail
-                closePlayerDetailModal={this.props.closePlayerDetailModal}
-                openPlayerDetailModal={this.props.openPlayerDetailModal}
-                isPlayerDetailModalOpen={this.props.isPlayerDetailModalOpen}
-                />
-              <List.Content>
-             <List.Header id={p.id} as='a'>{p.name}</List.Header>
-             <List.Description>
-               'Player'
-             </List.Description>
-           </List.Content>
-        </List.Item>
+      {this.props.players.map( p =>
+        <PlayerDetail
+          p={p}
+          singlePlayer={this.props.singlePlayer}
+          closePlayerDetailModal={this.props.closePlayerDetailModal}
+          openPlayerDetailModal={this.props.openPlayerDetailModal}
+          isPlayerDetailModalOpen={this.props.isPlayerDetailModalOpen}
+          />
+        // <List.Item
+        //    onClick={(e) => this.handleClick(e) }
+        //   >
+        //       <Image avatar src={p.pic_url} />
+        //       <List.Content>
+        //      <List.Header id={p.id} as='a'>{p.name}</List.Header>
+        //      <List.Description>
+        //        'Player'
+        //      </List.Description>
+        //    </List.Content>
+        // </List.Item>
       )}
-
     </List>
   )
 }
