@@ -26,8 +26,7 @@ addPlayer = (e) => {
     event: event
   }
   this.props.addPlayerToEvent({payload})
-  this.props.fetchUserEvents();///do something here or above to re render UserList
-  // this.props.createdUserEvent(this.props.ue)
+  this.props.fetchUserEvents();
 }
 
 // addPlayerToEvent = () => {
