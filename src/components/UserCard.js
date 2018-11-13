@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { Grid, Card, Button, Image, Icon } from 'semantic-ui-react';
-import { addPlayerToEvent, fetchEvents } from "../redux/actions/index";
+import { addPlayerToEvent, fetchEvents, createdUserEvent, fetchUserEvents } from "../redux/actions/index";
 
 
 
@@ -16,7 +16,7 @@ class UserCard extends React.Component {
 addPlayer = (e) => {
   e.preventDefault();
   let eventId = this.props.event.id
-  let playerId = this.props.user.id
+  let playerId = this.props.player.id
   let dropValue = this.props.dropValue
   let event = this.props.event
   let payload = {
@@ -26,7 +26,8 @@ addPlayer = (e) => {
     event: event
   }
   this.props.addPlayerToEvent({payload})
-  this.props.fetchEvents()///do something here or above to re render UserList
+  this.props.fetchUserEvents();///do something here or above to re render UserList
+  // this.props.createdUserEvent(this.props.ue)
 }
 
 // addPlayerToEvent = () => {
@@ -60,6 +61,7 @@ addPlayer = (e) => {
 
 
 render(){
+  console.log(this.props.user)
   // let eventId = this.props.event.id
   // let playerId = this.props.user.id
   //
@@ -82,11 +84,14 @@ render(){
       </Card.Content>
       {this.props.event === undefined ? null :
         // this.props.event.users.map( player => player.id).includes(this.props.user.id)
-            this.props.user.events.map( event => event.id ).includes(this.props.event.id) ? null :
+            // this.props.user.events.map( event => event.id ).includes(this.props.event.id) ? null :
+            this.props.ue ? null :
           <Button
             onClick={(e)=> {
               // this.props.addPlayerToEvent()
-              this.addPlayer(e)
+              this.addPlayer(e);
+              //need to define ue here in mapStateToProps
+              // this.props.userEvents.includes(a => a.user_id === player.id)
             }//add a function here that will listen for change in the event and re render
             }>Add Player</Button>
           }
@@ -96,13 +101,19 @@ render(){
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, propsFromParent) => {
   let event = state.events.find( event => event.name === state.dropValue.value)
+  let player = state.users.find( player => player.id === propsFromParent.user.id)
+  let playerUes = state.userEvents ? state.userEvents.filter(a => a.user_id === player.id) : null
+  let ue = event ? playerUes.find(ue => ue.event_id === event.id) : null
+  console.log(playerUes)
   return {
     loading: state.loading,
     events: state.events,
     event: event,
     users: state.users,
+    player: player,
+    ue: ue,
     userEvents: state.userEvents,
     dropValue: state.dropValue.value
   };
@@ -111,7 +122,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addPlayerToEvent: value => dispatch(addPlayerToEvent(value)),
-    fetchEvents: value => dispatch(fetchEvents(value))
+    fetchEvents: value => dispatch(fetchEvents(value)),
+    fetchUserEvents: value => dispatch(fetchUserEvents(value)),
+    createdUserEvent: ue => dispatch(createdUserEvent(ue))
   };
 };
 

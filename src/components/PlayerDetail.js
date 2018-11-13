@@ -13,7 +13,7 @@ class PlayerDetail extends React.Component {
   }
 
   render(){
-    console.log(this.props.p)
+    // console.log(this.props.p)
     return (
       <Modal
         open={this.props.isPlayerDetailModalOpen}

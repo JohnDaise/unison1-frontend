@@ -5,7 +5,7 @@ import WarningModal from '../components/WarningModal'
 import PlayerAddedModal  from '../components/PlayerAddedModal'
 import { connect } from "react-redux";
 
-import { fetchUsers, fetchEvents } from "../redux/actions/index";
+import { fetchUsers, fetchEvents, fetchUserEvents } from "../redux/actions/index";
 
 
 class UsersContainer extends React.Component {
@@ -20,6 +20,7 @@ class UsersContainer extends React.Component {
   componentDidMount() {
       this.props.fetchUsers();
       this.props.fetchEvents();
+      this.props.fetchUserEvents();
     }
 
     openWarningModal = () => {
@@ -74,5 +75,5 @@ class UsersContainer extends React.Component {
 
 export default connect(
   null,
-  { fetchUsers, fetchEvents }
+  { fetchUsers, fetchEvents, fetchUserEvents }
 )(UsersContainer);

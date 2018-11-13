@@ -86,6 +86,8 @@ const userEventsReducer = (state = [], action) => {
   switch(action.type){
     case "ADD_USER_EVENT":
       return [...state, action.ue]
+    case "USER_EVENT_CREATED":
+      return [...state, action.ue]
     case "USER_EVENT_DELETED":
       return state.filter( ue => ue.id !== action.ue.id)
     case "FETCHED_USER_EVENTS":
