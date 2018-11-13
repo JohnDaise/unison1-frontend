@@ -54,6 +54,7 @@ class PlayersList extends React.Component{
         //    </List.Content>
         // </List.Item>
       )}
+      <br/>
     </List>
   )
 }
