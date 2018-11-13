@@ -30,6 +30,7 @@ class EventDetail extends React.Component {
 componentDidMount(){
   this.props.fetchEvents();
   this.props.fetchPosts();
+
 }
 
 handleChange = (e) => {
@@ -170,7 +171,6 @@ if (this.state.editable === "false") {
               <div className={"fixedright"}>
             <PlayersList
               currentUser={this.props.currentUser}
-              players={this.props.event.users}
               singlePlayer={this.state.singlePlayer}
               event={this.props.event}
               closePlayerDetailModal={this.closePlayerDetailModal}
@@ -183,6 +183,7 @@ if (this.state.editable === "false") {
       )
   }
 }
+// players={this.props.event.users}
 
   const mapStateToProps = (state, propsFromParent) => {
     let event = state.events.find(event => event.id === parseInt(propsFromParent.eventId))

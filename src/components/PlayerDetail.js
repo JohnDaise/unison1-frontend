@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Modal, Card, List, Icon, Button, Image } from 'semantic-ui-react';
-import { addPlayerToEvent, fetchEvents, deleteUserEvent, fetchUserEvents } from "../redux/actions/index";
+import { addPlayerToEvent, fetchEvents, deleteUserEvent, fetchUserEvents, userEventDeleted } from "../redux/actions/index";
 
 
 
@@ -13,7 +13,7 @@ class PlayerDetail extends React.Component {
   }
 
   render(){
-    console.log(this.props)
+    console.log(this.props.p)
     return (
       <Modal
         open={this.props.isPlayerDetailModalOpen}
@@ -47,8 +47,9 @@ class PlayerDetail extends React.Component {
                       <Button secondary id={""} onClick={(e)=> {
                           console.log(this.props.ue)
                           this.props.deleteUserEvent(this.props.ue.id);
-                          // this.props.fetchEvents();
-                          this.props.fetchUserEvents()
+                          this.props.fetchEvents();
+                          this.props.userEventDeleted(this.props.ue);
+                          //use redux action to reflect new user events
                           this.props.closePlayerDetailModal()
                         }}>
                         <Icon name='delete' />
@@ -65,13 +66,14 @@ class PlayerDetail extends React.Component {
 
 
 const mapStateToProps = (state, propsFromParent) => {
-  let event = state.events.find( event => event.name === state.dropValue.value)
+  console.log(propsFromParent)
+  // let event = state.events.find( event => event.name === state.dropValue.value)
   let player = state.users.find( player => player.id === propsFromParent.p.id )
    let ue = propsFromParent.singlePlayer ? state.userEvents.find( ue => ue.user_id === propsFromParent.singlePlayer.id ) : null
   return {
     loading: state.loading,
     events: state.events,
-    event: event,
+    // event: event,
     player: player,
     ue: ue,
     users: state.users,
@@ -85,7 +87,8 @@ const mapDispatchToProps = dispatch => {
     fetchUserEvents: value => dispatch(fetchUserEvents(value)),
     deleteUserEvent: value => dispatch(deleteUserEvent(value)),
     addPlayerToEvent: value => dispatch(addPlayerToEvent(value)),
-    fetchEvents: value => dispatch(fetchEvents(value))
+    fetchEvents: value => dispatch(fetchEvents(value)),
+    userEventDeleted: value => dispatch(userEventDeleted(value))
   };
 };
 

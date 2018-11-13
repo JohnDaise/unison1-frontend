@@ -72,6 +72,7 @@ class PlayersList extends React.Component{
 
 const mapStateToProps = (state, propsFromParent )=> {
   let organizer = state.users.find(user => user.id === parseInt(propsFromParent.currentUser.id))
+  let players = state.userEvents.filter( ue => ue.event_id === propsFromParent.event.id).map(ue => ue.user)
   // let player = propsFromParent.players.find
   // let ue = state.userEvents.find(ue => ue.user_id === e.target.id)
   //find the user event where ue.user_id === p.id or e.target.id -  line 37
@@ -80,7 +81,8 @@ const mapStateToProps = (state, propsFromParent )=> {
     events: state.events,
     users: state.users,
     userEvents: state.userEvents,
-    organizer: organizer
+    organizer: organizer,
+    players: players
   };
 };
 
