@@ -56,3 +56,9 @@ This is where an Organizer can search, find and add Players to any events that t
 Gigs Page
 
 On the "Gigs Page" you can see all of the events that you as a user were hired to participate in as a "Player". This page is similar to the "MyEvents" page with the exception of the editing features.
+
+
+
+Start Server
+Frontend: yarn start
+Backend: rails s -p 3001
