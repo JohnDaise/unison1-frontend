@@ -8,7 +8,7 @@ import "../App.css";
 
 import GigPlayerList from './GigPlayerList';
 import GigPostList from './GigPostList';
-// import PostList from './PostList';
+
 
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -37,8 +37,6 @@ componentDidMount(){
      6: "Saturday",
   }
 
-
-    // let gigs = this.props.users.find(user => user.id === this.props.currentUser.id).events
 
       return (
         <React.Fragment>
@@ -70,7 +68,6 @@ componentDidMount(){
     // let player = state.users.find(user => user.id === propsFromParent.currentUser.id)
     let gig = state.events.find(gig => gig.id === parseInt(propsFromParent.gigId))
     let event =  state.events.find( event => event.id === gig.id)
-    /// this array is a player's gigs console.log(player.events)
     return {
       loading: state.loading,
       events: state.events,

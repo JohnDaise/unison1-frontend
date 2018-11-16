@@ -8,9 +8,6 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
-//in the backend make the event date a datetime attribute
-
-
 import { Form, Button, Modal, TextArea } from 'semantic-ui-react'
 
 

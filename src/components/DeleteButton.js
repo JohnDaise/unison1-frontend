@@ -22,18 +22,3 @@ const mapStateToProps = state => {
 
 
 export default connect(mapStateToProps)(DeleteButton);
-
-//
-// <Modal trigger={<Button circular size='mini' icon='minus'/>}>
-//     <Modal.Header>
-//
-//     </Modal.Header>
-//     <div className='ui two buttons'>
-//         <Button basic color='green'>
-//           YES
-//         </Button>
-//         <Button basic color='red'>
-//           NO
-//         </Button>
-//       </div>
-// </Modal>

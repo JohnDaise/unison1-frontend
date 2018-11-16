@@ -82,16 +82,11 @@ render(){
         <Icon name="file alternate"/> {this.props.user.bio}
       </Card.Content>
       {this.props.event === undefined ? null :
-        // this.props.event.users.map( player => player.id).includes(this.props.user.id)
-            // this.props.user.events.map( event => event.id ).includes(this.props.event.id) ? null :
             this.props.ue ? null :
           <Button
             onClick={(e)=> {
-              // this.props.addPlayerToEvent()
               this.addPlayer(e);
-              //need to define ue here in mapStateToProps
-              // this.props.userEvents.includes(a => a.user_id === player.id)
-            }//add a function here that will listen for change in the event and re render
+            }
             }>Add Player</Button>
           }
     </Card>

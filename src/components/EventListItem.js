@@ -30,7 +30,3 @@ return(
 
 
 export default EventListItem ;
-
-
-// console.log(moment(props.event.datetime, 'DD-MM-YYYY').toDate()),
-// console.log(moment(props.event.datetime, 'DD-MM-YYYY')._d),

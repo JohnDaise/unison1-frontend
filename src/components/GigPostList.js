@@ -8,11 +8,6 @@ import Post from './Post';
 const GigPostList = (props) => {
 
 
-//new post form creates an iframe element if it includes a url otherwise would just show post content
-//-sets the src string and would need an id
-
-// let post = {url: "https://www.youtube.com/embed/Rp8WL621uGM", content: "Lets do this verison :)"}
-
   return(
     console.log(props),
     <Grid.Column>

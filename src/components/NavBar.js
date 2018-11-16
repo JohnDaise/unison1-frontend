@@ -72,30 +72,3 @@ export default NavBar;
 // mapStateToProps,
 // { logOutCurrentUser }
 // )(NavBar));
-
-
-
-
-
-// <NavLink activeClassName="ui active item" className="ui item" exact to="/">
-// <Menu.Item
-//     name='home'
-//     active={activeItem === 'home'}
-//     onClick={this.handleItemClick}
-//     >
-// </Menu.Item>
-
-// <Menu.Item
-//     name='login'
-//     active={activeItem === 'login'}
-//     onClick={this.handleItemClick}
-//   >
-// </Menu.Item>
-
-
-// <Menu.Item
-//     name='about'
-//     active={activeItem === 'about'}
-//     onClick={this.handleItemClick}
-//   >
-//   </Menu.Item>

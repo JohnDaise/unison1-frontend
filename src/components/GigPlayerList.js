@@ -7,8 +7,6 @@ import { fetchEvents, fetchUsers } from "../redux/actions/index";
 const GigPlayerList = (props) => {
 
 
-
-//each list item should be a link that renders a simple user details modal
   return(
     console.log(props),
     <List>
@@ -39,10 +37,6 @@ const GigPlayerList = (props) => {
     </List>
   )
 
-
-
-
-
 }
 
 
@@ -60,35 +54,3 @@ export default connect(
   mapStateToProps,
   { fetchEvents, fetchUsers }
 )(GigPlayerList);
-
-
-
-
-
-
-
-
-
-
-// <List.Item>
-//       <Image avatar src={props.organizer.pic_url} />
-//       <List.Content>
-//      <List.Header as='a'>{props.organizer.name}</List.Header>
-//      <List.Description>
-//        'Organizer'
-//      </List.Description>
-//    </List.Content>
-//    <br/>
-//    <br/>
-// </List.Item>
-// {props.players.map( p=>
-//   <List.Item>
-//         <Image avatar src={p.pic_url} />
-//         <List.Content>
-//        <List.Header as='a'>{p.name}</List.Header>
-//        <List.Description>
-//          'Player'
-//        </List.Description>
-//      </List.Content>
-//   </List.Item>
-// )}

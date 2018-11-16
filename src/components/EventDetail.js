@@ -183,7 +183,7 @@ if (this.state.editable === "false") {
       )
   }
 }
-// players={this.props.event.users}
+
 
   const mapStateToProps = (state, propsFromParent) => {
     let event = state.events.find(event => event.id === parseInt(propsFromParent.eventId))

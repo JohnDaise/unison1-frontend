@@ -34,7 +34,7 @@ render(){
     )
   }
 };
-///sort events by date
+
 const mapStateToProps = state => {
   return {
     loading: state.loading,

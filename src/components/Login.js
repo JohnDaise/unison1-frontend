@@ -101,17 +101,3 @@ export default withRouter(Login);
 //   { setCurrentUser }
 // )(Login);
 //
-
-
-
-// .then(res => {
-//   if (res.status === 401) {
-//     alert("login failed");
-//   } else {
-//     return res.json();
-//   }
-// }) ///for some reason this form isn't working
-// .then(json => {
-//   this.props.updateUser(json.user);
-//   localStorage.setItem("token", json.token);
-// });
