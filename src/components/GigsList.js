@@ -1,12 +1,15 @@
 import React from "react";
-
-import GigListItem  from './GigListItem'
 import { connect } from "react-redux";
 
-import { Loader, List } from 'semantic-ui-react'
+import GigListItem  from './GigListItem';
+
+import { Loader, List, Button } from 'semantic-ui-react';
+import { addPlayerToEvent, fetchEvents, deleteUserEvent, fetchUserEvents, userEventDeleted } from "../redux/actions/index";
+
+
 
 //map thru all userEvents that include currentUser id. those userEvents will have event ids
-class GigsList extends React.Component{
+class GigsList extends React.Component {
 
 
 render(){
@@ -21,7 +24,13 @@ return(
             player.events.length === 0 ?
             <h1>No Gigs Scheduled</h1>:
           player.events.reverse().map(gig =>
-           <List.Item><GigListItem gig={gig} /></List.Item>
+           <List.Item><GigListItem gig={gig} />
+           <Button onClick={(e)=> console.log("Event Accepted")}
+             >Accept</Button>
+           <Button onClick={(e)=> console.log("Event Declined")}
+             >Decline</Button></List.Item>
+           //Accept button should simply cause both buttons to no longer render
+           //Decline button should call on deleteUserEvent function and cause both buttons to no longer render
          )
 
          : null }
@@ -40,5 +49,16 @@ const mapStateToProps = (state, propsFromParent) => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchUserEvents: value => dispatch(fetchUserEvents(value)),
+    deleteUserEvent: value => dispatch(deleteUserEvent(value)),
+    addPlayerToEvent: value => dispatch(addPlayerToEvent(value)),
+    fetchEvents: value => dispatch(fetchEvents(value)),
+    userEventDeleted: value => dispatch(userEventDeleted(value))
+  };
+};
 
-export default connect(mapStateToProps)(GigsList);
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(GigsList);
